@@ -13,7 +13,8 @@
 :root{
   --primary-color:  rgb(134, 206, 203);
   --background-color: rgb(55, 50, 70);
-  --background-color-graay: rgb(32, 33, 36);        
+  --background-color-graay: rgb(32, 33, 36);  
+  --background-color-graay-muted: rgb(46, 48, 52);       
 }
 
 
@@ -27,6 +28,7 @@ body{
 .text{
   display: inline-block;
   font-size: 20px;
+  color: var(--primary-color);
 }
 .text-muted{
   color: gray;
@@ -120,26 +122,54 @@ nav{
   position: fixed;
   left: 0px;
   bottom: 0px;
-  top: 60px;
+  top: 0px;
 
   align-items: flex-start;
-  padding-top: 55px;
+  padding-top: 80px;
+  gap: 5px;
 }
+
+
 
 .a-sidebar{
-  left: 10px;
-  right: 10px;
-  background-color: var(--primary-color);
+
+  width: 96%;
+ 
   font-weight: bold;
   text-align: left;
-  margin: 5px 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
 
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  position:relative;
-
+  transition: background-color .15s;
 }
+
+.a-sidebar:hover{
+  background-color: var(--background-color-graay);
+  padding-left: 15px;
+  transition: color .15s;
+  overflow: hidden;
+}
+
+
+.a-sidebar.active i,
+.a-sidebar.active h3 {
+  color: rgb(53, 255, 211);
+}
+
+.a-sidebar.active::before{
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  background-color: rgb(53, 255, 211);
+  left: 0;
+  top: 0;
+  
+}
+
 
 .profile{
 
@@ -172,3 +202,32 @@ nav{
   right: 20px;
   bottom: 20px;
 }
+
+.btn-sidebar{
+  position: absolute;
+  left: 10px;
+  right: 10px
+}
+
+
+
+
+/* CENTEEEEER */
+
+main{
+  position:relative;
+  top: 5.4rem;
+}
+
+main .container{
+  margin-left: 250px;
+  display: grid;
+  grid-template-columns: auto 20vw;
+  position: relative;
+}
+
+
+
+
+
+
