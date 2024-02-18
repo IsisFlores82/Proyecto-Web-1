@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In</title>
+  <title> Create Acount</title>
 
-  <link rel="stylesheet" href="SignIn.css">
+  <link rel="stylesheet" href="CreateAcount.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,42 +26,38 @@
           <img class="logo" src="Imageees/Steam_icon_logo.svg.png" alt="">
           <p>Steam</p>
         </div>
+        <div>
+          <p> <strong>Create Acount</strong> </p>
+        </div>
   
         <br>
+
+        <div class="input-container">
+          <input type="text" id="username" class="input" name="username" required>
+          <label class="placeholder" for="username" > username </label>
+        </div>
+  
   
         <div class="input-container">
-          <input type="text" id="email" class="input" required>
+          <input type="text" id="email" class="input" name="email" required>
           <label class="placeholder" for="email" > email, phone num </label>
         </div>
   
         <div class="input-container">
-          <input type="text" id="pass" class="input" required>
+          <input type="text" id="pass" class="input" name="password" required>
           <label class="placeholder" for="pass"> Password </label>
         </div>
         
         
         <div class="signin-extras">
   
-          <div class="container">
-            <input type="checkbox">
-            <p>Remember me</p>
-          </div>
-  
-          <div class="container">
-            <a class="text-muted" href="">Forget me password</a>
-          </div>
-                  
+         
         </div>
+               
         
-  
-        <button class="sign-in submit">
-          Sign In
-        </button>
-  
-        <p class="text-muted">O create an acount</p>
-        
-        <a href="CreateAcount.html" class="create">Create Acount</a>
-        
+        <button class="create submit">Create Acount</button>
+        <p class="text-muted">I alredy have an acount</p>
+        <a href="SignIn.html" class="sign-in" id="signIn">Sign In</a>
   
       </div>
 
