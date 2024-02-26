@@ -214,6 +214,15 @@ nav{
 
 /* CENTEEEEER */
 
+.center{
+  padding:0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 main{
   position:relative;
   top: 5.4rem;
@@ -227,7 +236,98 @@ main .container{
 }
 
 
+main .create-post{
+  width: 70%;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border-radius: 15px;
+}
 
+main .btn-create{
+  background-color: var(--primary-color);
+  margin: 10px 10px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;;
+  font-weight: bold;
+}
+
+main .input-post{
+  background: transparent;
+  flex-shrink: 0;
+  max-width: 600px;
+  align-items: center;
+  border: none;
+  width: 100%;
+  line-height: 1.4;
+  margin: 1px 15px;
+}
+
+.posts{
+  width: 70%;
+  margin: 15px 1px;
+  border-radius: 15px;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post{
+  background-color: var(--background-color);
+ 
+  margin: 15px 1px;
+  border-radius: 15px;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user{
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.info{
+  margin: 5px 15px;
+  text-align: left;
+}
+
+.photo{
+  width: 500px;
+  border-radius: 15px;
+  margin: 5px 5px;
+  overflow: hidden;
+}
+
+.actiones{
+  width: 90%;
+  display: flex; 
+}
+
+.interaction-bnts{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 5px;
+  font-size: 25px;
+}
+
+.caption{
+  display: flex;
+  align-items: center;
+  margin: 5px 5px;
+  justify-content: left;
+}
 
 
 
