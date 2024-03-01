@@ -19,7 +19,7 @@
 
     <div class="container" >
       <img src="Imageees/Steam_icon_logo.svg.png" alt="" class="logo">
-      <h1> Steam</h1>
+      <h1> Estim</h1>
     </div>
 
     <div class="search-bar-container" >
@@ -88,14 +88,83 @@
   
       <!------ CENTER POST ------>
       <div class="center">
+
+        
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Create a post</h3>
+            
+            <form class="">
+
+              <div>
+                <div class="profile-model">         
+                  <div class="user-data">
+                    <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+                  </div>
+          
+                  <div class="user-name">
+                    <h3>Canela</h3>
+                    <p class="text-muted">@Canelita</p>
+                  </div>
+          
+                </div>
+              </div>
+
+              <div>
+                <div class="innput">
+                  <input type="text"  class="input-post text" placeholder="Title">
+                </div>
+
+                <div>
+                  <textarea name="bodypost" id="" cols="8" rows="5" class="texarea-post text" 
+                  placeholder="What´s on ur mind?" ></textarea>
+                </div>
+                
+                <div class=" actiones">
+                  <div class=" interaction-bnts">
+                    <span class="icons-stile"><i class="uil uil-image"></i></span>
+
+                    <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
+                    <select id="clasification" name="clasification">
+                    <option value="Shooter">Shooter</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Multiplayer">Multiplayer</option>
+                    <option value="Indie">Indie</option>
+                    </select>
+
+                  </div>
+                     
+                  <div>
+                    <input type="submit" value="Post" class="btn-create">
+                  </div> 
+                
+                </div>
+                
+              </div>
+
+                       
+            </form>
+
+          </div>
+        </div>
+
         
         <form class="create-post">
-          <div>
+          <div class="photo-container">
             <img src="Imageees/canela feli.png" alt="" class="profile-photo">
           </div>
-          <input type="text" placeholder="What´s on your mind?" class="input-post text">
-          <input type="submit" value="Post" class="btn-create">
-
+          <div class="post-body">
+            <button id="openModal" class="btnLabel text">What´s on ur mind?</button>
+            <div>
+              
+        
+              <input type="text"  class="input-post text" placeholder="">
+            </div>
+            
+            
+          </div>
+                   
         </form>
 
         <div class="posts">
@@ -105,31 +174,34 @@
               <div class="user">
                 <img src="Imageees/canela feli.png" alt="" class="profile-photo">
                 <div class="info">
-                  <h3>Canela <span class="text-muted">@Canelita</span> </h3>
-                  <small>15 min ago</small>
+                  <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
+                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
                 </div>
               </div>
             </div>
 
+            <div class="title">
+              <p>Happy </p>
+            </div>
+
+            <div class="caption">
+              <p>I went out with my human, was fun </p>
+            </div>
+
             <div>
               <img src="Imageees/post.jpg" alt="" class= "photo">
-
             </div>
 
             <div class="actiones">
               <div class="interaction-bnts">
-                <span><i class="uil uil-heart"></i> 108</span>
-                <span> <i class="uil uil-comment"></i> 57</span>
-                <span><i class="uil uil-bookmark"></i></span>
+                <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+              </div>
+              <div class="save">
+                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
               </div>
             </div>
 
-            <div class="caption">
-              <p> <b>Canela</b> I went out with my human, was fun </p>
-            </div>
-
           </div>
-
 
           <div class="post">
 
@@ -137,10 +209,18 @@
               <div class="user">
                 <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
                 <div class="info">
-                  <h3>Miku Bonita <span class="text-muted">@HatsuneMiku</span> </h3>
-                  <small>48 min ago</small>
+                  <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span>  </h3>
+                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythim  </h4>
                 </div>
               </div>
+            </div>
+
+            <div class="title">
+              <p>An amazing Concert </p>
+            </div>
+
+            <div class="caption">
+              <p>It was an incredible concert, thank u so much! </p>
             </div>
 
             <div>
@@ -150,28 +230,27 @@
 
             <div class="actiones">
               <div class="interaction-bnts">
-                <span><i class="uil uil-heart"></i> 2.7k</span>
-                <span> <i class="uil uil-comment"></i> 508</span>
-                <span><i class="uil uil-bookmark"></i></span>
+                <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
+              </div>
+              <div class="save">
+                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
               </div>
             </div>
 
-            <div class="caption">
-              <p> <b>Miku Bonita</b> It was an amazing nigth! Thank u so much! </p>
-            </div>
-
-
-
           </div>
+
+
+          
         </div>
 
       </div>
-  
-  
+    
        <!------ RIGHT POST ------>
       <div class="right">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt dolorem voluptate iste ipsa aspernatur suscipit. Assumenda deleniti dolores impedit molestias quos animi aperiam porro, praesentium, id itaque error, repellendus nesciunt?
         bbbb
+
+
       </div>
   
   
@@ -181,7 +260,15 @@
     </div>
 
   </main>
+
+  
+
+  <script src="scriptHome.js"></script>
  
   
 </body>
+
+
+
+
 </html>
