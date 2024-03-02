@@ -48,6 +48,8 @@ body{
   height: 50px;
   aspect-ratio: 1/1;
   overflow: hidden;
+
+  transition: all 0.15s;
 }
 
 .btn{
@@ -270,6 +272,7 @@ main .btn-create{
   font-size: 20px;
   font-family: 'Quicksand', sans-serif;;
   font-weight: bold;
+  transition: opacity .15s;
 }
 
 
@@ -304,6 +307,7 @@ main .btn-create{
 .innput{
   display: flex;
   align-items: start;
+
 }
 
 .posts{
@@ -438,6 +442,8 @@ main .btn-create{
   position: absolute;
   right: 3%;
   top: 3%;
+
+  transition: color .15s;
 }
 
 .close:hover,
@@ -455,8 +461,7 @@ main .btn-create{
   position: absolute;
 }
 
-.images-profile{
-  
+.images-profile{  
   display: flex;
   position: relative;
   flex-direction: column;
@@ -508,10 +513,22 @@ option {
 
 /* ----------- PROFILE ------------- */ 
 
+
+
 .cover-photo{
   border-radius: 15px;
   width: 70%;
 
+  transition: all 0.15s;
+}
+
+.modal-content .cover-photo:hover{
+  opacity: 0.7;
+}
+
+.modal-content .profile-photo:hover{
+  background-color: black;
+  opacity: 0.7; 
 }
 
 .photoos{
@@ -547,8 +564,6 @@ option {
   width: 100%;
   border-radius: 15px; 
   padding: 20px 1px;
-  height: 100%;
-  
 }
 
 .infoo{
@@ -569,7 +584,8 @@ option {
 }
 
 .btn-edit-user{
-  margin-left: 70%;
+  margin-top: -5%;
+  margin-left:70%;
 }
 
 .modal .user-name{
@@ -592,8 +608,8 @@ option {
 
 .modal-content .profile-model{
   position: absolute;
-  top: 62%;
-  left: 36%;
+  top: 54%;
+  left: 35%;
 }
 
 .modal-content .profile-model .text-muted{
@@ -605,33 +621,131 @@ option {
 .data-left{
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .data-right{
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .editable-data-container{
   display: flex;
   flex-direction: row;
-  margin-top: 10%;
-  justify-content: center;
+  margin-top: 5%;  
+  margin-left: 15%;
+  margin-right: 10%;
+  justify-content: space-between;
+}
+
+.MyProfile .editable-data-container{
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-right: 22%;
+  text-align: left;
+  margin-top: 0;
 }
 
 
 input[type="date"] {
-  /* Otros estilos */
-  font-size: 20px;
+  font-size: 18px;
   color: var(--primary-color);
   font-weight: bold;
-  margin-left: -25px;
 
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
+ display: none;
  background-color: var(--primary-color);
  border-radius: 5px;
+}
+
+.description{
+  margin-top: 20%;
+}
+
+.some-info{
+  text-align: left;
+}
+
+.email-pass{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-right: 10%;
+}
+
+.email-pass .innput{
+  margin-top: 0%;
+  margin-right: 10%;
+}
+
+.category-edit-user{
+  display: flex;
+  justify-content: left;
+  margin-top: 5%;
+  margin-left: 15%;
+  font-weight: bold;
+}
+
+.modal-content .text{
+  color:  gray;
+  font-weight: 500;
+}
+
+.modal-content .text-muted{
+  color:  var(--primary-color);
+  font-weight: 700;
+}
+
+.btn-save{
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;  
+}
+
+.email-pass .input-post{
+  width: 120%;
+}
+
+.btn-create:hover{
+  opacity: 0.8;
+}
+
+.btn-edit-user .btn-mutted{
+  transition: all 0.15s;
+}
+.btn-edit-user .btn-mutted:hover{
+  opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------- FOOTER ---------- */
+
+.footer{
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color-graay-muted);
+  bottom: 0px;
+ 
 }

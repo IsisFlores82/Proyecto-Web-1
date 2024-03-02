@@ -482,10 +482,20 @@ option {
 .btnLabel{
   background-color: transparent;
   position: absolute;
-  top: 2%;
+  top: 1.2%;
   width: 42%;
   height: 3%;
   text-align: left;
-  color: gray;
-  
+  color: gray;  
+}
+
+
+
+/* -------- FOOTER ---------- */
+
+.footer{
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color-graay-muted);
+  bottom: 0px;
 }

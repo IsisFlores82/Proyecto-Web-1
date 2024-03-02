@@ -14,7 +14,7 @@
   </head>
 
 
-<body style="height: 5000px;">
+<body >
 
   <!----- TOP BAR ------>
   <nav class="header">
@@ -30,7 +30,10 @@
     </div>
 
     <div class="container">
-      <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+      <a href="MyProfile.html">
+        <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+      </a>
+      
     </div>
 
   </nav>
@@ -43,26 +46,68 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="" class="a-sidebar active">
-            <span>
-               <i class="uil uil-home text"></i>
-               <h3 class="text">Home</h3>
-            </span>
+        <a href="Home.html" class="a-sidebar active">
+          <span>
+             <i class="uil uil-home text"></i>
+             <h3 class="text">Home</h3>
+          </span>
         </a>
   
         <a href="" class="a-sidebar">
           <span>
-            <i class="uil uil-chat text"></i>
-            <h3 class="text">Chat</h3>
+            <i class="uil uil-shield text"></i>
+            <h3 class="text">Action</h3>
           </span>
         </a>
   
   
-       <a href="" class="a-sidebar">
+        <a href="" class="a-sidebar">
+            <span>
+              <i class="uil uil-compass text"></i>
+              <h3 class="text">Adventure</h3>
+            </span>
+        </a>
+
+        <a href="" class="a-sidebar">
           <span>
-            <i class="uil uil-bookmark-full text"></i>
-            <h3 class="text">Chat</h3>
+            <i class="uil uil-map-pin-alt text"></i>
+            <h3 class="text">Arcade</h3>
           </span>
+        </a>
+
+        <a href="" class="a-sidebar">
+          <span>
+            <i class="uil uil-basketball text"></i>
+            <h3 class="text">Sport</h3>
+          </span>
+        </a>
+
+        <a href="" class="a-sidebar">
+          <span>
+            <i class="uil uil-puzzle-piece text"></i>
+            <h3 class="text">Stretegy</h3>
+          </span>
+        </a>
+
+        <a href="" class="a-sidebar">
+          <span>
+            <i class="uil uil-trees text"></i>
+            <h3 class="text">Simulation</h3>
+          </span>
+        </a>
+
+        <a href="" class="a-sidebar">
+          <span>
+            <i class="uil uil-music text"></i>
+            <h3 class="text">Rythim</h3>
+          </span>
+        </a>
+
+       <a href="MyProfile.html" class="a-sidebar">
+        <span>
+          <i class="uil uil-user text"></i>
+          <h3 class="text">Profile</h3>
+        </span>
        </a>
   
         <div class="profile">
@@ -96,38 +141,39 @@
             <span class="close">&times;</span>
             <h3>Edit Profile</h3>
             <br>
+
             
-            <form class="">
+            <form id="Edit-Info">
 
-              <div>
-                <div class="images-profile">  
+              <div class="images-profile">  
                   
-                  <div>
-                    <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
-                  </div>
+                <div>
+                  <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
+                </div>
 
-                  <div class="user-data">
-                    <img src="Imageees/canela feli.png" alt="" class="profile-photo">
-                  </div>
+                <div class="user-data">
+                  <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+                </div>
           
-                </div>
-
-                <div class="profile-model user-name">
-                  <p class="text-muted">@Canelita</p>
-                </div>
               </div>
 
+              <div class="profile-model user-name">
+                <p class="text-muted">@Canelita</p>
+              </div>
+
+              
+              
               <div class="editable-data-container">
 
-
+                
                 <div class="data-left">
                   <div class="innput">
                     <input type="text"  class="input-post text" placeholder="Name" maxlength="30">
                   </div>
 
                   <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Description" maxlength="30">
-                  </div>
+                    <input type="text"  class="input-post text" placeholder="Ocupation" maxlength="30">
+                  </div>               
                   
 
                 </div>
@@ -140,30 +186,43 @@
 
                   <div class="innput">
                     <input type="text"  class="input-post text" placeholder="Localition" maxlength="30">
-                  </div>
-                  
+                  </div>                  
                   
                 </div>
 
                 <div class="data-left">
                   <div class="innput">
-                    <input type="date" class="input-post text-muted">
+                    <input type="date" class="input-post text">
                   </div>
 
                   <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Ocupation" maxlength="30">
-                  </div>
+                    <input type="text"  class="input-post text" placeholder="Description" maxlength="30">
+                  </div>                  
                  
-                </div>
-               
-                
-                
+                </div>                
                 
               </div>
 
-              <div>
-                <input type="submit" value="Post" class="btn-create">
-            </div> 
+              <div class="">
+                <p class="category-edit-user">Security Data</p>
+                <br> 
+              </div>
+
+              <div class="email-pass">                
+                
+               <div class="innput data-left">
+                  <input type="text"  class="input-post text" placeholder="Email" maxlength="80">
+                </div>
+
+                <div class="innput data-right">
+                  <input type="text"  class="input-post text" placeholder="Password" maxlength="80">
+                </div>
+
+              </div>
+
+              <div class="btn-save">
+                <input type="submit" value="Save" class="btn-create">
+              </div> 
 
                        
             </form>
@@ -196,29 +255,83 @@
               </div>
             </div>
           </div>   
+
+          <div class="editable-data-container ">
+            <p class="description"> Cuando quiero hago wuaw wuaw</p>
+          </div>
+          <br>
           
-          <div class="infoo">
-            <div class="description data">
-              <p> A veces no me cae tan mal la sociedad</p>
-            </div>
-            <br>
+          <div class="editable-data-container">           
 
-            <div class="work">
-              <span> <i class="uil uil-suitcase data"> </i> ser bonita uwu</span>
+            <div class="data-left">
+              
+              <div class="work">
+                <span class="some-info"> <i class="uil uil-envelope"></i> canela@wuawauw.com</span>
+              </div>
+  
+              <div class="work">
+                <span class="some-info"> <i class="uil uil-suitcase data"> </i> ser bonita uwu</span>
+              </div> 
+
             </div>
 
-            <div class="age">
-              <span>  12 años</span>
+            <div class="data-right">
+              
+              <div class="age">
+                <span class="some-info"> <i class="uil uil-gift"></i> 12 años</span>
+              </div>
+  
+              <div class="age">
+                <span class="some-info"> <i class="uil uil-map-marker"></i> Guadalajara </span>
+              </div>
             </div>
-
-            <div class="age">
-              <span> <i class="uil uil-map-marker"></i> Guadalajara </span>
-            </div>
+            
             
           </div>
 
-
         </div>
+
+         <!------ PERSONAL POST ------>
+
+         <div class="posts">
+          <div class="post">
+
+            <div class="head">
+              <div class="user">
+                <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+                <div class="info">
+                  <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
+                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="title">
+              <p>Happy </p>
+            </div>
+
+            <div class="caption">
+              <p>I went out with my human, was fun </p>
+            </div>
+
+            <div>
+              <img src="Imageees/post.jpg" alt="" class= "photo">
+            </div>
+
+            <div class="actiones">
+              <div class="interaction-bnts">
+                <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+              </div>
+              <div class="save">
+                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
 
 
       </div>    
@@ -229,6 +342,15 @@
       <div class="right">
       
 
+      </div>
+  
+       <!------ FOOTER ------>
+       <br>
+       <div class="footer">
+        <p>All rights reserved <i class="uil uil-copyright"></i></p>
+        <p>
+          Terms of use | Privacy Policy
+        </p>
       </div>
   
   
