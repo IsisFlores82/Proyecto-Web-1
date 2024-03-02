@@ -95,10 +95,11 @@
           <div class="modal-content">
             <span class="close">&times;</span>
             <h3>Edit Profile</h3>
+            <br>
             
             <form class="">
 
-              <div class="aaa">
+              <div>
                 <div class="images-profile">  
                   
                   <div>
@@ -112,25 +113,57 @@
                 </div>
 
                 <div class="profile-model user-name">
-                  <h3>Canela</h3>
                   <p class="text-muted">@Canelita</p>
                 </div>
               </div>
 
-              <div>
-                <div class="innput">
-                  <input type="text"  class="input-post text" placeholder="Name">
+              <div class="editable-data-container">
+
+
+                <div class="data-left">
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Name" maxlength="30">
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Description" maxlength="30">
+                  </div>
+                  
+
                 </div>
 
-                <div class="innput">
-                  <input type="text"  class="input-post text" placeholder="Apellido">
+                <div class="data-right">
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Last Name" maxlength="30">
+                    
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Localition" maxlength="30">
+                  </div>
+                  
+                  
                 </div>
+
+                <div class="data-left">
+                  <div class="innput">
+                    <input type="date" class="input-post text-muted">
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Ocupation" maxlength="30">
+                  </div>
+                 
+                </div>
+               
                 
-                <div>
-                    <input type="submit" value="Post" class="btn-create">
-                </div> 
+                
                 
               </div>
+
+              <div>
+                <input type="submit" value="Post" class="btn-create">
+            </div> 
 
                        
             </form>

@@ -419,7 +419,7 @@ main .btn-create{
 
 .modal-content {
   background-color: var(--background-color-graay);
-  margin: 1 0% auto; 
+  margin: 8% auto; 
   padding: 20px;
   border: 1px solid #888;
   width: 50%; 
@@ -456,7 +456,7 @@ main .btn-create{
 }
 
 .images-profile{
-  background-color: blue;
+  
   display: flex;
   position: relative;
   flex-direction: column;
@@ -551,7 +551,6 @@ option {
   
 }
 
-
 .infoo{
   display: flex;
   justify-content: left;
@@ -574,7 +573,6 @@ option {
 }
 
 .modal .user-name{
-  background-color: azure;
   
 }
 
@@ -591,4 +589,49 @@ option {
   left: 20%;
 }
 
-input-post
+
+.modal-content .profile-model{
+  position: absolute;
+  top: 62%;
+  left: 36%;
+}
+
+.modal-content .profile-model .text-muted{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+
+.data-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editable-data-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10%;
+  justify-content: center;
+}
+
+
+input[type="date"] {
+  /* Otros estilos */
+  font-size: 20px;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-left: -25px;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+ background-color: var(--primary-color);
+ border-radius: 5px;
+}
