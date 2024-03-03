@@ -27,7 +27,7 @@
     <div class="search-bar-container" >
       <i class="uil uil-search"></i>
       <input type="text" placeholder="Search something" class="search-bar">
-      <i class="uil uil-filter text"></i>
+      <i class="uil uil-filter text" id="openModalSearch"></i>
     </div>
 
     <div class="container">
@@ -137,6 +137,76 @@
       <!------ CENTER POST ------>
       <div class="center">
 
+        <!------ MODAL WINDOW FOR ADVANCE SEARCH ------>
+        <div id="modalSearch" class="modal">
+          <div class="modal-content advanced-search" id="winModalSearch">
+            <span class="close">&times;</span>
+            <h3>Advanced Search</h3>
+            
+            <form class="">            
+
+              <div>
+                <div class="innput">
+                  <input type="text"  class="text advanced-search-bar" placeholder="What are u looking for?">
+                </div>
+
+                <br>
+                <div class="dates">
+                  <p class="TitleSearch text">Dates</p>
+                  <div class="data-left">
+                    <p class="text-muted">Before date:</p>
+                    <div class="innput">
+                      <input type="date" class="input-post text-DP">
+                      
+                    </div>
+                  </div>
+
+                  <div class="data-right">
+                    <p class="text-muted">After date:</p>
+                    <div class="innput">
+                      <input type="date" class="input-post text-DP">
+                    </div>
+                  </div>
+
+                </div>
+                <br> <br>
+
+                <div class="dates">
+                  <p class="TitleSearch text">In what category are u loonking for</p>
+                  
+                  <div class="select-category">
+                    
+                    <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
+                      <select id="clasification" name="clasification" class="interaction-bnts text-DP">
+                      <option value="Shooter">Shooter</option>
+                      <option value="Adventure">Adventure</option>
+                      <option value="Multiplayer">Multiplayer</option>
+                      <option value="Indie">Indie</option>
+                      </select>
+                  </div>
+                 
+
+                </div>
+               
+                <br>
+                <div class=" actiones">
+
+                  <div class=" interaction-bnts">
+                  </div>                     
+                  <div>
+                    <input type="submit" value="Search" class="btn-create">
+                  </div>     
+
+                </div>
+                
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+        <!--- MODAL EDIT INFO USER --->
         <div id="modal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
