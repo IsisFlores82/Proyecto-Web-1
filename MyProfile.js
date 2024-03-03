@@ -65,3 +65,26 @@ document.getElementById('game3').addEventListener('click', function(event) {
   elemento2.style.display = 'none';
   elemento3.style.display = 'block';
 });
+
+
+/* ------ MODAL WINDOW FOR SIGN OUT ----- */
+
+const openModalBtnConfig = document.getElementById("openModalConfig");
+const modalConfig = document.getElementById("modalConfig");
+const closeModalBtnConfig = document.getElementsByClassName("close")[2];
+
+openModalBtnConfig.onclick = function(event) {
+  event.preventDefault();
+  modalConfig.style.display = "block";
+}
+
+closeModalBtnConfig.onclick = function(event) {
+  event.preventDefault();
+  modalConfig.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modalConfig) {
+    modalConfig.style.display = "none";
+  }
+}

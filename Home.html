@@ -48,12 +48,12 @@
       <div class="left">
        
         <a href="Home.html" class="a-sidebar active">
-            <span>
-               <i class="uil uil-home text"></i>
-               <h3 class="text">Home</h3>
-            </span>
+          <span>
+            <i class="uil uil-home text"></i>
+            <h3 class="text">Home</h3>
+          </span>
         </a>
-  
+
         <a href="" class="a-sidebar">
           <span>
             <i class="uil uil-shield text"></i>
@@ -123,7 +123,7 @@
             <p class="text-muted">@Canelita</p>
           </div>
   
-          <div class="config">
+          <div class="config" id="openModalConfig">
             <i class="uil uil-setting"></i>
           </div>
   
@@ -246,7 +246,7 @@
                 </div>
                 
                 <div class="actiones">
-                  <div class=" interaction-bnts">
+                  <div class=" interaction-bnts select-category">
                     <span class="icons-stile"><i class="uil uil-image"></i></span>
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
@@ -443,6 +443,32 @@
         </div>
 
 
+      </div>
+
+      <!------ MODAL CONFIG ------>
+      <div id="modalConfig" class="modal">
+        <div class="modal-content" id="triangle"></div>
+        <div class="modal-content configg" id="popup-config">
+          <span class="close" id="close-signOut">&times;</span>
+          
+          <form class="">            
+
+            <div>
+             <a href="SignIn.html" class="text lil-popUp">
+              Sign Out
+             </a>
+             
+             <a href="MyProfile.html" class="text lil-popUp">
+              Profile
+             </a>
+              
+            </div>
+
+                     
+          </form>
+
+        </div>
+        
       </div>
   
       <!------ FOOTER ------>

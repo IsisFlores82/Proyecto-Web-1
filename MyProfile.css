@@ -33,7 +33,8 @@ body{
 }
 .text-muted{
   color: gray;
-  font-size: medium;
+  font-size: 20px;
+  
 }
 
 .text-DP{
@@ -83,7 +84,7 @@ nav{
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 100; 
+  z-index: 110; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -150,6 +151,7 @@ nav{
   left: 0px;
   bottom: 0px;
   top: 0px;
+  z-index: 100;
   
   align-items: flex-start;
   padding-top: 80px;
@@ -352,6 +354,7 @@ main .btn-create{
   flex-direction: row;
   align-items: center;
   justify-content: left;
+  position: relative;
 }
 
 .info{
@@ -421,97 +424,6 @@ main .btn-create{
   justify-content: space-between;
 }
 
-/* VENTANA MODAL */
-
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 200; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-  background-color: var(--background-color-graay);
-  margin: 15% auto; 
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; 
-  border-radius: 15px;
-  border: none;
-  box-shadow: 0px 0 10px var(--primary-color);
-  position: relative;
-}
-
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 3%;
-  top: 3%;
-}
-
-.close:hover,
-.close:focus {
-  color: var(--primary-color);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.profile-model{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  top: 15%;
-  position: absolute;
-}
-
-.modal-content .innput{
-  margin-top: 12%;
-}
-
-.innput .text{
-  font-weight: 900;
-}
-
-select {
-  padding: 1px;
-  font-size: 20px;
-  border: none;
-  border-radius: 15px;
-  background-color: var(--background-color-graay);
-  color: var(--primary-color);
-  width: 20%;
-  appearance: none;
-  margin: 0px 0px;
-}
-
-option {
-  padding: 10px;
-  font-size: 20px;
-  background-color: var(--background-color-graay);
-  color: var(--primary-color);
-  border: none;
-  border-radius: 15px;
-}
-
-.btnLabel{
-  background-color: transparent;
-  position: absolute;
-  top: 1.2%;
-  width: 42%;
-  height: 3%;
-  text-align: left;
-  color: gray;  
-}
-
 
 /*-------- VENTANA MODAL ---------*/
 
@@ -530,7 +442,7 @@ option {
 
 .modal-content {
   background-color: var(--background-color-graay);
-  margin: 8% auto; 
+  margin: 5% auto; 
   padding: 20px;
   border: 1px solid #888;
   width: 50%; 
@@ -827,15 +739,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+
+.manage-posts{
+  display: flex;
+  position: absolute;
+  text-align: right;
+  right: 0%;
+}
+
+.manage-posts .text-muted{
+  margin: 5px;
+  font-size: 25px;
+  padding: 5px 5px;
+  border-radius: 15px;
+}
+
+.manage-posts .text-muted:hover{
+ background-color: var(--background-color-graay-muted);
+
+}
+
+
+
+
 /* ----- MODAL WINDOW ADVANCED SEARCH ------- */
 
 #winModalSearch{
   width: 40%;
 }
+select-category
 
 .advanced-search-bar{
-  
-  background: transparent;
+  background-color: var(--primary-color);
   flex-shrink: 0;
   align-items: start;
   border: none;
@@ -902,6 +837,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .advanced-search .text{
   color:  var(--primary-color);
   font-weight: 700;
+  background-color: var(--background-color-graay);
 }
 
 .modal-content .text-muted{
@@ -960,10 +896,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 15px;
   width: 120%;
   margin-left: -10%;
+  margin-top: 15%;
   padding-top: 20px;
   padding-bottom: 10px;
   position: absolute;
-  top: 34%;
+  top: 30%;
   justify-content: center;
   align-items: center;
 }
@@ -1002,7 +939,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: var(--primary-color);
 }
 
+/*------ MODAL SIGN OUT -------*/
 
+
+
+#popup-config{
+  display: flex;
+  position: absolute;
+  width: 10%;
+  left: 7%;
+  bottom: -2%;
+  justify-content: center;
+}
+
+#triangle{
+  border-radius: 0;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  left: 12%;
+  bottom: -3%;
+  transform: rotate(45deg);
+}
+
+#close-signOut{
+  color: var(--background-color-graay);
+}
+
+.lil-popUp{
+  transition: all 0.15s;
+  margin: 5px 5px;
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+.lil-popUp:hover{
+  background-color: var(--background-color-graay-muted);
+}
 
 
 
@@ -1025,5 +997,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   background-color: var(--background-color-graay-muted);
   bottom: 0px;
- 
+  z-index: -1;
 }

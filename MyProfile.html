@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile</title>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="MyProfile.css">
   
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -47,7 +47,7 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.html" class="a-sidebar active">
+        <a href="Home.html" class="a-sidebar">
           <span>
              <i class="uil uil-home text"></i>
              <h3 class="text">Home</h3>
@@ -104,7 +104,7 @@
           </span>
         </a>
 
-       <a href="MyProfile.html" class="a-sidebar">
+       <a href="MyProfile.html" class="a-sidebar active">
         <span>
           <i class="uil uil-user text"></i>
           <h3 class="text">Profile</h3>
@@ -122,7 +122,7 @@
             <p class="text-muted">@Canelita</p>
           </div>
   
-          <div class="config">
+          <div class="config" id="openModalConfig">
             <i class="uil uil-setting"></i>
           </div>
   
@@ -178,10 +178,13 @@
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
                       <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                      <option value="Shooter">Shooter</option>
+                      <option value="Action">Action</option>
                       <option value="Adventure">Adventure</option>
-                      <option value="Multiplayer">Multiplayer</option>
-                      <option value="Indie">Indie</option>
+                      <option value="Arcade">Arcade</option>
+                      <option value="Sport">Sport</option>
+                      <option value="Strategy">Strategy</option>
+                      <option value="Simulation">Simulation</option>
+                      <option value="Rythim">Rythim</option>
                       </select>
                   </div>
                  
@@ -349,7 +352,7 @@
             <div class="data-right">
               
               <div class="age">
-                <span class="some-info"> <i class="uil uil-gift"></i> 12 años</span>
+                <span class="some-info"><i class="bi bi-balloon"></i> 12 años</span>
               </div>
   
               <div class="age">
@@ -373,6 +376,12 @@
                 <div class="info">
                   <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
                   <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
+                </div>
+
+                <div class="manage-posts">
+                  <span class="text-muted"><i class="uil uil-edit-alt"></i></span>
+                  <span class="text-muted"><i class="uil uil-trash"></i></span>
+                                    
                 </div>
               </div>
             </div>
@@ -481,9 +490,35 @@
           
         </div>
 
+      </div>   
+
+      <!------ MODAL CONFIG ------>
+      <div id="modalConfig" class="modal">
+        <div class="modal-content" id="triangle"></div>
+        <div class="modal-content configg" id="popup-config">
+          <span class="close" id="close-signOut">&times;</span>
+          
+          <form class="">            
+
+            <div>
+             <a href="SignIn.html" class="text lil-popUp">
+              Sign Out
+             </a>
+             
+             <a href="MyProfile.html" class="text lil-popUp">
+              Profile
+             </a>
+              
+            </div>
+
+                     
+          </form>
+
+        </div>
+        
       </div>
   
-       <!------ FOOTER ------>
+      <!------ FOOTER ------>
        <br>
        <div class="footer">
         <p>All rights reserved <i class="uil uil-copyright"></i></p>
