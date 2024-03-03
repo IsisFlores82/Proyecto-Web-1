@@ -42,3 +42,28 @@ window.onclick = function(event) {
     modalSearch.style.display = "none";
   }
 }
+
+
+/*-------- CARRUSEL ---------*/
+const elemento1 = document.getElementById('item1');
+const elemento2 = document.getElementById('item2');
+const elemento3 = document.getElementById('item3');
+
+document.getElementById('game1').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'block';
+  
+});
+
+document.getElementById('game2').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'none';
+  elemento2.style.display = 'block';
+});
+
+document.getElementById('game3').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'none';
+  elemento2.style.display = 'none';
+  elemento3.style.display = 'block';
+});
