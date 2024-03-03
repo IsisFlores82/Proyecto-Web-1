@@ -90,20 +90,3 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
-
-
-/* ------- ACTIVE CLASS ------- */
-const menuItems = document.querySelectorAll('a-sidebar');
-
-const changeActiveItem = () => {
-  menuItems.forEach(item =>{
-    item.classList.remove('active');
-  } )
-}
-
-menuItems.forEach(item =>{
-  item.addEventListener('click', () => {
-    changeActiveItem();
-    item.classList.add('active');
-  })
-})
