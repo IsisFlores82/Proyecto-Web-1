@@ -31,6 +31,15 @@ body{
   color: var(--primary-color);
   font-family: 'Quicksand', sans-serif;
 }
+
+.text-DP{
+  display: inline-block;
+  font-size: 20px;
+  color: var(--primary-color);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+}
+
 .text-muted{
   color: gray;
   font-size: medium;
@@ -298,7 +307,7 @@ main .btn-create{
 
 .innput{
   display: flex;
-  align-items: start;
+  align-items: center;
 }
 
 .posts{
@@ -400,7 +409,7 @@ main .btn-create{
 /* VENTANA MODAL */
 
 .modal {
-  display: inline; 
+  display: none; 
   position: fixed; 
   z-index: 200; 
   left: 0;
@@ -408,8 +417,7 @@ main .btn-create{
   width: 100%; 
   height: 100%; 
   overflow: auto; 
-  background-color: rgba(0,0,0,0.4); 
-  
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
@@ -489,7 +497,77 @@ option {
   color: gray;  
 }
 
+/* ----- MODAL WINDOW ADVANCED SEARCH ------- */
 
+#winModalSearch{
+  width: 40%;
+}
+
+.advanced-search-bar{
+  
+  background: transparent;
+  flex-shrink: 0;
+  align-items: start;
+  border: none;
+  width: 95%;
+  line-height: 1.4;
+  margin: 1px 15px;
+  font-family: 'Quicksand', sans-serif;
+  scrollbar-width: none;
+}
+
+.advanced-search .innput{
+  margin: 5% 1%;
+}
+
+.dates{
+  display: flex;
+  border: var(--background-color-graay-muted);
+  border-style: solid;
+  position: relative;
+  border-radius: 15px;
+  padding: 25px;
+  justify-content: space-around;
+}
+
+.TitleSearch{
+  position: absolute;
+  left: 15px;
+  top: -18px;
+  background-color: var(--background-color-graay);
+  margin: 5px 15px;
+  padding: 0px 15px;
+}
+
+.dates .select-category{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.dates .text {
+  font-weight: 800;
+}
+
+.icon-calendar-DP{
+  margin-left: -20%;
+  font-size: 25px;
+}
+input[type="date"] {
+  font-size: 18px;
+  color: var(--primary-color);
+  font-weight: bold;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+ position: relative;
+ margin-left: -15px;
+ background-color: var(--primary-color);
+ border-radius: 5px;
+ width: 25px;
+ height: 25px;
+}
 
 /* -------- FOOTER ---------- */
 
