@@ -1,0 +1,173 @@
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  list-style: 0;
+  outline: 0;
+  text-decoration: none;
+  border: none;
+}
+
+.text-muted{
+  color: gray;
+  font-size: 18px;
+}
+
+
+:root{
+  --primary-color:  rgb(134, 206, 203);
+  --background-color: rgb(55, 50, 70);
+  --background-color-graay: rgb(32, 33, 36);  
+  --background-color-graay-muted: rgb(46, 48, 52);       
+}
+
+
+body{
+  font-family: 'Quicksand', sans-serif;
+  color: var(--primary-color);
+  background-color: var(--background-color-graay);
+  font-size: 25px;
+}
+
+section{
+  position: relative;
+  height: 90vh;
+}
+
+.Pop-up{
+  display: flex;
+  flex-direction: column;
+  
+  max-width: 400px;
+  width: 100%;
+  height: 500px;
+  
+  justify-content: center;
+  align-items: center;
+
+  
+
+  background-color: var(--background-color);
+  border-radius: 30px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.logo{
+  width: 50px;
+  height: 50px;
+  margin: 0px 10px;
+}
+
+/*--------INPUTS-------*/
+
+.input-container{
+  position: relative;
+  margin: 5px 0px;
+}
+
+.input{
+  width: 300px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-size: 22px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+
+.placeholder{
+  position: absolute;
+  top: 25%;
+  left:10px;
+  transition: .15s;
+  font-size: 18px;
+  color: var(--background-color-graay);
+}
+
+.input:focus{
+  box-shadow: 0px 0 10px var(--primary-color);
+}
+
+.input:focus + .placeholder{
+  top: 0px;
+  font-size: 10px;
+}
+
+
+/*----- BOTONES ------*/
+
+.sign-in{
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: var(--background-color-graay);
+  margin: 10px 0px;
+  color: white;
+  font-size: 20px;
+  transition: .15s;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.sign-in:hover{
+  opacity: .8;
+}
+
+.signin-extras{
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  align-items:center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.cheeck{
+  width: 25px;
+  height: 25px;
+
+}
+
+.create{
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: var(--primary-color);
+  margin: 5px 0px;
+  transition: .15s;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.create:hover{
+  opacity: .7;
+}
+
+.remember-me{
+  font-size: 20px;
+  text-align: left;
+  margin-left: 5px;
+}
+
+
+.forget-pass{
+  color: gray;
+  text-align: right;
+  font-size: 20px;
+}
+
