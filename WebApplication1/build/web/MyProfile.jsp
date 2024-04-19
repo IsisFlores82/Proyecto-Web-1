@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Home
-    Created on : 17 abr 2024, 21:07:46
+    Document   : MyProfile
+    Created on : 18 abr 2024, 18:09:28
     Author     : cdpin
 --%>
 
@@ -10,15 +10,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>My Profile</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="HomeStyles.css">
+  <link rel="stylesheet" href="MyProfile.css">
   
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
+  </head>
 
 
 <body >
@@ -28,7 +28,7 @@
 
     <div class="container" >
       <img src="Imageees/Steam_icon_logo.svg.png" alt="" class="logo">
-      <h1> Steam</h1>
+      <h1> Steam </h1>
     </div>
 
     <div class="search-bar-container" >
@@ -38,10 +38,10 @@
     </div>
 
     <div class="container">
-      
       <a href="MyProfile.jsp">
         <img src="Imageees/canela feli.png" alt="" class="profile-photo">
       </a>
+      
     </div>
 
   </nav>
@@ -54,13 +54,13 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.jsp" class="a-sidebar active">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
-            <i class="uil uil-home text"></i>
-            <h3 class="text">Home</h3>
+             <i class="uil uil-home text"></i>
+             <h3 class="text">Home</h3>
           </span>
         </a>
-
+  
         <a href="" class="a-sidebar">
           <span>
             <i class="uil uil-shield text"></i>
@@ -111,13 +111,12 @@
           </span>
         </a>
 
-
-        <a href="MyProfile.jsp" class="a-sidebar">
-         <span>
-           <i class="uil uil-user text"></i>
-           <h3 class="text">Profile</h3>
-         </span>
-        </a>
+       <a href="MyProfile.jsp" class="a-sidebar active">
+        <span>
+          <i class="uil uil-user text"></i>
+          <h3 class="text">Profile</h3>
+        </span>
+       </a>
   
         <div class="profile">
          
@@ -193,89 +192,118 @@
                       <option value="Strategy">Strategy</option>
                       <option value="Simulation">Simulation</option>
                       <option value="Rythm">Rythm</option>
-
                       </select>
                   </div>
                  
 
                 </div>
-
                
                 <br>
                 <div class=" actiones">
+
                   <div class=" interaction-bnts">
-                  </div>
-                     
+                  </div>                     
                   <div>
                     <input type="submit" value="Search" class="btn-create">
-                  </div> 
-                
+                  </div>     
+
                 </div>
                 
               </div>
 
-                       
             </form>
 
           </div>
         </div>
 
-        <!--- MODAL CREATE POST --->
+        <!--- MODAL EDIT INFO USER --->
         <div id="modal" class="modal">
           <div class="modal-content">
             <span class="close">&times;</span>
-            <h3>Create a post</h3>
+            <h3>Edit Profile</h3>
+            <br>
+
             
-            <form class="">
+            <form id="Edit-Info">
 
-              <div>
-                <div class="profile-model">         
-                  <div class="user-data">
-                    <img src="Imageees/canela feli.png" alt="" class="profile-photo">
-                  </div>
-          
-                  <div class="user-name">
-                    <h3>Canela</h3>
-                    <p class="text-muted">@Canelita</p>
-                  </div>
-          
-                </div>
-              </div>
-
-              <div>
-                <div class="innput">
-                  <input type="text"  class="input-post text" placeholder="Title">
-                </div>
-
+              <div class="images-profile">  
+                  
                 <div>
-                  <textarea name="bodypost" id="" cols="8" rows="5" class="texarea-post text" 
-                  placeholder="What´s on ur mind?" ></textarea>
+                  <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
                 </div>
-                
-                <div class="actiones">
-                  <div class=" interaction-bnts select-category">
-                    <span class="icons-stile"><i class="uil uil-image"></i></span>
-                    
-                    <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
-                    <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Arcade">Arcade</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Strategy">Strategy</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Rythm">Rythm</option>
-                    </select>
 
-                  </div>
-                     
-                  <div>
-                    <input type="submit" value="Post" class="btn-create">
-                  </div> 
-                
+                <div class="user-data">
+                  <img src="Imageees/canela feli.png" alt="" class="profile-photo">
                 </div>
+          
+              </div>
+
+              <div class="profile-model user-name">
+                <p class="text-muted">@Canelita</p>
+              </div>
+
+              
+              
+              <div class="editable-data-container">
+
+                
+                <div class="data-left">
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Name" maxlength="30">
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Ocupation" maxlength="30">
+                  </div>               
+                  
+
+                </div>
+
+                <div class="data-right">
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Last Name" maxlength="30">
+                    
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Localition" maxlength="30">
+                  </div>                  
+                  
+                </div>
+
+                <div class="data-left">
+                  <div class="innput">
+                    <input type="date" class="input-post text">
+                  </div>
+
+                  <div class="innput">
+                    <input type="text"  class="input-post text" placeholder="Description" maxlength="30">
+                  </div>                  
+                 
+                </div>                
                 
               </div>
+
+              <div class="">
+                <p class="category-edit-user">Security Data</p>
+                <br> 
+              </div>
+
+              <div class="email-pass">                
+                
+               <div class="innput data-left">
+                  <input type="text"  class="input-post text" placeholder="Email" maxlength="80">
+                </div>
+
+                <div class="innput data-right">
+                  <input type="text"  class="input-post text" placeholder="Password" maxlength="80">
+                </div>
+
+              </div>
+
+              <div class="btn-save">
+                <input type="submit" value="Save" class="btn-create">
+              </div> 
 
                        
             </form>
@@ -283,23 +311,70 @@
           </div>
         </div>
 
-        
-        <form class="create-post">
-          <div class="photo-container">
-            <img src="Imageees/canela feli.png" alt="" class="profile-photo">
-          </div>
-          <div class="post-body">
-            <button id="openModal" class="btnLabel text">What´s on ur mind?</button>
+        <div class="MyProfile">
+          
+          <div class="photoos">
+       
             <div>
-              <input type="text"  class="input-post text" placeholder="">
+              <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
+            </div>     
+            
+            <div class="photo-container">
+              <img src="Imageees/canela feli.png" alt="" class="big-profile-photo">
+  
+              <div class="profile">
+           
+                <div class="user-name">
+                  <h2>Canela</h2>
+                  <p class="text-muted">@Canelita</p>
+                </div>
+
+                <div class="btn-edit-user" id="open-edit">
+                  <button class="btn-mutted text-muted"> <i class="uil uil-pen"></i> Edit  <br> profile</button>
+                </div>
+        
+              </div>
+            </div>
+          </div>   
+
+          <div class="editable-data-container ">
+            <p class="description"> Cuando quiero hago wuaw wuaw</p>
+          </div>
+          <br>
+          
+          <div class="editable-data-container">           
+
+            <div class="data-left">
+              
+              <div class="work">
+                <span class="some-info"> <i class="uil uil-envelope"></i> canela@wuawauw.com</span>
+              </div>
+  
+              <div class="work">
+                <span class="some-info"> <i class="uil uil-suitcase data"> </i> ser bonita uwu</span>
+              </div> 
+
+            </div>
+
+            <div class="data-right">
+              
+              <div class="age">
+                <span class="some-info"><i class="bi bi-balloon"></i> 12 años</span>
+              </div>
+  
+              <div class="age">
+                <span class="some-info"> <i class="uil uil-map-marker"></i> Guadalajara </span>
+              </div>
             </div>
             
             
           </div>
-                   
-        </form>
 
-        <div class="posts">
+        </div>
+
+         <!------ PERSONAL POST ------>
+
+         <div class="posts">
           <div class="post">
 
             <div class="head">
@@ -307,7 +382,13 @@
                 <img src="Imageees/canela feli.png" alt="" class="profile-photo">
                 <div class="info">
                   <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
+                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
+                </div>
+
+                <div class="manage-posts">
+                  <span class="text-muted"><i class="uil uil-edit-alt"></i></span>
+                  <span class="text-muted"><i class="uil uil-trash"></i></span>
+                                    
                 </div>
               </div>
             </div>
@@ -334,59 +415,19 @@
             </div>
 
           </div>
-
-          <div class="post">
-
-            <div class="head">
-              <div class="user">
-                <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
-                <div class="info">
-                  <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="title">
-              <p>An amazing Concert </p>
-            </div>
-
-            <div class="caption">
-              <p>It was an incredible concert, thank u so much! </p>
-            </div>
-
-            <div>
-              <img src="Imageees/mikuConcert.jpg" alt="" class= "photo">
-
-            </div>
-
-            <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
-            </div>
-
-          </div>
-
-
-          
-        </div>
-
-        <div class="pagee">
-          <i class="bi bi-caret-left-fill"></i>
-          <p>1</p>
-          <i class="bi bi-caret-right-fill"></i>
         </div>
 
 
-      </div>
-    
-      <!------ RIGHT PART ------>
+
+
+
+      </div>    
+      
+      
+      
+      <!------ RIGHT POST ------>
       <div class="right">
-        
+      
         <div class="recommended-games">   
           
           <a href="#item1" id="game1">
@@ -456,8 +497,7 @@
           
         </div>
 
-
-      </div>
+      </div>   
 
       <!------ MODAL CONFIG ------>
       <div id="modalConfig" class="modal">
@@ -482,13 +522,11 @@
           </form>
 
         </div>
-
-
-        
         
       </div>
   
-      
+  
+  
   
   
   
@@ -507,19 +545,13 @@
       
     </div>
 
-
-
-
   </main>
 
   
 
-  <script>
-      const openModalBtn = document.getElementById("openModal");
+  <script>const openModalBtn = document.getElementById("open-edit");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
-
-
 
 openModalBtn.onclick = function(event) {
   event.preventDefault();
@@ -567,23 +599,24 @@ const elemento2 = document.getElementById('item2');
 const elemento3 = document.getElementById('item3');
 
 document.getElementById('game1').addEventListener('click', function(event) {
-  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  event.preventDefault(); 
   elemento1.style.display = 'block';
   
 });
 
 document.getElementById('game2').addEventListener('click', function(event) {
-  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  event.preventDefault(); 
   elemento1.style.display = 'none';
   elemento2.style.display = 'block';
 });
 
 document.getElementById('game3').addEventListener('click', function(event) {
-  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  event.preventDefault(); 
   elemento1.style.display = 'none';
   elemento2.style.display = 'none';
   elemento3.style.display = 'block';
 });
+
 
 /* ------ MODAL WINDOW FOR SIGN OUT ----- */
 
@@ -593,7 +626,6 @@ const closeModalBtnConfig = document.getElementsByClassName("close")[2];
 
 openModalBtnConfig.onclick = function(event) {
   event.preventDefault();
-  
   modalConfig.style.display = "block";
 }
 
@@ -607,9 +639,8 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
-
   </script>
- 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   
 </body>
 

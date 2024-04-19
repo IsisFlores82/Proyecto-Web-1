@@ -39,7 +39,7 @@
 
     <div class="container">
       
-      <a href="MyProfile.html">
+      <a href="MyProfile.jsp">
         <img src="Imageees/canela feli.png" alt="" class="profile-photo">
       </a>
     </div>
@@ -54,7 +54,7 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.html" class="a-sidebar active">
+        <a href="Home.jsp" class="a-sidebar active">
           <span>
             <i class="uil uil-home text"></i>
             <h3 class="text">Home</h3>
@@ -112,7 +112,7 @@
         </a>
 
 
-        <a href="MyProfile.html" class="a-sidebar">
+        <a href="MyProfile.jsp" class="a-sidebar">
          <span>
            <i class="uil uil-user text"></i>
            <h3 class="text">Profile</h3>
@@ -468,11 +468,11 @@
           <form class="">            
 
             <div>
-             <a href="SignIn.html" class="text lil-popUp">
+             <a href="SignIn.jsp" class="text lil-popUp">
               Sign Out
              </a>
              
-             <a href="MyProfile.html" class="text lil-popUp">
+             <a href="MyProfile.jsp" class="text lil-popUp">
               Profile
              </a>
               
@@ -514,7 +514,101 @@
 
   
 
-  <script src="scriptHome.js"></script>
+  <script>
+      const openModalBtn = document.getElementById("openModal");
+const modal = document.getElementById("modal");
+const closeModalBtn = document.getElementsByClassName("close")[1];
+
+
+
+openModalBtn.onclick = function(event) {
+  event.preventDefault();
+  modal.style.display = "block";
+}
+
+closeModalBtn.onclick = function(event) {
+  event.preventDefault();
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+/* ------ MODAL WINDOW FOR ADVANCE SEARCH ----- */
+
+const openModalBtnSearch = document.getElementById("openModalSearch");
+const modalSearch = document.getElementById("modalSearch");
+const closeModalBtnSearch = document.getElementsByClassName("close")[0];
+
+openModalBtnSearch.onclick = function(event) {
+  event.preventDefault();
+  modalSearch.style.display = "block";
+}
+
+closeModalBtnSearch.onclick = function(event) {
+  event.preventDefault();
+  modalSearch.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modalSearch) {
+    modalSearch.style.display = "none";
+  }
+}
+
+
+/*-------- CARRUSEL ---------*/
+const elemento1 = document.getElementById('item1');
+const elemento2 = document.getElementById('item2');
+const elemento3 = document.getElementById('item3');
+
+document.getElementById('game1').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'block';
+  
+});
+
+document.getElementById('game2').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'none';
+  elemento2.style.display = 'block';
+});
+
+document.getElementById('game3').addEventListener('click', function(event) {
+  event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  elemento1.style.display = 'none';
+  elemento2.style.display = 'none';
+  elemento3.style.display = 'block';
+});
+
+/* ------ MODAL WINDOW FOR SIGN OUT ----- */
+
+const openModalBtnConfig = document.getElementById("openModalConfig");
+const modalConfig = document.getElementById("modalConfig");
+const closeModalBtnConfig = document.getElementsByClassName("close")[2];
+
+openModalBtnConfig.onclick = function(event) {
+  event.preventDefault();
+  
+  modalConfig.style.display = "block";
+}
+
+closeModalBtnConfig.onclick = function(event) {
+  event.preventDefault();
+  modalConfig.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modalConfig) {
+    modalConfig.style.display = "none";
+  }
+}
+
+  </script>
  
   
 </body>

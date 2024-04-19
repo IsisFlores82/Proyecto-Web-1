@@ -71,7 +71,7 @@
   
         <p class="text-muted">O create an acount</p>
         
-        <a href="CreateAcount.html" class="create">Create Acount</a>
+        <a href="CreateAcount.jsp" class="create">Create Acount</a>
         
   
       </div>
