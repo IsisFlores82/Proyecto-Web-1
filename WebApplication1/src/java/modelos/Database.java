@@ -11,7 +11,7 @@ public class Database {
     /*CONSTRUCTOR*/
     public Database(){
         this.url ="jdbc:mysql://localhost:3306/";
-        this.database ="ClaseLogin";
+        this.database ="Steam";
         this.user ="root";
         this.pass ="";
         this.driver = "com.mysql.cj.jdbc.Driver";

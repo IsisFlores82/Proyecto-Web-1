@@ -25,7 +25,7 @@
   
   <section>
 
-    <form action="">
+    <form for="formCreateUser" action="RegistrarUsuarioServlet" method="post" enctype="multipart/form-data">
 
       <div class="Pop-up">
       
@@ -41,36 +41,40 @@
 
         <div class="namee">
           <div class="input-container">
-            <input type="text" id="name" class="input-name" name="username" required>
+            <input type="text" id="name" class="input-name" name="name" required>
             <label class="placeholder" for="name" > name </label>
           </div>
   
           <div class="input-container">
-            <input type="text" id="lname" class="input-name" name="username" required>
-            <label class="placeholder" for="lname" > last name </label>
+            <input type="text" id="idpname" class="input-name" name="pname" required>
+            <label class="placeholder" for="pname" > paternal surname </label>
           </div>
-  
+            
+           <div class="input-container">
+            <input type="text" id="idmname" class="input-name" name="mname" required>
+            <label class="placeholder" for="mname" > maternal surname </label>
+          </div>
         </div>
         
         <div class="input-container">
-          <input type="text" id="username" class="input" name="username" required>
+          <input type="text" id="idusername" class="input" name="username" required>
           <label class="placeholder" for="username" > username </label>
         </div>
   
   
         <div class="input-container">
-          <input type="email" id="email" class="input" name="email" required>
+          <input type="email" id="idemail" class="input" name="email" required>
           <label class="placeholder" for="email" > email </label>
         </div>
   
         <div class="input-container">
-          <input type="text" id="pass" class="input" name="password" required>
+          <input type="text" id="idpass" class="input" name="pass" required>
           <label class="placeholder" for="pass"> password </label>
         </div>
 
         <div class="input-container">
-          <input type="text" id="pass" class="input" name="password" required>
-          <label class="placeholder" for="pass"> confirm password </label>
+          <input type="text" id="idcpass" class="input" name="cpass" required>
+          <label class="placeholder" for="cpass"> confirm password </label>
         </div>
         
         
@@ -79,13 +83,14 @@
           
   
           <div class="input-container">
-            <input type="date" class="input-name" required>
+             <input type="date" class="input-name" id="idfechaNacimiento" name="fechaNacimiento" required>
           </div>
 
-          <div class="input-container  label-photo">
-            <label for="photo-file">Select Photo</label>
-            <input type="file" id="photo-file" class="input-name" required>
-          </div>
+          <div class="input-container label-photo">
+            <label for="idphoto-file">Select Photo</label>
+            <input type="file" id="idphoto-file" name="photo-file" class="input-name" accept="image/*" required>
+            </div>
+
   
         </div>
 
@@ -104,7 +109,17 @@
 
   </section>
 
+<script>
+  document.getElementById('fechaNacimiento').addEventListener('change', function() {
+    var selectedDate = new Date(this.value);
+    var currentDate = new Date();
 
+    if (selectedDate > currentDate) {
+      alert('La fecha no puede ser mayor que la fecha actual.');
+      this.value = ''; // Limpiar el valor del campo de fecha
+    }
+  });
+</script>
 </body>
 
 

@@ -10,6 +10,7 @@ import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +35,7 @@ DAOUsuario daousu=new DAOUsuario();
             System.out.println(pass);
             
             Usuarios usuario=new Usuarios(user,pass);
-            System.out.println(usuario.getUsuario());
+            System.out.println(usuario.getCorreoE());
             System.out.println(usuario.getContraseña());
             Usuarios usu = new Usuarios();
             Object loginUsuario=daousu.login(usuario);
@@ -45,7 +46,7 @@ DAOUsuario daousu=new DAOUsuario();
             if(usu.getIdUsuario()!=0){
                 //si existe
                 pantalla="Home.jsp";
-                request.setAttribute("Usuario", usu);
+                request.setAttribute("CorreoE", usu);
                 request.setAttribute("error",0);
                 System.out.println("Si existo");
             
@@ -54,8 +55,6 @@ DAOUsuario daousu=new DAOUsuario();
                  pantalla="SignIn.jsp";
                  request.setAttribute("error",1);
                  System.out.println("No existo");
-                 System.out.println(usu.getIdUsuario());
-                 System.out.println(usu.getUsuario());
             }
             RequestDispatcher rd= request.getRequestDispatcher(pantalla);
             rd.forward(request, response);

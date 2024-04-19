@@ -41,7 +41,7 @@
   
         <div class="input-container">
           <input type="email" id="email" class="input" name="fusuario" required>
-          <label class="placeholder" for="email" > Username </label>
+          <label class="placeholder" for="email" > Email </label>
         </div>
   
         <div class="input-container">
