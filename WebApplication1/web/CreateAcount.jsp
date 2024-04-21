@@ -25,7 +25,7 @@
   
   <section>
 
-    <form for="formCreateUser" action="RegistrarUsuarioServlet" method="post" enctype="multipart/form-data">
+    <form id="formCreateUser" action="RegistrarUsuarioServlet" method="post" enctype="multipart/form-data">
 
       <div class="Pop-up">
       
@@ -41,7 +41,7 @@
 
         <div class="namee">
           <div class="input-container">
-            <input type="text" id="name" class="input-name" name="name" required>
+            <input type="text" id="idname" class="input-name" name="name" required>
             <label class="placeholder" for="name" > name </label>
           </div>
   
@@ -96,6 +96,12 @@
 
        
         <br>
+        <% if (request.getAttribute("error") != null) { %>
+          <div class="error-message">
+        <%= request.getAttribute("error") %>
+       </div>
+        <% } %>
+
         <button class="create submit">Create Acount</button>
         <p class="text-muted">I alredy have an acount</p>
         <a href="SignIn.jsp" class="sign-in" id="signIn">Sign In</a>
@@ -110,7 +116,7 @@
   </section>
 
 <script>
-  document.getElementById('fechaNacimiento').addEventListener('change', function() {
+  document.getElementById('idfechaNacimiento').addEventListener('change', function() {
     var selectedDate = new Date(this.value);
     var currentDate = new Date();
 
@@ -119,6 +125,65 @@
       this.value = ''; // Limpiar el valor del campo de fecha
     }
   });
+  
+  document.getElementById('formCreateUser').addEventListener('submit', function(event) {
+    var name = document.getElementById('idname').value;
+    var paternalSurname = document.getElementById('idpname').value;
+    var maternalSurname = document.getElementById('idmname').value;
+    var password = document.getElementById('idpass').value;
+    var confirmPassword = document.getElementById('idcpass').value;
+    var email = document.getElementById('idemail').value;
+    
+    if (!validateAlphabetic(name)) {
+      alert('El nombre solo debe contener caracteres alfabéticos.');
+      event.preventDefault();
+      return;
+    }
+
+    if (!validateAlphabetic(paternalSurname)) {
+      alert('El apellido paterno solo debe contener caracteres alfabéticos.');
+      event.preventDefault();
+      return;
+    }
+
+    if (!validateAlphabetic(maternalSurname)) {
+      alert('El apellido materno solo debe contener caracteres alfabéticos.');
+      event.preventDefault();
+      return;
+    }
+
+    if (!validateEmail(email)) {
+       alert('Por favor, introduce un correo electrónico válido.');
+       event.preventDefault(); 
+       return;
+    }
+
+    if (!validatePassword(password)) {
+      alert('La contraseña no cumple con los requisitos.');
+      event.preventDefault();
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert('La confirmación de contraseña no coincide con la contraseña ingresada.');
+      event.preventDefault();
+      return;
+    }
+  });
+
+  function validateAlphabetic(value) {
+    var regex = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/;
+    return regex.test(value);
+  }
+  
+  function validatePassword(value) {
+    var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return regex.test(value);
+  }
+  function validateEmail(value){
+  var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(value);
+  }
 </script>
 </body>
 

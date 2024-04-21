@@ -55,6 +55,7 @@ DAOUsuario daousu=new DAOUsuario();
                 session.setAttribute("urlImagenPerfil", urlImagenPerfil);
                 session.setAttribute("nombreUsuario", nombreUsuario);
                 session.setAttribute("nombre", nombre);
+                session.setAttribute("edad",usu.getEdad());
                 request.setAttribute("CorreoE", usu);
                 request.setAttribute("error",0);
                 System.out.println("Si existo");
@@ -62,7 +63,7 @@ DAOUsuario daousu=new DAOUsuario();
             }else{
                 //no existe
                  pantalla="SignIn.jsp";
-                 request.setAttribute("error",1);
+                 request.setAttribute("error","La combinacion de Usuario y Contraseña es inválida");
                  System.out.println("No existo");
             }
             RequestDispatcher rd= request.getRequestDispatcher(pantalla);

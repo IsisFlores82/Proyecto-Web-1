@@ -223,6 +223,14 @@ nav{
   align-items: flex-start;
 }
 
+.user-name-navbar{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 15px;
+  align-items: flex-start;
+  max-width: 193px;
+  overflow-x: auto;
+}
 
 .config{
   position: absolute;

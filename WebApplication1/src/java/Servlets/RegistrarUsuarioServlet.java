@@ -69,8 +69,18 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         usuario.setUsername(username);
         usuario.setCorreoE(correo);
         usuario.setContraseña(contraseña);
-        usuario.setFecha_Nacimiento(fechaNacimiento);
-        
+        usuario.setFecha_Nacimiento(fechaNacimiento);  
+
+// Verificar si ya existe un usuario con el mismo nombre de usuario
+if (daoUsuario.existeUsuario(username)) {
+    // Usuario ya existe, muestra un mensaje de error o realiza alguna acción adecuada
+    // Puedes usar request.setAttribute() para pasar un mensaje de error al JSP
+    request.setAttribute("error", "El nombre de usuario ya está en uso.");
+    // Redirigir de vuelta al formulario de registro
+    RequestDispatcher rd = request.getRequestDispatcher("CreateAcount.jsp");
+    rd.forward(request, response);
+    return; // Importante: termina la ejecución del método para evitar que se registre el usuario
+}
         // Aquí pasas el InputStream de la imagen y la ruta de la imagen (si es necesario)
         boolean registrado = daoUsuario.registrarUsuario(usuario, imagen, rutaImagen, getServletContext());
         String pantalla;

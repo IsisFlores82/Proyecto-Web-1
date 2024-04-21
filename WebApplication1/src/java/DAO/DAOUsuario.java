@@ -45,6 +45,7 @@ Usuarios usuario = (Usuarios) obj;
             log.setNImg_Perfil(nombreImagenPerfil);
             log.setUsername(rs.getNString("Username"));
             log.setNombre(rs.getString("Nombre"));
+            log.setEdad(rs.getInt("Edad"));
         }
     } catch (SQLException | ClassNotFoundException e) {
         System.out.println("ERROR EN LOGIN: " + e.getMessage());
@@ -117,53 +118,30 @@ Usuarios usuario = (Usuarios) obj;
         }
     }
 }
-   // Método para obtener la imagen de perfil de un usuario por su ID
-    public byte[] obtenerImagenPerfil(int idUsuario) throws IOException {
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        byte[] imagenPerfil = null;
+
+   public boolean existeUsuario(String username) {
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    boolean existe = false;
+    
+    try {
+        con = DriverManager.getConnection(db.getUrl() + db.getDatabase(), db.getUser(), db.getPass());
+        String sql = "SELECT COUNT(*) FROM Usuarios WHERE Username = ?";
+        ps = con.prepareStatement(sql);
+        ps.setString(1, username);
+        rs = ps.executeQuery();
         
-        try {
-            con = DriverManager.getConnection(db.getUrl() + db.getDatabase(), db.getUser(), db.getPass());
-            String sql = "SELECT Img_Perfil FROM Usuarios WHERE IdUsuario = ?";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, idUsuario);
-            rs = ps.executeQuery();
-            
-            if (rs.next()) {
-                Blob blob = rs.getBlob("Img_Perfil");
-                if (blob != null) {
-                    InputStream inputStream = blob.getBinaryStream();
-                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = -1;
-                    
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-                    
-                    imagenPerfil = outputStream.toByteArray();
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en obtenerImagenPerfil: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar recursos: " + e.getMessage());
-            }
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            existe = count > 0;
         }
-        
-        return imagenPerfil;
+    } catch (SQLException e) {
+        System.out.println("Error en existeUsuario: " + e.getMessage());
+    } finally {
+        // Cerrar recursos
     }
+    
+    return existe;
+}
 }

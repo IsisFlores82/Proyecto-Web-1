@@ -39,6 +39,12 @@
   
         <br>
   
+           <% if (request.getAttribute("error") != null) { %>
+           <div class="error-message" style="width: 80%;">
+                <%= request.getAttribute("error") %>
+            </div>
+        <% } %>
+        
         <div class="input-container">
           <input type="email" id="email" class="input" name="fusuario" required>
           <label class="placeholder" for="email" > Email </label>

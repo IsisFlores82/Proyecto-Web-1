@@ -61,7 +61,7 @@
           </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-shield text"></i>
             <h3 class="text">Action</h3>
@@ -69,42 +69,42 @@
         </a>
   
   
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
             <span>
               <i class="uil uil-compass text"></i>
               <h3 class="text">Adventure</h3>
             </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-map-pin-alt text"></i>
             <h3 class="text">Arcade</h3>
           </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-basketball text"></i>
             <h3 class="text">Sport</h3>
           </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-puzzle-piece text"></i>
             <h3 class="text">Stretegy</h3>
           </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-trees text"></i>
             <h3 class="text">Simulation</h3>
           </span>
         </a>
 
-        <a href="" class="a-sidebar">
+        <a href="Home.jsp" class="a-sidebar">
           <span>
             <i class="uil uil-music text"></i>
             <h3 class="text">Rythm</h3>
@@ -125,7 +125,7 @@
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
           </div>
   
-          <div class="user-name">
+          <div class="user-name-navbar">
             <h2>${sessionScope.nombre}</h2>
             <p class="text-muted">@${sessionScope.nombreUsuario}</p>
           </div>
