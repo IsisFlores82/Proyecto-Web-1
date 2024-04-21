@@ -590,8 +590,8 @@ option {
 
 .center .profile{
   position: absolute;
-  top: 45%;
-  left: 30%;
+  top: 50%;
+  left: 100%;
 }
 
 .MyProfile{

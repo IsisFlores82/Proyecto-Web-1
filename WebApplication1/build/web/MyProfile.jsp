@@ -125,8 +125,8 @@
           </div>
   
           <div class="user-name">
-            <h2>Canela</h2>
-            <p class="text-muted">@Canelita</p>
+            <h2>${sessionScope.nombre}</h2>
+            <p class="text-muted">@${sessionScope.nombreUsuario}</p>
           </div>
   
           <div class="config" id="openModalConfig">
@@ -239,7 +239,7 @@
               </div>
 
               <div class="profile-model user-name">
-                <p class="text-muted">@Canelita</p>
+                <p class="text-muted">@${sessionScope.nombreUsuario}</p>
               </div>
 
               
@@ -325,8 +325,8 @@
                 </div>
               <div class="profile">
                 <div class="user-name">
-                  <h2>Canela</h2>
-                  <p class="text-muted">@Canelita</p>
+                  <h2>${sessionScope.nombre}</h2>
+                  <p class="text-muted">@${sessionScope.nombreUsuario}</p>
                 </div>
 
                 <div class="btn-edit-user" id="open-edit">
@@ -381,7 +381,7 @@
               <div class="user">
                 <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                 <div class="info">
-                  <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
+                  <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span>  </h3>
                   <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
                 </div>
 

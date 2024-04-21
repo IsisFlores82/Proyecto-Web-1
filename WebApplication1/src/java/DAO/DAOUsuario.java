@@ -43,6 +43,8 @@ Usuarios usuario = (Usuarios) obj;
             String nombreImagenPerfil = rs.getString("NImg_Perfil");
             // Establecer el nombre de la imagen de perfil en el objeto Usuarios
             log.setNImg_Perfil(nombreImagenPerfil);
+            log.setUsername(rs.getNString("Username"));
+            log.setNombre(rs.getString("Nombre"));
         }
     } catch (SQLException | ClassNotFoundException e) {
         System.out.println("ERROR EN LOGIN: " + e.getMessage());
