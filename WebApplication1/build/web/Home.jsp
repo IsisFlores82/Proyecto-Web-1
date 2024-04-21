@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : Home
     Created on : 17 abr 2024, 21:07:46
     Author     : cdpin
@@ -40,7 +40,7 @@
     <div class="container">
       
       <a href="MyProfile.jsp">
-        <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
       </a>
     </div>
 
@@ -122,7 +122,7 @@
         <div class="profile">
          
           <div class="user-data">
-            <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+            <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
           </div>
   
           <div class="user-name">
@@ -231,7 +231,7 @@
               <div>
                 <div class="profile-model">         
                   <div class="user-data">
-                    <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                   </div>
           
                   <div class="user-name">
@@ -286,7 +286,7 @@
         
         <form class="create-post">
           <div class="photo-container">
-            <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+            <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
           </div>
           <div class="post-body">
             <button id="openModal" class="btnLabel text">What´s on ur mind?</button>
@@ -304,7 +304,7 @@
 
             <div class="head">
               <div class="user">
-                <img src="Imageees/canela feli.png" alt="" class="profile-photo">
+                <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                 <div class="info">
                   <h3>Canela <span class="text-muted">@Canelita &#x2022 <small>15 min ago</small></span>  </h3>
                   <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>

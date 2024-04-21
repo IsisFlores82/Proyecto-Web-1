@@ -19,7 +19,8 @@ public class Usuarios {
     private String CorreoE;
     private String NImg_Perfil;
     private byte[] Img_Perfil;
-    private String Img_Portada;
+    private String NImg_Portada;
+    private byte[] Img_Portada;
     private int Edad;
     private Date Fecha_Nacimiento;
     private Date Fecha_Alta;
@@ -104,14 +105,22 @@ public class Usuarios {
         this.Img_Perfil = Img_Perfil;
     }
 
-    public String getImg_Portada() {
+        public String getNImg_Portada() {
+        return NImg_Portada;
+    }
+
+    public void setNImg_Portada(String NImg_Portada) {
+        this.NImg_Portada = NImg_Portada;
+    }
+
+    public byte[] getImg_Portada() {
         return Img_Portada;
     }
 
-    public void setImg_Portada(String Img_Portada) {
+    public void setImg_Portada(byte[] Img_Portada) {
         this.Img_Portada = Img_Portada;
     }
-
+    
     public int getEdad() {
         return Edad;
     }

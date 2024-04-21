@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -46,6 +47,10 @@ DAOUsuario daousu=new DAOUsuario();
             if(usu.getIdUsuario()!=0){
                 //si existe
                 pantalla="Home.jsp";
+                String nombreImagenPerfil = usu.getNImg_Perfil();
+                String urlImagenPerfil = request.getContextPath() + "/Imageees/" + nombreImagenPerfil;
+                HttpSession session = request.getSession();
+                session.setAttribute("urlImagenPerfil", urlImagenPerfil);
                 request.setAttribute("CorreoE", usu);
                 request.setAttribute("error",0);
                 System.out.println("Si existo");

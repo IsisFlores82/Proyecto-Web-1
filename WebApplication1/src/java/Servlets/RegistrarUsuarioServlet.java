@@ -72,7 +72,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         usuario.setFecha_Nacimiento(fechaNacimiento);
         
         // Aquí pasas el InputStream de la imagen y la ruta de la imagen (si es necesario)
-        boolean registrado = daoUsuario.registrarUsuario(usuario, imagen, rutaImagen);
+        boolean registrado = daoUsuario.registrarUsuario(usuario, imagen, rutaImagen, getServletContext());
         String pantalla;
         // Aquí rediriges según si el usuario se ha registrado correctamente o no
         if (registrado) {
