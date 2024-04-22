@@ -61,54 +61,45 @@
           </span>
         </a>
   
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-shield text"></i>
-            <h3 class="text">Action</h3>
-          </span>
-        </a>
-  
-  
-        <a href="Home.jsp" class="a-sidebar">
-            <span>
-              <i class="uil uil-compass text"></i>
-              <h3 class="text">Adventure</h3>
-            </span>
-        </a>
+        <a href="">
+          <li class="dropdown__list a-sidebar-dd">            
+           
+              <a href="#" class="dropdown__link aa-sidebar ">
+                <span class="dropdown__span dropdown__icon text"> <i class="uil uil-bars"></i> 
+                  Categorias
+                  <i class="uil uil-angle-down dropdown__arrow"></i>
+                </span>
+                                
+                <input type="checkbox" class="dropdown__check">
+            </a>
+            
+            <div class="dropdown__content">
+                <ul class="dropdown__sub ">
+                    <li class="dropdown__li">                        
+                        <a href="#" class="dropdown__anchor">  <i class="uil uil-shield text"></i> Action</a>
+                    </li>
+                    <li class="dropdown__li">
+                        <a href="#" class="dropdown__anchor"> <i class="uil uil-compass text"></i> Adventure</a>
+                    </li>
+                    <li class="dropdown__li">
+                        <a href="#" class="dropdown__anchor"> <i class="uil uil-map-pin-alt text"></i> Arcade</a>
+                    </li>
+                    <li class="dropdown__li">
+                      <a href="#" class="dropdown__anchor"> <i class="uil uil-basketball text"></i> Sport</a>
+                    </li>
+                    <li class="dropdown__li">
+                      <a href="#" class="dropdown__anchor"> <i class="uil uil-puzzle-piece text"></i> Stretegy</a>
+                    </li>
+                    <li class="dropdown__li">
+                      <a href="#" class="dropdown__anchor"> <i class="uil uil-trees text"></i> Simulation</a>
+                    </li>
+                    <li class="dropdown__li">
+                      <a href="#" class="dropdown__anchor"> <i class="uil uil-music text"></i> Rythm</a>
+                    </li>                   
 
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-map-pin-alt text"></i>
-            <h3 class="text">Arcade</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-basketball text"></i>
-            <h3 class="text">Sport</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-puzzle-piece text"></i>
-            <h3 class="text">Stretegy</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-trees text"></i>
-            <h3 class="text">Simulation</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-music text"></i>
-            <h3 class="text">Rythm</h3>
-          </span>
+                </ul>
+            </div>
+          </li>
         </a>
 
        <a href="MyProfile.jsp" class="a-sidebar active">
