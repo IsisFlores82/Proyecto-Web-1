@@ -60,8 +60,8 @@
              <h3 class="text">Home</h3>
           </span>
         </a>
-  
-        <a href="">
+          
+  <a href="">
           <li class="dropdown__list a-sidebar-dd">            
            
               <a href="#" class="dropdown__link aa-sidebar ">
@@ -100,7 +100,6 @@
                 </ul>
             </div>
           </li>
-        </a>
 
        <a href="MyProfile.jsp" class="a-sidebar active">
         <span>
@@ -338,7 +337,7 @@
             <div class="data-left">
               
               <div class="work">
-                <span class="some-info"> <i class="uil uil-envelope"></i> canela@wuawauw.com</span>
+                <span class="some-info"> <i class="uil uil-envelope"></i> ${sessionScope.CorreoE}</span>
               </div>
   
               <div class="work">

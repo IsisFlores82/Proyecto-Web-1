@@ -17,7 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  
 </head>
 
 
@@ -90,6 +92,10 @@
             <label for="idphoto-file">Select Photo</label>
             <input type="file" id="idphoto-file" name="photo-file" class="input-name" accept="image/*" required>
             </div>
+            
+            <div class="input-container">
+                <img src="" id="imgPerfil" class="img-thumbnail">
+            </div> 
 
   
         </div>
@@ -125,7 +131,13 @@
       this.value = ''; // Limpiar el valor del campo de fecha
     }
   });
-  
+  document.getElementById('idphoto-file').addEventListener('change', function(){
+      var archivos = $("#idphoto-file")[0].files;
+      const primerArchivo = archivos[0];
+      let url= URL.createObjectURL(primerArchivo);
+      const img=document.getElementById('imgPerfil');
+      img.src=url;
+  });
   document.getElementById('formCreateUser').addEventListener('submit', function(event) {
     var name = document.getElementById('idname').value;
     var paternalSurname = document.getElementById('idpname').value;

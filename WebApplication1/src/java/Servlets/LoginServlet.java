@@ -56,7 +56,7 @@ DAOUsuario daousu=new DAOUsuario();
                 session.setAttribute("nombreUsuario", nombreUsuario);
                 session.setAttribute("nombre", nombre);
                 session.setAttribute("edad",usu.getEdad());
-                request.setAttribute("CorreoE", usu);
+                session.setAttribute("CorreoE", usu.getCorreoE());
                 request.setAttribute("error",0);
                 System.out.println("Si existo");
             

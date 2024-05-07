@@ -92,7 +92,14 @@ Usuarios usuario = (Usuarios) obj;
         ps.setDate(7, fechaNacimiento);
         ps.setString(8, rutaImagen); // Establecer la ruta de la imagen
         ps.setBlob(9, imagen); // Establecer la imagen como un Blob en la sentencia preparada
-        String rutaGuardarImagen = context.getRealPath("/Imageees") + File.separator + rutaImagen;
+        String path =context.getRealPath("/Imageees");
+        
+        File fpath=new File(path);
+        if(!fpath.exists()){
+            fpath.mkdirs();
+        }
+        
+        String rutaGuardarImagen = path + File.separator + rutaImagen;
         FileOutputStream outputStream = new FileOutputStream(rutaGuardarImagen);
         byte[] buffer = new byte[1024];
         int bytesRead;
