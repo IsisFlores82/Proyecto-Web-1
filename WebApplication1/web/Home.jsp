@@ -244,17 +244,21 @@
 
               <div>
                 <div class="innput">
-                  <input type="text"  class="input-post text" placeholder="Title">
+                  <input type="text" id="postTitle" class="input-post text" placeholder="Title">
                 </div>
 
                 <div>
-                  <textarea name="bodypost" id="" cols="8" rows="5" class="texarea-post text" 
+                  <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" 
                   placeholder="What´s on ur mind?" ></textarea>
                 </div>
                 
                 <div class="actiones">
                   <div class=" interaction-bnts select-category">
-                    <span class="icons-stile"><i class="uil uil-image"></i></span>
+                    <label for="inputImage" class="icons-stile">
+                        <i class="uil uil-image"></i>
+                    </label>
+                    <input type="file" id="inputImage" style="display: none;">
+                    <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
                     <select id="clasification" name="clasification" class="interaction-bnts text-DP">
@@ -607,7 +611,19 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
-
+/* ------ Post Img Preview ----- */
+document.getElementById('inputImage').addEventListener('change', function(event) {
+  var input = event.target;
+  var reader = new FileReader();
+  
+  reader.onload = function() {
+    var imagePreview = document.getElementById('imagePreview');
+    imagePreview.src = reader.result;
+    imagePreview.style.display = 'block'; // Mostrar la miniatura
+  }
+  
+  reader.readAsDataURL(input.files[0]);
+});
   </script>
  
   

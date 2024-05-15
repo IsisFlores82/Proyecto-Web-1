@@ -3,8 +3,9 @@
     Created on : 17 abr 2024, 21:07:46
     Author     : cdpin
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="entidades.Publicacion" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,11 @@
   <title>Home</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="HomeStyles.css">
-  
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+   <script src="script.js"></script>
 </head>
 
 
@@ -54,53 +55,63 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.jsp" class="a-sidebar active">
+        <a href="#home" onclick="toHome()" class="a-sidebar active">
           <span>
             <i class="uil uil-home text"></i>
             <h3 class="text">Home</h3>
           </span>
         </a>
 
-        <a href="">
-          <li class="dropdown__list a-sidebar-dd">            
-           
-              <a href="#" class="dropdown__link aa-sidebar ">
-                <span class="dropdown__span dropdown__icon text"> <i class="uil uil-bars"></i> 
-                  Categorias
-                  <i class="uil uil-angle-down dropdown__arrow"></i>
-                </span>
-                                
-                <input type="checkbox" class="dropdown__check">
-            </a>
-            
-            <div class="dropdown__content">
-                <ul class="dropdown__sub ">
-                    <li class="dropdown__li">                        
-                        <a href="#" class="dropdown__anchor">  <i class="uil uil-shield text"></i> Action</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-compass text"></i> Adventure</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-map-pin-alt text"></i> Arcade</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-basketball text"></i> Sport</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-puzzle-piece text"></i> Stretegy</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-trees text"></i> Simulation</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-music text"></i> Rythm</a>
-                    </li>                   
-
-                </ul>
-            </div>
-          </li>
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-shield text"></i>
+            <h3 class="text">Action</h3>
+          </span>
         </a>
+  
+  
+        <a href="Home.jsp" class="a-sidebar">
+            <span>
+              <i class="uil uil-compass text"></i>
+              <h3 class="text">Adventure</h3>
+            </span>
+        </a>
+
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-map-pin-alt text"></i>
+            <h3 class="text">Arcade</h3>
+          </span>
+        </a>
+
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-basketball text"></i>
+            <h3 class="text">Sport</h3>
+          </span>
+        </a>
+
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-puzzle-piece text"></i>
+            <h3 class="text">Stretegy</h3>
+          </span>
+        </a>
+
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-trees text"></i>
+            <h3 class="text">Simulation</h3>
+          </span>
+        </a>
+
+        <a href="Home.jsp" class="a-sidebar">
+          <span>
+            <i class="uil uil-music text"></i>
+            <h3 class="text">Rythm</h3>
+          </span>
+        </a>
+
 
         <a href="MyProfile.jsp" class="a-sidebar">
          <span>
@@ -141,8 +152,7 @@
             <span class="close">&times;</span>
             <h3>Advanced Search</h3>
             
-            <form class="">            
-
+            <form id="formCreatePost" action="PostPublicacionServlet" method="post" enctype="multipart/form-data">            
               <div>
                 <div class="innput">
                   <input type="text"  class="text advanced-search-bar" placeholder="What are u looking for?">
@@ -216,7 +226,7 @@
             <span class="close">&times;</span>
             <h3>Create a post</h3>
             
-            <form class="">
+            <form id="formCreatePost" action="PostPublicacionServlet" method="post" enctype="multipart/form-data">
 
               <div>
                 <div class="profile-model">         
@@ -234,27 +244,31 @@
 
               <div>
                 <div class="innput">
-                  <input type="text"  class="input-post text" placeholder="Title">
+                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title">
                 </div>
 
                 <div>
-                  <textarea name="bodypost" id="" cols="8" rows="5" class="texarea-post text" 
+                  <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" 
                   placeholder="What´s on ur mind?" ></textarea>
                 </div>
                 
                 <div class="actiones">
                   <div class=" interaction-bnts select-category">
-                    <span class="icons-stile"><i class="uil uil-image"></i></span>
+                    <label for="PostinputImage" class="icons-stile">
+                        <i class="uil uil-image"></i>
+                    </label>
+                    <input type="file" name="nPostinputImage" id="PostinputImage" style="display: none;">
+                    <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
-                    <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Arcade">Arcade</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Strategy">Strategy</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Rythm">Rythm</option>
+                    <select id="clasification" name="categoria" class="interaction-bnts text-DP">
+                        <option value="1">Action</option>
+                        <option value="2">Adventure</option>
+                        <option value="3">Arcade</option>
+                        <option value="4">Sport</option>
+                        <option value="5">Strategy</option>
+                        <option value="6">Simulation</option>
+                        <option value="7">Rythm</option>
                     </select>
 
                   </div>
@@ -289,82 +303,117 @@
                    
         </form>
 
-        <div class="posts">
-          <div class="post">
+<div class="posts">
+    <%-- Verificar si hay publicaciones --%>
+    <% if (request.getAttribute("publicaciones") != null) { %>
+        <!-- Obtener la lista de publicaciones del atributo "publicaciones" del request -->
+        <% List<Publicacion> publicaciones = (List<Publicacion>) request.getAttribute("publicaciones"); %>
 
-            <div class="head">
-              <div class="user">
-                <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-                <div class="info">
-                  <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
+        <!-- Iterar sobre la lista de publicaciones -->
+        <% for (Publicacion post : publicaciones) { %>
+            <!-- Mostrar los detalles de la publicación -->
+            <div class="post">
+                <!-- Encabezado de la publicación -->
+                <div class="head">
+                    <div class="user">
+                        <!-- Aquí podrías mostrar la imagen de perfil del usuario -->
+                        <!-- Si tienes la imagen de perfil de la publicación, puedes usar publicacion.getImagenPerfil() -->
+                        <img src="<%= post.getNImg_Perfil() %>" alt="" class="profile-photo">
+                        <div class="info">
+                            <!-- Aquí muestras el nombre de usuario y el tiempo transcurrido desde la publicación -->
+                            <h3><%= post.getNombreUsuario() %> <span class="text-muted">@<%= post.getUsername() %> &#x2022 <small><%= post.getFormattedDate() %></small></span></h3>
+                            <!-- Si tienes la categoría de la publicación, puedes mostrarla aquí -->
+                            <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i> <%= post.getCategoria() %>  </h4>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="title">
-              <p>Happy </p>
-            </div>
-
-            <div class="caption">
-              <p>I went out with my human, was fun </p>
-            </div>
-
-            <div>
-              <img src="Imageees/post.jpg" alt="" class= "photo">
-            </div>
-
-            <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="post">
-
-            <div class="head">
-              <div class="user">
-                <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
-                <div class="info">
-                  <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
+                <!-- Título de la publicación -->
+                <div class="title">
+                    <p><%= post.getTitulo() %></p>
                 </div>
-              </div>
-            </div>
 
+                <!-- Contenido de la publicación -->
+                <div class="caption">
+                    <p><%= post.getContenido() %></p>
+                </div>
+
+                <!-- Imagen de la publicación -->
+                <div>
+                    <img src="<%= post.getNImg() %>" alt="" class="photo">
+                </div>
+
+                <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
+                <div class="actiones">
+                    <div class="interaction-bnts">
+                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                    </div>
+                    <div class="save">
+                        <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    <% } else { %>
+        <!-- Mostrar un mensaje si no hay publicaciones -->
+        <div class="post">
+            <div class="head">
+                <div class="user">
+                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+                    <div class="info">
+                        <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span></h3>
+                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
+                    </div>
+                </div>
+            </div>
             <div class="title">
-              <p>An amazing Concert </p>
+                <p>Happy </p>
             </div>
-
             <div class="caption">
-              <p>It was an incredible concert, thank u so much! </p>
+                <p>I went out with my human, was fun </p>
             </div>
-
             <div>
-              <img src="Imageees/mikuConcert.jpg" alt="" class= "photo">
-
+                <img src="Imageees/post.jpg" alt="" class="photo">
             </div>
-
             <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
+                <div class="interaction-bnts">
+                    <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+                </div>
+                <div class="save">
+                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                </div>
             </div>
-
-          </div>
-
-
-          
         </div>
-
+        <div class="post">
+            <div class="head">
+                <div class="user">
+                    <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
+                    <div class="info">
+                        <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span></h3>
+                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="title">
+                <p>An amazing Concert </p>
+            </div>
+            <div class="caption">
+                <p>It was an incredible concert, thank u so much! </p>
+            </div>
+            <div>
+                <img src="Imageees/mikuConcert.jpg" alt="" class="photo">
+            </div>
+            <div class="actiones">
+                <div class="interaction-bnts">
+                    <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
+                </div>
+                <div class="save">
+                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>
         <div class="pagee">
           <i class="bi bi-caret-left-fill"></i>
           <p>1</p>
@@ -504,7 +553,7 @@
 
   
 
-  <script>
+      <script>
       const openModalBtn = document.getElementById("openModal");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
@@ -597,7 +646,19 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
-
+/* ------ Post Img Preview ----- */
+document.getElementById('PostinputImage').addEventListener('change', function(event) {
+  var input = event.target;
+  var reader = new FileReader();
+  
+  reader.onload = function() {
+    var imagePreview = document.getElementById('imagePreview');
+    imagePreview.src = reader.result;
+    imagePreview.style.display = 'block'; // Mostrar la miniatura
+  }
+  
+  reader.readAsDataURL(input.files[0]);
+});
   </script>
  
   

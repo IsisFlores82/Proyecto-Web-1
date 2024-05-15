@@ -948,3 +948,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  background-color: var(--background-color-graay);
  
 }
+
+.icons-stile {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.icons-stile i {
+  font-size: 24px; /* ajusta según tus necesidades */
+}
+
+#inputImage {
+  display: none;
+}

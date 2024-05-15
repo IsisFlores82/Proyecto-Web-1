@@ -46,28 +46,29 @@ DAOUsuario daousu=new DAOUsuario();
             String pantalla;
             if(usu.getIdUsuario()!=0){
                 //si existe
-                pantalla="Home.jsp";
+                
                 String nombreImagenPerfil = usu.getNImg_Perfil();
                 String urlImagenPerfil = request.getContextPath() + "/Imageees/" + nombreImagenPerfil;
                 String nombreUsuario = usu.getUsername();
                 String nombre = usu.getNombre();
                 HttpSession session = request.getSession();
                 session.setAttribute("urlImagenPerfil", urlImagenPerfil);
+                session.setAttribute("idUsuario", usu.getIdUsuario());
                 session.setAttribute("nombreUsuario", nombreUsuario);
                 session.setAttribute("nombre", nombre);
                 session.setAttribute("edad",usu.getEdad());
                 session.setAttribute("CorreoE", usu.getCorreoE());
                 request.setAttribute("error",0);
                 System.out.println("Si existo");
-            
+                response.sendRedirect("LoadPublicacionesServlet");
             }else{
                 //no existe
-                 pantalla="SignIn.jsp";
                  request.setAttribute("error","La combinacion de Usuario y Contraseña es inválida");
                  System.out.println("No existo");
+                 RequestDispatcher rd= request.getRequestDispatcher("SignIn.jsp");
+                 rd.forward(request, response);
             }
-            RequestDispatcher rd= request.getRequestDispatcher(pantalla);
-            rd.forward(request, response);
+            
     }
 
 }

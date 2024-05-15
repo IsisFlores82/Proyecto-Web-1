@@ -1,5 +1,6 @@
 package DAO;
 
+import entidades.Publicacion;
 import entidades.Usuarios;
 import jakarta.servlet.ServletContext;
 import java.sql.DriverManager;
@@ -151,4 +152,94 @@ Usuarios usuario = (Usuarios) obj;
     
     return existe;
 }
+    public String getUsername(int ID){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT Username FROM Usuarios WHERE IdUsuario = ?";
+        
+        String usu = "";
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);    
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                usu = rs.getString("Username");
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error en LogIn " + e.getMessage());
+        } finally {
+            return usu;
+        }
+    }
+    public String getNombreUsuario(int ID){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT Nombre FROM Usuarios WHERE IdUsuario = ?";
+        
+        String nom = "";
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);    
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                nom = rs.getString("Nombre");
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error en LogIn " + e.getMessage());
+        } finally {
+            return nom;
+        }
+    }
+        public String getNImg_Perfil(int ID){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT NImg_Perfil FROM Usuarios WHERE IdUsuario = ?";
+        
+        String img = "";
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);    
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                img = rs.getString("NImg_Perfil");
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error en LogIn " + e.getMessage());
+        } finally {
+            return "/WebApplication1/Imageees/" + img;
+        }
+    }
 }

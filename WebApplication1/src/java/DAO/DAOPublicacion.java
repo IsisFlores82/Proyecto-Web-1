@@ -1,0 +1,138 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DAO;
+
+import java.sql.CallableStatement;
+import entidades.Publicacion;
+import jakarta.servlet.ServletContext;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import modelos.Database;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
+import java.util.Set;
+/**
+ *
+ * @author cdpin
+ */
+public class DAOPublicacion {
+
+    Database db = new Database();
+
+    public boolean registrarPublicacion(Publicacion publicacion, InputStream imagen, String rutaImagen, ServletContext context) throws FileNotFoundException, IOException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "INSERT INTO Publicaciones (Titulo, Contenido, NImg, Img, IdUsuario, IdCategoria) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(db.getUrl() + db.getDatabase(), db.getUser(), db.getPass());
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, publicacion.getTitulo());
+            ps.setString(2, publicacion.getContenido());
+            ps.setString(3, rutaImagen); // Establecer la ruta de la imagen
+            
+            if (imagen != null) {
+                ps.setBlob(4, imagen); // Establecer la imagen como un Blob en la sentencia preparada
+                String path = context.getRealPath("/Imageees");
+                File fpath = new File(path);
+                if (!fpath.exists()) {
+                    fpath.mkdirs();
+                }
+
+                String rutaGuardarImagen = path + File.separator + rutaImagen;
+                FileOutputStream outputStream = new FileOutputStream(rutaGuardarImagen);
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = imagen.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                outputStream.close();
+            } else {
+                ps.setNull(4, java.sql.Types.BLOB); // Si la imagen es nula, establecer el campo de imagen como NULL en la base de datos
+            }
+
+            ps.setInt(5, publicacion.getIdUsuario());
+            ps.setInt(6, publicacion.getIdCategoria());
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("ERROR EN REGISTRO DE PUBLICACIÓN: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexión: " + e.getMessage());
+            }
+        }
+    }
+    
+    public List<Publicacion> obtenerPublicacionesActivas() {
+    List<Publicacion> publicaciones = new ArrayList<>();
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    String sql = "SELECT * FROM Publicaciones WHERE Estatus = 1"; // Suponiendo que el estado 1 significa activo
+    
+    try {
+        Class.forName(db.getDriver());
+        con = DriverManager.getConnection(db.getUrl() + db.getDatabase(), db.getUser(), db.getPass());
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            // Crear objeto Publicacion y agregarlo a la lista
+            Publicacion publicacion = new Publicacion();
+            publicacion.setIdPublicacion(rs.getInt("IdPublicacion"));
+            publicacion.setTitulo(rs.getString("Titulo"));
+            publicacion.setContenido(rs.getString("Contenido"));
+            publicacion.setFecha_Alta(rs.getTimestamp("Fecha_Alta"));
+            publicacion.setNImg(rs.getString("NImg"));
+            publicacion.setImg(rs.getBlob("Img"));
+            publicacion.setEstatus(rs.getBoolean("Estatus"));
+            publicacion.setIdUsuario(rs.getInt("IdUsuario"));
+            publicacion.setIdCategoria(rs.getInt("IdCategoria"));
+            
+            publicaciones.add(publicacion);
+        }
+    } catch (SQLException | ClassNotFoundException e) {
+        System.out.println("Error al obtener publicaciones activas: " + e.getMessage());
+    } finally {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar conexión: " + e.getMessage());
+        }
+    }
+    
+    return publicaciones;
+}
+}
+
