@@ -29,7 +29,8 @@ public class LoadPublicacionesServlet extends HttpServlet {
         // Obtener las publicaciones activas desde el DAOList<Publicacion> publicaciones;
         List<Publicacion> publicaciones;
         DAOPublicacion daopost = new DAOPublicacion();
-        publicaciones = daopost.obtenerPublicacionesActivas();
+        publicaciones = daopost.obtenerPubDash(0);
+        request.setAttribute("num_paginas",daopost.obtenerTotalPost()/10+1);
         System.out.println(publicaciones); // Imprimir la lista para verificar su contenido
         request.setAttribute("publicaciones", publicaciones);
         System.out.println("Tamaño de la lista de publicaciones: " + publicaciones.size());

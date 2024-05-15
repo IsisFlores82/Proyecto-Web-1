@@ -134,5 +134,75 @@ public class DAOPublicacion {
     
     return publicaciones;
 }
+     public List<Publicacion> obtenerPubDash(int pag){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT * FROM Publicaciones WHERE Estatus = 1 ORDER BY Fecha_Alta DESC LIMIT 10 OFFSET ?;";
+        
+        List<Publicacion> log = new ArrayList<>();
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pag*10);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                Publicacion publicacion = new Publicacion();
+                publicacion.setIdPublicacion(rs.getInt("IdPublicacion"));
+            publicacion.setTitulo(rs.getString("Titulo"));
+            publicacion.setContenido(rs.getString("Contenido"));
+            publicacion.setFecha_Alta(rs.getTimestamp("Fecha_Alta"));
+            publicacion.setNImg(rs.getString("NImg"));
+            publicacion.setImg(rs.getBlob("Img"));
+            publicacion.setEstatus(rs.getBoolean("Estatus"));
+            publicacion.setIdUsuario(rs.getInt("IdUsuario"));
+            publicacion.setIdCategoria(rs.getInt("IdCategoria"));
+                
+                log.add(publicacion);
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error " + e.getMessage());
+        } finally {
+            return log;
+        }
+    }
+     public int obtenerTotalPost(){
+         Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT COUNT(IdPublicacion) AS Num FROM Publicaciones WHERE Estatus=  1;";
+        
+        int log = 0;
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                log = rs.getInt("Num");
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error " + e.getMessage());
+        } finally {
+            return log;
+        }   
+    }
 }
 

@@ -876,7 +876,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   z-index: 2000;
 
 
-  clip-path: var(--clip,);
+  clip-path: var(--clip);
   transition: clip-path .5s;
 }
 
@@ -961,4 +961,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #inputImage {
   display: none;
+}
+
+.page-link{
+  color: #99CCCC;
+  background: none;
+  font-family: 'Quicksand', sans-serif; 
+  font-size: 1.1rem;
+  border: #99CCCC;
+  transition: all 200ms;
+}
+
+.page-link:hover{
+  background-color: #202124;
+  color: #99CCCC;
+  font-family: 'Quicksand', sans-serif; 
+  font-size: 1.3rem;
+  border: none;
 }

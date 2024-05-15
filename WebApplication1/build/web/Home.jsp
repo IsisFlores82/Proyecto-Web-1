@@ -12,6 +12,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+     <!--Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="HomeStyles.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -19,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
    <script src="script.js"></script>
+
 </head>
 
 
@@ -413,14 +418,66 @@
             </div>
         </div>
     <% } %>
+    <ul class="pagination justify-content-center">
+                <%
+                    int pag = 0;
+                    if(request.getAttribute("Pagina") != null){
+                    pag = (int)request.getAttribute("Pagina");
+                    }
+                    int num_paginas = (int)request.getAttribute("num_paginas");
+                    if(pag != 0){
+                    %>
+                    <li class="page-item">
+                        <form action="PaginacionServlet" method="post">
+                            <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag-1);%>">
+                            <button class="page-image" style="background: none; border: none; width: 2.5rem; height: 2.5rem" type="submit" href="#" aria-label="Previous" style="--bs-pagination-border-radius:50%;">
+                                <a class="bi bi-caret-left-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
+                            </button>
+                        </form>
+                    </li>
+                    <%
+                    }
+                    for(int i = 1; i < num_paginas+1; i++){
+                    if(i == pag+1){
+                        %>
+                        <li class="page-item" style="background: rgba(55, 50, 70, 1); border-radius: 100%">
+                            <form action="PaginacionServlet" method="post">
+                                <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                                <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
+                                </button>
+                            </form>
+                        </li>
+                        <%
+                    }else{
+                        %>
+                        <li class="page-item">
+                            <form action="PaginacionServlet" method="post">
+                                <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                                <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
+                                </button>
+                            </form>
+                        </li>
+                        <%
+                    }
+                    }
+                    if(pag+1 != num_paginas){
+                    %>
+                    <li class="page-item">
+                        <form action="PaginacionServlet" method="post">
+                            <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag+1);%>">
+                            <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                              <a class="bi bi-caret-right-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
+                            </button>
+                        </form>
+                    </li>
+                    <%
+                    }
+                %>
+
+          </ul>
 </div>
-        <div class="pagee">
-          <i class="bi bi-caret-left-fill"></i>
-          <p>1</p>
-          <i class="bi bi-caret-right-fill"></i>
-        </div>
-
-
       </div>
     
       <!------ RIGHT PART ------>
