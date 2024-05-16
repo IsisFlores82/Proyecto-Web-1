@@ -147,10 +147,11 @@ System.out.println(formattedDate);
     }
         public String getNImg() {
         System.out.println("/Imageees/" + NImg);
-        return "/WebApplication1/Imageees/" + NImg;
-        
+        return "/WebApplication1/Imageees/" + NImg; 
     }
-
+public String getNImgO() {
+        return  NImg; 
+    }
     public void setNImg(String NImg) {
         this.NImg = NImg;
     }

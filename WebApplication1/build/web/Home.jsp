@@ -6,6 +6,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="entidades.Publicacion" %>
+<%@page import="entidades.Usuarios" %>
+<%Usuarios usuario = (Usuarios)session.getAttribute("Usuario");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-   <script src="script.js"></script>
+  <script src="script.js"></script>
 
 </head>
 
@@ -45,7 +48,13 @@
 
     <div class="container">
       
-      <a href="MyProfile.jsp">
+      <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>">
         <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
       </a>
     </div>
@@ -118,7 +127,13 @@
         </a>
 
 
-        <a href="MyProfile.jsp" class="a-sidebar">
+       <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>" class="a-sidebar">
          <span>
            <i class="uil uil-user text"></i>
            <h3 class="text">Profile</h3>
@@ -132,8 +147,18 @@
           </div>
   
           <div class="user-name-navbar">
-            <h2>${sessionScope.nombre}</h2>
-            <p class="text-muted">@${sessionScope.nombreUsuario}</p>
+              <%
+    if(usuario != null) {
+%>
+        <h3><%= usuario.getNombre() %></h3>
+        <p class="text-muted">@<%= usuario.getUsername() %></p>
+<%
+    } else {
+%>
+        Sin Usuario
+<%
+    }
+%>
           </div>
   
           <div class="config" id="openModalConfig">
@@ -240,21 +265,25 @@
                   </div>
           
                   <div class="user-name">
-                    <h3>${sessionScope.nombre}</h3>
-                    <p class="text-muted">@${sessionScope.nombreUsuario}</p>
-                  </div>
+            <% if(usuario != null) { %>
+              <h3><%= usuario.getNombre() %></h3>
+              <p class="text-muted">@<%= usuario.getUsername() %></p>
+            <% } else { %>
+              Sin Usuario
+            <% } %>
+          </div>
           
                 </div>
               </div>
 
               <div>
                 <div class="innput">
-                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title">
+                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required>
                 </div>
 
                 <div>
                   <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" 
-                  placeholder="What´s on ur mind?" ></textarea>
+                  placeholder="What´s on ur mind?" required></textarea>
                 </div>
                 
                 <div class="actiones">
@@ -366,7 +395,7 @@
                 <div class="user">
                     <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                     <div class="info">
-                        <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span></h3>
+                        <h3>Nombre prueba <span class="text-muted">@prueba &#x2022 <small>15 min ago</small></span></h3>
                         <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
                     </div>
                 </div>
@@ -568,7 +597,13 @@
               Sign Out
              </a>
              
-             <a href="MyProfile.jsp" class="text lil-popUp">
+             <<a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>" class="text lil-popUp">
               Profile
              </a>
               

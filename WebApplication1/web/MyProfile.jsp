@@ -5,19 +5,31 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="entidades.Publicacion"%>
+<%@page import="entidades.Usuarios" %>
+<%Usuarios usuario = (Usuarios)session.getAttribute("Usuario");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile</title>
+       <!--Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="MyProfile.css">
   
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">  
+
+     <script src="script.js"></script>
+
   </head>
 
 
@@ -38,7 +50,13 @@
     </div>
 
     <div class="container">
-      <a href="MyProfile.jsp">
+      <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>">
         <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
       </a>
       
@@ -54,7 +72,7 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.jsp" class="a-sidebar">
+        <a href="#home" onclick="toHome()" class="a-sidebar active">
           <span>
              <i class="uil uil-home text"></i>
              <h3 class="text">Home</h3>
@@ -73,7 +91,7 @@
                 <input type="checkbox" class="dropdown__check">
             </a>
             
-            <div class="dropdown__content">
+    <div class="dropdown__content">
                 <ul class="dropdown__sub ">
                     <li class="dropdown__li">                        
                         <a href="#" class="dropdown__anchor">  <i class="uil uil-shield text"></i> Action</a>
@@ -101,7 +119,13 @@
             </div>
           </li>
 
-       <a href="MyProfile.jsp" class="a-sidebar active">
+       <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>" class="a-sidebar active">
         <span>
           <i class="uil uil-user text"></i>
           <h3 class="text">Profile</h3>
@@ -114,9 +138,18 @@
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
           </div>
   
-          <div class="user-name-navbar">
-            <h2>${sessionScope.nombre}</h2>
-            <p class="text-muted">@${sessionScope.nombreUsuario}</p>
+          <div class="user-name-navbar"><%
+    if(usuario != null) {
+%>
+        <h3><%= usuario.getNombre() %></h3>
+        <p class="text-muted">@<%= usuario.getUsername() %></p>
+<%
+    } else {
+%>
+        Sin Usuario
+<%
+    }
+%>
           </div>
   
           <div class="config" id="openModalConfig">
@@ -130,7 +163,69 @@
         </button>
       </div>
   
-  
+  <!-- Modal Editar -->
+<div id="modalEditarPost" class="modal">
+  <div class="modal-content">
+    <span class="close" id="cl">&times;</span>
+    <h3>Editar Publicación</h3>
+    <form id="formEditarPost" action="EditarPublicacionServlet" method="post" enctype="multipart/form-data">
+       <input type="hidden" id="EpostId" name="EpostId" value="">
+       <input type="hidden" id="EuserId" name="EuserId" value="">
+                            
+      <div>
+        <div class="profile-model-edit">
+          <div class="user-data-edit">
+            <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo-edit">
+          </div>
+
+          <div class="user-name">
+            <% if(usuario != null) { %>
+              <h3><%= usuario.getNombre() %></h3>
+              <p class="text-muted">@<%= usuario.getUsername() %></p>
+            <% } else { %>
+              Sin Usuario
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="innput">
+          <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required>
+        </div>
+
+        <div>
+          <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" placeholder="What´s on ur mind?" required></textarea>
+        </div>
+
+        <div class="actiones">
+          <div class=" interaction-bnts select-category">
+            <label for="PostinputImage" class="icons-stile">
+              <i class="uil uil-image"></i>
+            </label>
+            <input type="file" name="nPostinputImage" id="PostinputImage" style="display: none;">
+            <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
+
+            <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
+            <select id="clasification" name="categoria" class="interaction-bnts text-DP">
+              <option value="1">Action</option>
+              <option value="2">Adventure</option>
+              <option value="3">Arcade</option>
+              <option value="4">Sport</option>
+              <option value="5">Strategy</option>
+              <option value="6">Simulation</option>
+              <option value="7">Rythm</option>
+            </select>
+          </div>
+
+          <div>
+            <input type="submit" value="Editar" class="btn-create">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
       <!------ CENTER POST ------>
       <div class="center">
 
@@ -315,8 +410,8 @@
                 </div>
               <div class="profile">
                 <div class="user-name">
-                  <h2>${sessionScope.nombre}</h2>
-                  <p class="text-muted">@${sessionScope.nombreUsuario}</p>
+                  <h2><%= usuario.getNombre() %></h2>
+                  <p class="text-muted">@<%= usuario.getUsername() %></p>
                 </div>
 
                 <div class="btn-edit-user" id="open-edit">
@@ -328,7 +423,7 @@
           </div>   
 
           <div class="editable-data-container ">
-            <p class="description"> Cuando quiero hago wuaw wuaw</p>
+            <p class="description"><%= usuario.getDescripcion() %></p>
           </div>
           <br>
           
@@ -337,11 +432,11 @@
             <div class="data-left">
               
               <div class="work">
-                <span class="some-info"> <i class="uil uil-envelope"></i> ${sessionScope.CorreoE}</span>
+                <span class="some-info"> <i class="uil uil-envelope"></i> <%= usuario.getCorreoE() %></span>
               </div>
   
               <div class="work">
-                <span class="some-info"> <i class="uil uil-suitcase data"> </i> ser bonita uwu</span>
+                <span class="some-info"> <i class="uil uil-suitcase data"> </i> <%= usuario.getOcupacion() %></span>
               </div> 
 
             </div>
@@ -349,11 +444,11 @@
             <div class="data-right">
               
               <div class="age">
-                <span class="some-info"><i class="bi bi-balloon"></i> ${sessionScope.edad}</span>
+                <span class="some-info"><i class="bi bi-balloon"></i> <%= usuario.getEdad() %></span>
               </div>
   
               <div class="age">
-                <span class="some-info"> <i class="uil uil-map-marker"></i> Guadalajara </span>
+                <span class="some-info"> <i class="uil uil-map-marker"></i> <%= usuario.getLocalizacion() %> </span>
               </div>
             </div>
             
@@ -365,46 +460,139 @@
          <!------ PERSONAL POST ------>
 
          <div class="posts">
-          <div class="post">
+<%-- Verificar si hay publicaciones --%>
+    <% if (request.getAttribute("publicaciones") != null) { %>
+        <!-- Obtener la lista de publicaciones del atributo "publicaciones" del request -->
+        <% List<Publicacion> publicaciones = (List<Publicacion>) request.getAttribute("publicaciones"); %>
 
+        <!-- Iterar sobre la lista de publicaciones -->
+        <% for (Publicacion post : publicaciones) { %>
+            <!-- Mostrar los detalles de la publicación -->
+            <div class="post">
+                <!-- Encabezado de la publicación -->
+                <div class="head">
+                    <div class="user">
+                        <!-- Aquí podrías mostrar la imagen de perfil del usuario -->
+                        <!-- Si tienes la imagen de perfil de la publicación, puedes usar publicacion.getImagenPerfil() -->
+                        <img src="<%= post.getNImg_Perfil() %>" alt="" class="profile-photo">
+                        <div class="info">
+                            <!-- Aquí muestras el nombre de usuario y el tiempo transcurrido desde la publicación -->
+                            <h3><%= post.getNombreUsuario() %> <span class="text-muted">@<%= post.getUsername() %> &#x2022 <small><%= post.getFormattedDate() %></small></span></h3>
+                            <!-- Si tienes la categoría de la publicación, puedes mostrarla aquí -->
+                            <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i> <%= post.getCategoria() %>  </h4>
+                        </div>
+                        <div class="manage-posts">
+                            
+                       
+                         <form id="formDatosPublicacion_<%= post.getIdPublicacion() %>" >
+                            <input type="hidden" id="EpostId_<%= post.getIdPublicacion() %>" name="EpostId" value="<%out.println(post.getIdPublicacion());%>">
+                            <input type="hidden" id="EuserId_<%= post.getIdPublicacion() %>" name="EuserId" value="<%out.println(post.getIdUsuario());%>">
+                            <input type="hidden" id="Etitle_<%= post.getIdPublicacion() %>" name="Etitle" value="<%out.println(post.getTitulo());%>">
+                            <input type="hidden" id="Econtent_<%= post.getIdPublicacion() %>" name="Econtent" value="<%out.println(post.getContenido());%>">
+                            <input type="hidden" id="ENimg_<%= post.getIdPublicacion() %>" name="ENimg" value="<%out.println(post.getNImg());%>">
+                            <input type="hidden" id="Eimg_<%= post.getIdPublicacion() %>" name="Eimg" value="<%out.println(post.getImg());%>">
+                            <input type="hidden" id="EcatId_<%= post.getIdPublicacion() %>" name="EcatId" value="<%out.println(post.getIdCategoria());%>">
+                         </form>
+                          <button onclick="editarPublicacion(<%= post.getIdPublicacion() %>)" class="text-muted" id="botonEditar">
+                            <i class="uil uil-edit"></i>
+                            </button>
+                            
+                         <form class="d-flex flex-row-reverse" action="BorrarPublicacionServlet" method="post" onsubmit="return confirmacionBorrarPost()">
+                            <input type="hidden" id="IpostId" name="IpostId" value="<%out.println(post.getIdPublicacion());%>">
+                            
+                            <button type="submit" class="text-muted" name="submit_button">
+                             <i class="uil uil-trash"></i>
+                            </button>
+                            
+                         </form>
+                                   
+                </div>
+                    </div>
+                </div>
+
+                <!-- Título de la publicación -->
+                <div class="title" id="titulo">
+                     <p><%= post.getTitulo() %></p>
+                </div>
+
+                <div class="caption" id="contenido">
+                   <p><%= post.getContenido() %></p>
+                </div>
+
+                <div id="imagen">
+                    <img src="<%= post.getNImg() %>" alt="" class="photo">
+                </div>
+      
+                <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
+                <div class="actiones">
+                    <div class="interaction-bnts">
+                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                    </div>
+                    <div class="save">
+                        <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    <% } else { %>
+        <!-- Mostrar un mensaje si no hay publicaciones -->
+        <div class="post">
             <div class="head">
-              <div class="user">
-                <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-                <div class="info">
-                  <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Trips  </h4>
+                <div class="user">
+                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+                    <div class="info">
+                        <h3>Nombre prueba <span class="text-muted">@prueba &#x2022 <small>15 min ago</small></span></h3>
+                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
+                    </div>
                 </div>
-
-                <div class="manage-posts">
-                  <span class="text-muted"><i class="uil uil-edit-alt"></i></span>
-                  <span class="text-muted"><i class="uil uil-trash"></i></span>
-                                    
-                </div>
-              </div>
             </div>
-
             <div class="title">
-              <p>Happy </p>
+                <p>Happy </p>
             </div>
-
             <div class="caption">
-              <p>I went out with my human, was fun </p>
+                <p>I went out with my human, was fun </p>
             </div>
-
             <div>
-              <img src="Imageees/post.jpg" alt="" class= "photo">
+                <img src="Imageees/post.jpg" alt="" class="photo">
             </div>
-
             <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
+                <div class="interaction-bnts">
+                    <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+                </div>
+                <div class="save">
+                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                </div>
             </div>
-
-          </div>
+        </div>
+        <div class="post">
+            <div class="head">
+                <div class="user">
+                    <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
+                    <div class="info">
+                        <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span></h3>
+                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="title">
+                <p>An amazing Concert </p>
+            </div>
+            <div class="caption">
+                <p>It was an incredible concert, thank u so much! </p>
+            </div>
+            <div>
+                <img src="Imageees/mikuConcert.jpg" alt="" class="photo">
+            </div>
+            <div class="actiones">
+                <div class="interaction-bnts">
+                    <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
+                </div>
+                <div class="save">
+                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                </div>
+            </div>
+        </div>
+    <% } %>
         </div>
 
 
@@ -502,7 +690,13 @@
               Sign Out
              </a>
              
-             <a href="MyProfile.jsp" class="text lil-popUp">
+             <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>" class="text lil-popUp">
               Profile
              </a>
               
@@ -539,13 +733,20 @@
 
   
 
-  <script>const openModalBtn = document.getElementById("open-edit");
+<script>const openModalBtn = document.getElementById("open-edit");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
+const cerrarmodal = document.getElementById("cl");
+const modalEdit = document.getElementById("modalEditarPost");
 
 openModalBtn.onclick = function(event) {
   event.preventDefault();
   modal.style.display = "block";
+}
+
+cerrarmodal.onclick = function(event) {
+  event.preventDefault();
+  modalEdit.style.display = "none";
 }
 
 closeModalBtn.onclick = function(event) {
@@ -556,6 +757,9 @@ closeModalBtn.onclick = function(event) {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+  if (event.target == modalEdit) {
+    modalEdit.style.display = "none";
   }
 }
 
@@ -629,6 +833,30 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
+// Función para mostrar la vista previa de la imagen seleccionada
+function mostrarVistaPreviaImagen(input) {
+  var imgPreview = document.getElementById('imagePreview');
+  
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      imgPreview.src = e.target.result;
+      console.log("Valor de imgPreview.src:", imgPreview.src);
+      imgPreview.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]); // Lee el archivo como una URL de datos
+  } else {
+    imgPreview.style.display = 'none';
+  }
+}
+
+// Evento para detectar cambios en el campo de carga de archivos
+document.getElementById('PostinputImage').addEventListener('change', function() {
+  mostrarVistaPreviaImagen(this);
+});
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   

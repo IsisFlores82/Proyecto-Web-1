@@ -2,6 +2,7 @@ package Servlets;
 
 import DAO.DAOPublicacion;
 import entidades.Publicacion;
+import entidades.Usuarios;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,13 +24,14 @@ public class PostPublicacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        Usuarios usuario = (Usuarios) request.getSession().getAttribute("Usuario");
+    int idUsuario = usuario.getIdUsuario();
     // Obtener parámetros del formulario
     System.out.println("Create Post");
     String titulo = request.getParameter("postTitle");
     System.out.println(titulo);
     String contenido = request.getParameter("bodypost");
     System.out.println(contenido);
-    int idUsuario = Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()); // Obtener el ID de usuario de la sesión
     System.out.println(idUsuario);
     // Obtener la categoría seleccionada
     int idCategoria = Integer.parseInt(request.getParameter("categoria"));
