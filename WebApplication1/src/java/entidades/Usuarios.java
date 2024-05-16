@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -18,9 +19,9 @@ public class Usuarios {
     private String ApellidoM;
     private String CorreoE;
     private String NImg_Perfil;
-    private byte[] Img_Perfil;
+    private Blob Img_Perfil;
     private String NImg_Portada;
-    private byte[] Img_Portada;
+    private Blob Img_Portada;
     private int Edad;
     private Date Fecha_Nacimiento;
     private Date Fecha_Alta;
@@ -96,28 +97,34 @@ public class Usuarios {
     public void setNImg_Perfil(String NImg_Perfil) {
         this.NImg_Perfil = NImg_Perfil;
     }
-
-    public byte[] getImg_Perfil() {
+   public String getNImgPro() {
+        System.out.println("/Imageees/" + NImg_Perfil);
+        return "/WebApplication1/Imageees/" + NImg_Perfil; 
+    }
+    public Blob getImg_Perfil() {
         return Img_Perfil;
     }
 
-    public void setImg_Perfil(byte[] Img_Perfil) {
+    public void setImg_Perfil(Blob Img_Perfil) {
         this.Img_Perfil = Img_Perfil;
     }
 
         public String getNImg_Portada() {
         return NImg_Portada;
     }
-
+   public String getNImgP() {
+        System.out.println("/Imageees/" + NImg_Portada);
+        return "/WebApplication1/Imageees/" + NImg_Portada; 
+    }
     public void setNImg_Portada(String NImg_Portada) {
         this.NImg_Portada = NImg_Portada;
     }
 
-    public byte[] getImg_Portada() {
+    public Blob getImg_Portada() {
         return Img_Portada;
     }
 
-    public void setImg_Portada(byte[] Img_Portada) {
+    public void setImg_Portada(Blob Img_Portada) {
         this.Img_Portada = Img_Portada;
     }
     

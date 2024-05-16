@@ -237,18 +237,21 @@ public class DAOPublicacion {
                 if (imagen != null) {
                 ps.setBlob(5, imagen); // Establecer la imagen como un Blob en la sentencia preparada
                 String path = context.getRealPath("/Imageees");
+                System.out.println("la nueva file esta en:"+path);
                 File fpath = new File(path);
                 if (!fpath.exists()) {
                     fpath.mkdirs();
                 }
 
                 String rutaGuardarImagen = path + File.separator + rutaImagen;
+                System.out.println("sigo vivo:"+rutaGuardarImagen);
                 FileOutputStream outputStream = new FileOutputStream(rutaGuardarImagen);
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = imagen.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                 }
+                System.out.println("sigo vivo aun");
                 outputStream.close();
             } else {
                 ps.setNull(5, java.sql.Types.BLOB); // Si la imagen es nula, establecer el campo de imagen como NULL en la base de datos

@@ -73,3 +73,30 @@ for (var i = 0; i < selectElement.options.length; i++) {
   modalE.style.display = "block";
 }
 
+function editarPerfil() {
+  // Obtener los valores de los campos ocultos
+  var userId = document.getElementById("EPId" ).value;
+  var name = document.getElementById("Ename" ).value;
+  var occupation = document.getElementById("Eoccupation" ).value;
+  var plastname = document.getElementById("Eplastname" ).value;
+  var mlastname = document.getElementById("Emlastname" ).value;
+  var location = document.getElementById("Elocation" ).value;
+  var birthdate = document.getElementById("Ebirthdate" ).value;
+  var description = document.getElementById("Edescription").value;
+
+  // Llenar el modal con los valores obtenidos
+  document.getElementById("EPIdF").value = userId;
+  document.getElementById("name").value = name;
+  document.getElementById("occupation").value = occupation;
+  document.getElementById("plastname").value = plastname;
+  document.getElementById("mlastname").value = mlastname;
+  document.getElementById("location").value = location;
+  document.getElementById("birthdate").value = birthdate;
+  document.getElementById("description").value = description;
+  
+
+  // Abrir el modal
+  var modalE = document.getElementById("modal");
+  modalE.style.display = "block";
+}
+

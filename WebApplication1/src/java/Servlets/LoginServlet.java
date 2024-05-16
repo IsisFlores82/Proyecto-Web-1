@@ -43,16 +43,16 @@ DAOUsuario daousu=new DAOUsuario();
             
             usu=(Usuarios)loginUsuario;
             
-            String pantalla;
             if(usu.getIdUsuario()!=0){
                 //si existe
                 
                 String nombreImagenPerfil = usu.getNImg_Perfil();
                 String urlImagenPerfil = request.getContextPath() + "/Imageees/" + nombreImagenPerfil;
-                String nombreUsuario = usu.getUsername();
-                String nombre = usu.getNombre();
+                String nombreImagenPortada = usu.getNImg_Portada();
+                String urlImagenPortada = request.getContextPath() + "/Imageees/" + nombreImagenPortada;
                 HttpSession session = request.getSession();
                 session.setAttribute("urlImagenPerfil", urlImagenPerfil);
+                session.setAttribute("urlImagenPortada", urlImagenPortada);
                 session.setAttribute("Usuario", usu);
                 request.setAttribute("error",0);
                 System.out.println("Si existo");

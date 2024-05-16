@@ -41,7 +41,7 @@ body{
   font-family: 'Quicksand', sans-serif;
 }
 .text-muted{
-  color: gray;
+  color: gray !important; 
   font-size: 20px;
   
 }
@@ -651,8 +651,8 @@ option {
 
 .modal-content .profile-model{
   position: absolute;
-  top: 54%;
-  left: 35%;
+  top: 100%;
+  left: 40%;
 }
 
 .modal-content .profile-model .text-muted{

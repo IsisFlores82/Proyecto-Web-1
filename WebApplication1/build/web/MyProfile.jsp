@@ -34,6 +34,16 @@
 
 
 <body >
+<input type="hidden" id="EPId" name="EPId" value="<%= usuario.getIdUsuario() %>">
+<input type="hidden" id="EPusername" name="EPusername" value="<%= usuario.getUsername() %>">
+<input type="hidden" id="Ename" name="Ename" value="<%= usuario.getNombre() %>">
+<input type="hidden" id="Eoccupation" name="Eoccupation" value="<%= usuario.getOcupacion() %>">
+<input type="hidden" id="Eplastname" name="Eplastname" value="<%= usuario.getApellidoP() %>">
+<input type="hidden" id="Emlastname" name="Emlastname" value="<%= usuario.getApellidoM() %>">
+<input type="hidden" id="Elocation" name="Elocation" value="<%= usuario.getLocalizacion() %>">
+<input type="hidden" id="Ebirthdate" name="Ebirthdate" value="<%= usuario.getFecha_Nacimiento() %>">
+<input type="hidden" id="Edescription" name="Edescription" value="<%= usuario.getDescripcion() %>">
+
 
   <!----- TOP BAR ------>
   <nav class="header">
@@ -72,7 +82,7 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="#home" onclick="toHome()" class="a-sidebar active">
+        <a href="#home" onclick="toHome()" class="a-sidebar">
           <span>
              <i class="uil uil-home text"></i>
              <h3 class="text">Home</h3>
@@ -303,105 +313,103 @@
 
         <!--- MODAL EDIT INFO USER --->
         <div id="modal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Edit Profile</h3>
-            <br>
-
-            
-            <form id="Edit-Info">
-
-              <div class="images-profile">  
-                  
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Edit Profile</h3>
+        <br>
+        <form id="Edit-Info" action="ProfileServlet" method="post" enctype="multipart/form-data">
+            <% if (request.getAttribute("error") != null) { %>
+           <div class="error-message" style="width: 80%;">
+                <%= request.getAttribute("error") %>
+            </div>
+        <% } %>
+            <input type="hidden" id="EPIdF" name="EPIdF" value="">
+            <input type="hidden" id="EPusernameF" name="EPusernameF" value="<%= usuario.getUsername() %>">
+            <div class="images-profile">  
                 <div>
-                  <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
+                    <img src="${urlImagenPortada}" alt="" class="cover-photo">
                 </div>
-
                 <div class="user-data">
-                  <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                 </div>
-          
-              </div>
-
-              <div class="profile-model user-name">
-                <p class="text-muted">@${sessionScope.nombreUsuario}</p>
-              </div>
-
-              
-              
-              <div class="editable-data-container">
-
-                
+                <div class="profile-model user-name">
+                <p class="text-muted">@<%= usuario.getUsername() %></p>
+            </div>
+            </div>
+            
+            <div class="editable-data-container">
                 <div class="data-left">
-                  <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Name" maxlength="30">
-                  </div>
-
-                  <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Ocupation" maxlength="30">
-                  </div>               
-                  
-
+                    <div class="innput">
+                        <input type="text" id="name" name="name" class="input-post text" placeholder="Name" maxlength="30">
+                    </div>
+                    <div class="innput">
+                        <input type="text" id="occupation" name="occupation" class="input-post text" placeholder="Ocupation" maxlength="30">
+                    </div>               
                 </div>
-
                 <div class="data-right">
-                  <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Last Name" maxlength="30">
-                    
-                  </div>
-
-                  <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Localition" maxlength="30">
-                  </div>                  
-                  
+                    <div class="innput">
+                        <input type="text" id="plastname" name="plastname" class="input-post text" placeholder="Paternal Surname " maxlength="30">
+                    </div>
+                    <div class="innput">
+                        <input type="text" id="mlastname" name="mlastname" class="input-post text" placeholder="Maternal Surname" maxlength="30">
+                    </div>
+                    <div class="innput">
+                        <input type="text" id="location" name="location" class="input-post text" placeholder="Localition" maxlength="30">
+                    </div>                  
                 </div>
-
                 <div class="data-left">
-                  <div class="innput">
-                    <input type="date" class="input-post text">
-                  </div>
-
-                  <div class="innput">
-                    <input type="text"  class="input-post text" placeholder="Description" maxlength="30">
-                  </div>                  
-                 
+                    <div class="innput">
+                        <input type="date" id="birthdate" name="birthdate" class="input-post text">
+                    </div>
+                    <div class="innput">
+                        <input type="text" id="description" name="description" class="input-post text" placeholder="Description" maxlength="30">
+                    </div>
+                    <div class="innput">
+                        <label for="ProfileinputImage" class="icons-stile">
+                            <p class="text-muted">Imagen Perfil</p>
+                            <i class="uil uil-image"></i>
+                        </label>
+                        <input type="file" name="nProfileinputImage" id="ProfileinputImage" style="display: none;">
+                        <img id="imagePreviewProfile" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
+                    </div>
+                    <div class="innput">
+                        <label for="PortinputImage" class="icons-stile">
+                            <p class="text-muted">Imagen Portada</p>
+                            <i class="uil uil-image"></i>
+                        </label>
+                        <input type="file" name="nPortinputImage" id="PortinputImage" style="display: none;">
+                        <img id="imagePreviewPort" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
+                    </div>
                 </div>                
-                
-              </div>
-
-              <div class="">
+            </div>
+            <div class="">
                 <p class="category-edit-user">Security Data</p>
                 <br> 
-              </div>
-
-              <div class="email-pass">                
-                
-               <div class="innput data-left">
-                  <input type="text"  class="input-post text" placeholder="Email" maxlength="80">
+            </div>
+            <div class="email-pass">                
+                <div class="innput data-left">
+                    <input type="text" id="email" name="email" class="input-post text" placeholder="Email" maxlength="80">
                 </div>
-
                 <div class="innput data-right">
-                  <input type="text"  class="input-post text" placeholder="Password" maxlength="80">
+                    <input type="text" id="password" name="password" class="input-post text" placeholder="Password" maxlength="80">
                 </div>
-
-              </div>
-
-              <div class="btn-save">
+                <div class="innput data-right">
+                    <input type="text" id="confirmPassword" name="confirmPassword" class="input-post text" placeholder=" Confirm Password" maxlength="80">
+                </div>
+            </div>
+            <div class="btn-save">
                 <input type="submit" value="Save" class="btn-create">
-              </div> 
-
-                       
-            </form>
-
-          </div>
-        </div>
+            </div> 
+        </form>
+    </div>
+</div>
 
         <div class="MyProfile">
           
           <div class="photoos">
        
             <div>
-              <img src="Imageees/tulips.jpg" alt="" class="cover-photo">
+              <img src="${urlImagenPortada}" alt="" class="cover-photo">
             </div>     
             
               <div class="photo-container">
@@ -415,7 +423,7 @@
                 </div>
 
                 <div class="btn-edit-user" id="open-edit">
-                  <button class="btn-mutted text-muted"> <i class="uil uil-pen"></i> Edit  <br> profile</button>
+                    <button class="btn-mutted text-muted" onclick="editarPerfil()"> <i class="uil uil-pen"></i> Edit  <br> profile</button>
                 </div>
         
               </div>
@@ -733,16 +741,11 @@
 
   
 
-<script>const openModalBtn = document.getElementById("open-edit");
+<script>
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
 const cerrarmodal = document.getElementById("cl");
 const modalEdit = document.getElementById("modalEditarPost");
-
-openModalBtn.onclick = function(event) {
-  event.preventDefault();
-  modal.style.display = "block";
-}
 
 cerrarmodal.onclick = function(event) {
   event.preventDefault();
@@ -856,7 +859,128 @@ function mostrarVistaPreviaImagen(input) {
 document.getElementById('PostinputImage').addEventListener('change', function() {
   mostrarVistaPreviaImagen(this);
 });
+// Función para mostrar la vista previa de la imagen seleccionada
+function mostrarVistaPreviaImagenProfile(input) {
+  var imgPreview = document.getElementById('imagePreviewProfile');
+  
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
+    reader.onload = function(e) {
+      imgPreview.src = e.target.result;
+      console.log("Valor de imgPreview.src:", imgPreview.src);
+      imgPreview.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]); // Lee el archivo como una URL de datos
+  } else {
+    imgPreview.style.display = 'none';
+  }
+}
+
+// Evento para detectar cambios en el campo de carga de archivos
+document.getElementById('ProfileinputImage').addEventListener('change', function() {
+  mostrarVistaPreviaImagenProfile(this);
+});
+
+function mostrarVistaPreviaImagenPort(input) {
+  var imgPreview = document.getElementById('imagePreviewPort');
+  
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      imgPreview.src = e.target.result;
+      console.log("Valor de imgPreview.src:", imgPreview.src);
+      imgPreview.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]); // Lee el archivo como una URL de datos
+  } else {
+    imgPreview.style.display = 'none';
+  }
+}
+
+// Evento para detectar cambios en el campo de carga de archivos
+document.getElementById('PortinputImage').addEventListener('change', function() {
+  mostrarVistaPreviaImagenPort(this);
+});
+
+// Validación de fecha de nacimiento
+document.getElementById('birthdate').addEventListener('change', function() {
+    var selectedDate = new Date(this.value);
+    var currentDate = new Date();
+    var birthdate = document.getElementById("Ebirthdate" ).value;
+    if (selectedDate > currentDate) {
+        alert('La fecha no puede ser mayor que la fecha actual.');
+        this.value = birthdate; // Limpiar el valor del campo de fecha
+    }
+});
+
+// Validación del formulario al enviar
+document.getElementById('Edit-Info').addEventListener('submit', function(event) {
+    var name = document.getElementById('name').value;
+    var paternalSurname = document.getElementById('plastname').value;
+    var maternalSurname = document.getElementById('mlastname').value;
+    var password = document.getElementById('password').value;
+    console.log(password);
+    var confirmPassword = document.getElementById('confirmPassword').value;
+    var email = document.getElementById('email').value;
+
+    if (!validateAlphabetic(name)) {
+        alert('El nombre solo debe contener caracteres alfabéticos.');
+        event.preventDefault();
+        return;
+    }
+
+    if (!validateAlphabetic(paternalSurname)) {
+        alert('El apellido paterno solo debe contener caracteres alfabéticos.');
+        event.preventDefault();
+        return;
+    }
+
+    if (!validateAlphabetic(maternalSurname)) {
+        alert('El apellido materno solo debe contener caracteres alfabéticos.');
+        event.preventDefault();
+        return;
+    }
+if(email!=""){
+    if (!validateEmail(email)) {
+       alert('Por favor, introduce un correo electrónico válido.');
+       event.preventDefault(); 
+       return;
+    }
+}
+if(password!=""){
+    if (!validatePassword(password)) {
+        alert('La contraseña no cumple con los requisitos.');
+        event.preventDefault();
+        return;
+    }
+}
+
+    if (password !== confirmPassword) {
+        alert('La confirmación de contraseña no coincide con la contraseña ingresada.');
+        event.preventDefault();
+        return;
+    }
+});
+
+// Funciones de validación
+function validateAlphabetic(value) {
+    var regex = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/;
+    return regex.test(value);
+}
+
+function validatePassword(value) {
+    var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return regex.test(value);
+}
+
+function validateEmail(value){
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(value);
+}
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   
