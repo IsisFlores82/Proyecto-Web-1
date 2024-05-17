@@ -176,13 +176,13 @@ String PortRutaImagen = null;
             }
             case 2 -> {
                 request.setAttribute("error", "El correo ya existe");
-                pantalla = "profile.jsp";
+                pantalla = "MyProfile.jsp";
                 rd = request.getRequestDispatcher(pantalla);
                 rd.forward(request, response);
             }
             default -> {
                 request.setAttribute("error", "No se pudo guardar la información, intente de nuevo.");
-                pantalla = "profile.jsp";
+                pantalla = "MyProfile.jsp";
                 rd = request.getRequestDispatcher(pantalla);
                 rd.forward(request, response);
             }

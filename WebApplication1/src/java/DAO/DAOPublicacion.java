@@ -343,5 +343,144 @@ public class DAOPublicacion {
             return log;
         }   
     }
+     public List<Publicacion> getSearchPosts(String texto, int pag){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT * FROM Publicaciones WHERE (Titulo LIKE ? OR Contenido LIKE ?) AND Estatus = 1 ORDER BY Fecha_Alta DESC LIMIT 10 OFFSET ?;";
+        
+        String regex = "[,.\\s]";
+        String[] palabras = texto.split(regex);
+        String x = String.join("%",palabras);
+        String busqueda = "%".concat(x).concat("%");
+
+        List<Publicacion> log = new ArrayList<>();
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);
+            ps.setString(1, busqueda);
+            ps.setString(2, busqueda);
+            ps.setInt(3, pag*10);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                Publicacion publicacion = new Publicacion();
+                publicacion.setIdPublicacion(rs.getInt("IdPublicacion"));
+            publicacion.setTitulo(rs.getString("Titulo"));
+            publicacion.setContenido(rs.getString("Contenido"));
+            publicacion.setFecha_Alta(rs.getTimestamp("Fecha_Alta"));
+            publicacion.setNImg(rs.getString("NImg"));
+            publicacion.setImg(rs.getBlob("Img"));
+            publicacion.setEstatus(rs.getBoolean("Estatus"));
+            publicacion.setIdUsuario(rs.getInt("IdUsuario"));
+            publicacion.setIdCategoria(rs.getInt("IdCategoria"));
+                
+                log.add(publicacion);
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error " + e.getMessage());
+        } finally {
+            return log;
+        }
+    }
+    public int getnSearchPosts(String texto){
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        String sql = "SELECT COUNT(IdPublicacion) AS N FROM Publicaciones WHERE (Titulo LIKE ? OR Contenido LIKE ?) AND Estatus = 1;";
+        
+        int log = 0;
+        
+        String regex = "[,.\\s]";
+        String[] palabras = texto.split(regex);
+        String x = String.join("%",palabras);
+        String busqueda = "%".concat(x).concat("%");
+
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            ps = con.prepareStatement(sql);
+            ps.setString(1, busqueda);
+            ps.setString(2, busqueda);
+            rs = ps.executeQuery();
+            
+            
+            while(rs.next()){
+                log = rs.getInt("N");
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error " + e.getMessage());
+        } finally {
+            return log;
+        }
+    }
+    public List<Publicacion> getAdvancedSearchPosts(Date f_inicio, Date f_fin, int offset, int id_cat, String texto){
+        Connection con;
+        CallableStatement cs;
+        ResultSet rs;
+        String sql = "CALL sp_buscar_posts(?,?,?,?,?);";
+        
+        String regex = "[,.\\s]";
+        String[] palabras = texto.split(regex);
+        String x = String.join("%",palabras);
+        String busqueda = "%".concat(x).concat("%");
+        
+        List<Publicacion> log = new ArrayList<>();
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            cs = (CallableStatement) con.prepareCall(sql);
+            cs.setDate(1, f_inicio);
+            cs.setDate(2, f_fin);
+            cs.setInt(3, offset);
+            if(id_cat == 0){
+                cs.setString(4,null);
+            } else {
+                cs.setInt(4,id_cat);
+            }
+            cs.setString(5,busqueda);
+            
+            rs = cs.executeQuery();
+            
+            while(rs.next()){
+               Publicacion publicacion = new Publicacion();
+                publicacion.setIdPublicacion(rs.getInt("IdPublicacion"));
+            publicacion.setTitulo(rs.getString("Titulo"));
+            publicacion.setContenido(rs.getString("Contenido"));
+            publicacion.setFecha_Alta(rs.getTimestamp("Fecha_Alta"));
+            publicacion.setNImg(rs.getString("NImg"));
+            publicacion.setImg(rs.getBlob("Img"));
+            publicacion.setEstatus(rs.getBoolean("Estatus"));
+            publicacion.setIdUsuario(rs.getInt("IdUsuario"));
+            publicacion.setIdCategoria(rs.getInt("IdCategoria"));
+                
+                log.add(publicacion);
+                
+            }
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error en LogIn " + e.getMessage());
+        } finally {
+            return log;
+        }
+        
+    }
 }
 

@@ -50,7 +50,7 @@ body{
 }
 
 .text-muted{
-  color: gray;
+  color: gray !important;
   font-size: 20px;
 }
 
@@ -978,4 +978,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-family: 'Quicksand', sans-serif; 
   font-size: 1.3rem;
   border: none;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
 }

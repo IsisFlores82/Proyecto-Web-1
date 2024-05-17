@@ -31,8 +31,23 @@ public class PaginacionServlet extends HttpServlet {
             throws ServletException, IOException {
         String pagina = request.getParameter("Pag");
         int pag = Integer.parseInt(pagina.trim());
-        
- 
+
+        String search = request.getParameter("Search").trim();
+        if ("true".equals(search)){
+            String texto = request.getParameter("Searchword").trim();
+
+            List<Publicacion> publicaciones;
+            DAOPublicacion daopost = new DAOPublicacion();
+
+            publicaciones = daopost.getSearchPosts(texto,pag);
+
+            request.setAttribute("num_paginas",daopost.getnSearchPosts(texto)/10+1); 
+            request.setAttribute("search", publicaciones);
+            request.setAttribute("searchword", texto);
+            request.setAttribute("Pagina", pag);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+            dispatcher.forward(request, response);
+        } else {
             List<Publicacion> publicaciones;
             DAOPublicacion daopost = new DAOPublicacion();
             publicaciones = daopost.obtenerPubDash(pag);
@@ -42,6 +57,8 @@ public class PaginacionServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
             dispatcher.forward(request, response);
+        }
+       
     }
 
     /**

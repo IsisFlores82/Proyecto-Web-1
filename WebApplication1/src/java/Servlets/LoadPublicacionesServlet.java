@@ -38,4 +38,24 @@ public class LoadPublicacionesServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
         rd.forward(request, response);
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String texto = request.getParameter("busqueda").trim();
+
+        List<Publicacion> publicaciones;
+        DAOPublicacion daopost = new DAOPublicacion();
+        
+        publicaciones = daopost.getSearchPosts(texto,0);
+        request.setAttribute("num_paginas",daopost.getnSearchPosts(texto)/10+1); 
+        request.setAttribute("search", publicaciones);
+        request.setAttribute("searchword", texto);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+        dispatcher.forward(request, response);
+    }
+
+
 }

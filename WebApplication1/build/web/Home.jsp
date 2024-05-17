@@ -41,9 +41,13 @@
     </div>
 
     <div class="search-bar-container" >
-      <i class="uil uil-search"></i>
-      <input type="text" placeholder="Search something" class="search-bar">
-      <i class="uil uil-filter text" id="openModalSearch"></i>
+        <form id="searchForm" action="LoadPublicacionesServlet" method="post" onsubmit="return validacionBusqueda()">
+          <button type="submit" class="search-button">
+          <i class="uil uil-search"></i>
+          </button>
+         <input name="busqueda" id="busqueda" type="text" placeholder="Search something" class="search-bar">
+         <i class="uil uil-filter text" id="openModalSearch"></i>
+        </form>
     </div>
 
     <div class="container">
@@ -339,9 +343,21 @@
 
 <div class="posts">
     <%-- Verificar si hay publicaciones --%>
-    <% if (request.getAttribute("publicaciones") != null) { %>
-        <!-- Obtener la lista de publicaciones del atributo "publicaciones" del request -->
-        <% List<Publicacion> publicaciones = (List<Publicacion>) request.getAttribute("publicaciones"); %>
+    <% if (request.getAttribute("publicaciones") != null||request.getAttribute("search") != null) { %>
+    
+       <%  
+        List<Publicacion> publicaciones;
+        if(request.getAttribute("search") != null) {
+                    %>
+                    <h4>Resultados de la búsqueda: "<%out.print(request.getAttribute("searchword"));%>"</h4>
+                    <%
+                    publicaciones = (List<Publicacion>)request.getAttribute("search");
+                } else {
+                %>
+                <%
+
+                    publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
+                }%>
 
         <!-- Iterar sobre la lista de publicaciones -->
         <% for (Publicacion post : publicaciones) { %>
@@ -390,62 +406,7 @@
         <% } %>
     <% } else { %>
         <!-- Mostrar un mensaje si no hay publicaciones -->
-        <div class="post">
-            <div class="head">
-                <div class="user">
-                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-                    <div class="info">
-                        <h3>Nombre prueba <span class="text-muted">@prueba &#x2022 <small>15 min ago</small></span></h3>
-                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="title">
-                <p>Happy </p>
-            </div>
-            <div class="caption">
-                <p>I went out with my human, was fun </p>
-            </div>
-            <div>
-                <img src="Imageees/post.jpg" alt="" class="photo">
-            </div>
-            <div class="actiones">
-                <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
-                </div>
-                <div class="save">
-                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-                </div>
-            </div>
-        </div>
-        <div class="post">
-            <div class="head">
-                <div class="user">
-                    <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
-                    <div class="info">
-                        <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span></h3>
-                        <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="title">
-                <p>An amazing Concert </p>
-            </div>
-            <div class="caption">
-                <p>It was an incredible concert, thank u so much! </p>
-            </div>
-            <div>
-                <img src="Imageees/mikuConcert.jpg" alt="" class="photo">
-            </div>
-            <div class="actiones">
-                <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
-                </div>
-                <div class="save">
-                    <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-                </div>
-            </div>
-        </div>
+    <h2>Sin Publicaciones</h2>
     <% } %>
     <ul class="pagination justify-content-center">
                 <%
@@ -453,12 +414,18 @@
                     if(request.getAttribute("Pagina") != null){
                     pag = (int)request.getAttribute("Pagina");
                     }
+                    boolean search = false;
+                    if(request.getAttribute("search") != null) {
+                        search = true;
+                    }
                     int num_paginas = (int)request.getAttribute("num_paginas");
                     if(pag != 0){
                     %>
                     <li class="page-item">
                         <form action="PaginacionServlet" method="post">
                             <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag-1);%>">
+                            <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                            <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
                             <button class="page-image" style="background: none; border: none; width: 2.5rem; height: 2.5rem" type="submit" href="#" aria-label="Previous" style="--bs-pagination-border-radius:50%;">
                                 <a class="bi bi-caret-left-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
                             </button>
@@ -472,6 +439,8 @@
                         <li class="page-item" style="background: rgba(55, 50, 70, 1); border-radius: 100%">
                             <form action="PaginacionServlet" method="post">
                                 <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                                <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
                                 <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                                 <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
                                 </button>
@@ -483,6 +452,8 @@
                         <li class="page-item">
                             <form action="PaginacionServlet" method="post">
                                 <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                                <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
                                 <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                                 <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
                                 </button>
@@ -496,6 +467,8 @@
                     <li class="page-item">
                         <form action="PaginacionServlet" method="post">
                             <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag+1);%>">
+                            <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                            <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
                             <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                               <a class="bi bi-caret-right-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
                             </button>

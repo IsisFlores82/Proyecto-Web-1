@@ -54,9 +54,13 @@
     </div>
 
     <div class="search-bar-container" >
-      <i class="uil uil-search"></i>
-      <input type="text" placeholder="Search something" class="search-bar">
-      <i class="uil uil-filter text" id="openModalSearch"></i>
+        <form id="searchForm" action="LoadPublicacionesServlet" method="post" onsubmit="return validacionBusqueda()">
+          <button type="submit" class="search-button">
+          <i class="uil uil-search"></i>
+          </button>
+         <input name="busqueda" id="busqueda" type="text" placeholder="Search something" class="search-bar">
+         <i class="uil uil-filter text" id="openModalSearch"></i>
+        </form>
     </div>
 
     <div class="container">

@@ -100,3 +100,15 @@ function editarPerfil() {
   modalE.style.display = "block";
 }
 
+function validacionBusqueda(){
+    var texto = document.getElementById("busqueda").value.trim();
+    if (texto.length > 60) {
+        alert('Total de caracteres de busqueda exedidos');
+        return false; // Prevent form submission
+    }
+    if (texto === "") {
+        alert("Por favor, ingresa algo en el campo de búsqueda.");
+        return false; // Evitar el envío del formulario
+    }
+    return true; // Allow form submission
+}

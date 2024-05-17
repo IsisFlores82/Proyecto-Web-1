@@ -1048,3 +1048,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   aspect-ratio: 1/1;
   overflow: hidden;
 }
+
+.search-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+}
