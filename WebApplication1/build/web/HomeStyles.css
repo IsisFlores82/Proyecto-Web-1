@@ -94,8 +94,6 @@ nav{
   flex-shrink: 0;
   max-width: 600px;
   align-items: center;
-  position: absolute;
-  left: 39.5%;
 }
 
 .search-bar{
@@ -581,10 +579,8 @@ option {
 
 .btnLabel{
   background-color: transparent;
-  position: absolute;
-  top: 1.2%;
-  width: 42%;
-  height: 3%;
+  width: 100%;
+  height: 100%;
   text-align: left;
   color: gray;  
 }

@@ -32,7 +32,13 @@
 
 <body >
 <input type="hidden" id="UPId" name="UPId" value="">
-<input type="hidden" id="IDS" name="IDS" value="<%= usuario.getIdUsuario() %>">
+<%
+    if(usuario != null) {
+%><input type="hidden" id="IDS" name="IDS" value="<%= usuario.getIdUsuario() %>"><%
+    } else {
+%><input type="hidden" id="IDS" name="IDS" value="0"><%
+    }
+%>
   <!----- TOP BAR ------>
   <nav class="header">
 
@@ -55,12 +61,16 @@
       
       <a href="#perfil" onclick="<%
     if(usuario != null) {
-%>toProfile(true)<%
+%>toProfile(true)">
+<img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+<%
     } else {
-%>toProfile(false)<%
+%>toProfile(false)">
+<img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+<%
     }
-%>">
-        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+%>
+        
       </a>
     </div>
 
@@ -146,10 +156,18 @@
         </a>
   
         <div class="profile">
-         
-          <div class="user-data">
+            <%
+         if(usuario != null) {
+%><div class="user-data">
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-          </div>
+          </div>   
+<%
+    } else {
+%><div class="user-data">
+            <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+          </div><%
+    }
+%>
   
           <div class="user-name-navbar">
               <%
@@ -160,7 +178,7 @@
 <%
     } else {
 %>
-        Sin Usuario
+        Usuario Invitado
 <%
     }
 %>
@@ -329,16 +347,20 @@
 
         
         <form class="create-post">
-          <div class="photo-container">
+            <%
+         if(usuario != null) {
+%><div class="photo-container">
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-          </div>
+          </div> 
+<%
+    } else {
+%><div class="photo-container">
+            <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+          </div><%
+    }
+%>
           <div class="post-body">
             <button id="openModal" class="btnLabel text">What´s on ur mind?</button>
-            <div>
-              <input type="text"  class="input-post text" placeholder="">
-            </div>
-            
-            
           </div>
                    
         </form>
@@ -591,27 +613,30 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
         <div class="modal-content configg" id="popup-config">
           <span class="close" id="close-signOut">&times;</span>
           
-          <form class="">            
+          
+    <div>
+        <% if (usuario != null) { %>
+            <form action="SignOutServlet" method="post">
+                <button type="submit" class="text lil-popUp" style="text-decoration: underline;background-color: #202124;">
+                    Sign Out
+                </button>
+            </form>
+        <% } else { %>
+            <a href="SignIn.jsp" class="text lil-popUp">
+                Sign In
+            </a>
+        <% } %>
+        <a href="#perfil" onclick="<%
+            if (usuario != null) {
+        %>toProfile(true)<%
+            } else {
+        %>toProfile(false)<%
+            }
+        %>" class="text lil-popUp">
+            Profile
+        </a>
+    </div>
 
-            <div>
-             <a href="SignIn.jsp" class="text lil-popUp">
-              Sign Out
-             </a>
-             
-             <<a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)<%
-    } else {
-%>toProfile(false)<%
-    }
-%>" class="text lil-popUp">
-              Profile
-             </a>
-              
-            </div>
-
-                     
-          </form>
 
         </div>
 
@@ -650,12 +675,18 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
       const openModalBtn = document.getElementById("openModal");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
-
+const userlog=document.getElementById("IDS").value;
 
 
 openModalBtn.onclick = function(event) {
   event.preventDefault();
-  modal.style.display = "block";
+  if(parseInt(userlog)!=0){
+      console.log("hola el user log vale: "+userlog)
+   modal.style.display = "block";
+  }else{
+      alert('Inicie sesion para crear publicaciones');
+  }
+ 
 }
 
 closeModalBtn.onclick = function(event) {

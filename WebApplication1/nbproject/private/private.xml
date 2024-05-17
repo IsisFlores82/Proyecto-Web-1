@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/DAO/DAOUsuario.java</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/Servlets/ProfileServlet.java</file>
+            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/web/UserProfile.jsp</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/DAO/DAOPublicacion.java</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/Servlets/LoginServlet.java</file>
-            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/Servlets/EditarPublicacionServlet.java</file>
-            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/entidades/Publicacion.java</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/web/script.js</file>
-            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/Servlets/PostPublicacionServlet.java</file>
+            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/entidades/Publicacion.java</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/build/web/Home.jsp</file>
             <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/entidades/Usuarios.java</file>
-            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/web/MyProfile.jsp</file>
-            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/build/web/MyProfile.css</file>
+            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/build/web/MyProfile.jsp</file>
+            <file>file:/C:/Users/cdpin/OneDrive/Documentos/NetBeansProjects/WebApplication1/src/java/Servlets/UserProfileServlet.java</file>
         </group>
     </open-files>
 </project-private>

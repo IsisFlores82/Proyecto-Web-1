@@ -56,14 +56,18 @@
     </div>
 
     <div class="container">
-      <a href="#perfil" onclick="<%
+     <a href="#perfil" onclick="<%
     if(usuario != null) {
-%>toProfile(true)<%
+%>toProfile(true)">
+<img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+<%
     } else {
-%>toProfile(false)<%
+%>toProfile(false)">
+<img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+<%
     }
-%>">
-        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+%>
+        
       </a>
       
     </div>
@@ -138,13 +142,23 @@
         </span>
        </a>
   
+       
         <div class="profile">
-         
-          <div class="user-data">
+            <%
+         if(usuario != null) {
+%><div class="user-data">
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-          </div>
+          </div>   
+<%
+    } else {
+%><div class="user-data">
+            <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+          </div><%
+    }
+%>
   
-          <div class="user-name-navbar"><%
+          <div class="user-name-navbar">
+              <%
     if(usuario != null) {
 %>
         <h3><%= usuario.getNombre() %></h3>
@@ -152,7 +166,7 @@
 <%
     } else {
 %>
-        Sin Usuario
+        Usuario Invitado
 <%
     }
 %>
@@ -250,11 +264,16 @@
         <div class="MyProfile">
           
           <div class="photoos">
-       
-            <div>
-              <img src="<%= usuarioProfile.getNImgP() %>" alt="" class="cover-photo">
-            </div>     
-            
+       <%
+    // Define the URL of the default image
+    String defaultImageUrl = "/WebApplication1/Imageees/tulips.jpg";
+    // Check if the urlImagenPortada is null or empty and use the default image if it is
+    String portadaImageUrl = (usuarioProfile.getNImg_Portada() != null && !usuarioProfile.getNImg_Portada().isEmpty()) ? usuarioProfile.getNImgP() : defaultImageUrl;
+%>
+                <div>
+                    <img src="<%= portadaImageUrl %>" alt="" class="cover-photo">
+                </div>   
+
               <div class="photo-container">
                 <div class="profile-img-container">
                 <img src="<%= usuarioProfile.getNImgPro() %>" alt="Imagen de perfil" class="big-profile-photo">
@@ -268,7 +287,7 @@
               </div>
             </div>
           </div>   
-
+<br>
           <div class="editable-data-container ">
             <p class="description"><%= usuarioProfile.getDescripcion() %></p>
           </div>
@@ -505,27 +524,29 @@
         <div class="modal-content configg" id="popup-config">
           <span class="close" id="close-signOut">&times;</span>
           
-          <form class="">            
-
-            <div>
-             <a href="SignIn.jsp" class="text lil-popUp">
-              Sign Out
-             </a>
-             
-             <a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)<%
-    } else {
-%>toProfile(false)<%
-    }
-%>" class="text lil-popUp">
-              Profile
-             </a>
               
-            </div>
-
-                     
-          </form>
+    <div>
+        <% if (usuario != null) { %>
+            <form action="SignOutServlet" method="post">
+                <button type="submit" class="text lil-popUp" style="text-decoration: underline;background-color: #202124;">
+                    Sign Out
+                </button>
+            </form>
+        <% } else { %>
+            <a href="SignIn.jsp" class="text lil-popUp">
+                Sign In
+            </a>
+        <% } %>
+        <a href="#perfil" onclick="<%
+            if (usuario != null) {
+        %>toProfile(true)<%
+            } else {
+        %>toProfile(false)<%
+            }
+        %>" class="text lil-popUp">
+            Profile
+        </a>
+    </div>
 
         </div>
         

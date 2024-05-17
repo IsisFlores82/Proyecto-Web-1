@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-
+  <script src="script.js"></script>
 </head>
 
 
@@ -78,6 +78,8 @@
         <p class="text-muted">O create an acount</p>
         
         <a href="CreateAcount.jsp" class="create">Create Acount</a>
+        
+        <a href="#home" onclick="toHome()" class="create">Enter as Guest</a>
         
   
       </div>

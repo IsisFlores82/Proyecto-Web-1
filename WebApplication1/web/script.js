@@ -15,6 +15,7 @@ function toHome(){
     window.location.href = 'LoadPublicacionesServlet';
 }
 
+
 function confirmacionBorrarPost(){
     var confirmacion = window.confirm("¿Estás seguro de que quieres borrar esta publicación?");
     
