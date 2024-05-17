@@ -249,11 +249,10 @@
             <span class="close">&times;</span>
             <h3>Advanced Search</h3>
             
-            <form class="">            
-
+            <form id="formBusquedaAvanzada" action="BusquedaAvanzadaServlet" method="post">    
               <div>
                 <div class="innput">
-                  <input type="text"  class="text advanced-search-bar" placeholder="What are u looking for?">
+                    <input type="text" name="BAText" id="BAText" class="text advanced-search-bar" placeholder="What are u looking for?" required="">
                 </div>
 
                 <br>
@@ -262,7 +261,7 @@
                   <div class="data-left">
                     <p class="text-muted">Before date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerFin" id="datePickerFin" type="date" class="input-post text-DP">
                       
                     </div>
                   </div>
@@ -270,7 +269,7 @@
                   <div class="data-right">
                     <p class="text-muted">After date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerInicio" id="datePickerInicio" type="date" class="input-post text-DP">
                     </div>
                   </div>
 
@@ -284,32 +283,36 @@
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
                       <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                      <option value="Action">Action</option>
-                      <option value="Adventure">Adventure</option>
-                      <option value="Arcade">Arcade</option>
-                      <option value="Sport">Sport</option>
-                      <option value="Strategy">Strategy</option>
-                      <option value="Simulation">Simulation</option>
-                      <option value="Rythm">Rythm</option>
+                      <option value="0">No Category</option>
+                      <option value="1">Action</option>
+                      <option value="2">Adventure</option>
+                      <option value="3">Arcade</option>
+                      <option value="4">Sport</option>
+                      <option value="5">Strategy</option>
+                      <option value="6">Simulation</option>
+                      <option value="7">Rythm</option>
+
                       </select>
                   </div>
                  
 
                 </div>
+
                
                 <br>
                 <div class=" actiones">
-
                   <div class=" interaction-bnts">
-                  </div>                     
+                  </div>
+                     
                   <div>
                     <input type="submit" value="Search" class="btn-create">
-                  </div>     
-
+                  </div> 
+                
                 </div>
                 
               </div>
 
+                       
             </form>
 
           </div>

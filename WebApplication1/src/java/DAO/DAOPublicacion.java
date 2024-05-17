@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
+import java.sql.Types;
 /**
  *
  * @author cdpin
@@ -481,6 +482,46 @@ public class DAOPublicacion {
             return log;
         }
         
+    }
+    public int getnAdvancedSearchPosts(Date f_inicio, Date f_fin, int id_cat, String texto){
+        Connection con;
+        CallableStatement cs;
+        ResultSet rs;
+        String sql = "CALL sp_contar_publicaciones(?,?,?,?,?);";
+        int log = 0;
+        
+       String regex = "[,.\\s]";
+        String[] palabras = texto.split(regex);
+        String x = String.join("%",palabras);
+        String busqueda = "%".concat(x).concat("%");
+        
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(
+                    db.getUrl() + db.getDatabase(),
+                    db.getUser(),
+                    db.getPass());
+            cs = (CallableStatement) con.prepareCall(sql);
+            cs.setDate(1, f_inicio);
+            cs.setDate(2, f_fin);
+            if(id_cat == 0){
+                cs.setString(3,null);
+            } else {
+                cs.setInt(3,id_cat);
+            }
+            cs.setString(4,busqueda);
+            cs.registerOutParameter(5, Types.INTEGER);
+            cs.execute();
+            
+            log = cs.getInt(5);
+            System.out.println("el obtener search post de avanzado me dio: "+log);
+            con.close();
+            
+        } catch(SQLException | ClassNotFoundException e){
+            System.out.println("Error " + e.getMessage());
+        } finally {
+            return log;
+        }
     }
 }
 

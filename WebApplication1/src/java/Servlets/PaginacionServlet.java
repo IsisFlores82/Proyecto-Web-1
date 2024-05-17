@@ -16,6 +16,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class PaginacionServlet extends HttpServlet {
             throws ServletException, IOException {
         String pagina = request.getParameter("Pag");
         int pag = Integer.parseInt(pagina.trim());
-
+        String asearch = request.getParameter("ASearch").trim();
         String search = request.getParameter("Search").trim();
         if ("true".equals(search)){
             String texto = request.getParameter("Searchword").trim();
@@ -47,7 +50,47 @@ public class PaginacionServlet extends HttpServlet {
             request.setAttribute("Pagina", pag);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
             dispatcher.forward(request, response);
-        } else {
+        } else if ("true".equals(asearch)){
+            List<Publicacion> publicaciones;
+        DAOPublicacion daopost = new DAOPublicacion();
+        
+        String texto = request.getParameter("Searchword").trim();
+        String idcategoria = request.getParameter("IdCategoria");
+        int idCategoria = Integer.parseInt(idcategoria.trim());
+        String f_inicio_string = request.getParameter("F_inicio");
+        String f_fin_string = request.getParameter("F_fin");
+        
+        java.util.Date utilDate;
+        Date f_inicio = null;
+        if (!"".equals(f_inicio_string)){
+            try {
+                utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_inicio_string);
+            } catch (ParseException ex) {
+                return;
+            }
+            f_inicio = new java.sql.Date(utilDate.getTime());
+        }
+        Date f_fin = null;
+        if (!"".equals(f_fin_string)){
+            try {
+                utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_fin_string);
+            } catch (ParseException ex) {
+                return;
+            }
+            f_fin = new java.sql.Date(utilDate.getTime());
+        }
+        publicaciones = daopost.getAdvancedSearchPosts(f_inicio, f_fin, pag, idCategoria,texto);
+        
+        request.setAttribute("searchword", texto);
+            request.setAttribute("Pagina", pag);
+            request.setAttribute("BusquedaAvanzada", publicaciones);
+            request.setAttribute("idCategoria", idCategoria);
+            request.setAttribute("f_inicio", f_inicio);
+            request.setAttribute("f_fin", f_fin);
+        
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+            dispatcher.forward(request, response);
+        }else {
             List<Publicacion> publicaciones;
             DAOPublicacion daopost = new DAOPublicacion();
             publicaciones = daopost.obtenerPubDash(pag);

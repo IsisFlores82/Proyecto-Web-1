@@ -112,3 +112,6 @@ function validacionBusqueda(){
     }
     return true; // Allow form submission
 }
+
+ 
+  

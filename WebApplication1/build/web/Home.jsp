@@ -186,10 +186,10 @@
             <span class="close">&times;</span>
             <h3>Advanced Search</h3>
             
-            <form id="formCreatePost" action="PostPublicacionServlet" method="post" enctype="multipart/form-data">            
+            <form id="formBusquedaAvanzada" action="BusquedaAvanzadaServlet" method="post">    
               <div>
                 <div class="innput">
-                  <input type="text"  class="text advanced-search-bar" placeholder="What are u looking for?">
+                    <input type="text" name="BAText" id="BAText" class="text advanced-search-bar" placeholder="What are u looking for?" required="">
                 </div>
 
                 <br>
@@ -198,7 +198,7 @@
                   <div class="data-left">
                     <p class="text-muted">Before date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerFin" id="datePickerFin" type="date" class="input-post text-DP">
                       
                     </div>
                   </div>
@@ -206,7 +206,7 @@
                   <div class="data-right">
                     <p class="text-muted">After date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerInicio" id="datePickerInicio" type="date" class="input-post text-DP">
                     </div>
                   </div>
 
@@ -220,13 +220,14 @@
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
                       <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                      <option value="Action">Action</option>
-                      <option value="Adventure">Adventure</option>
-                      <option value="Arcade">Arcade</option>
-                      <option value="Sport">Sport</option>
-                      <option value="Strategy">Strategy</option>
-                      <option value="Simulation">Simulation</option>
-                      <option value="Rythm">Rythm</option>
+                      <option value="0">No Category</option>
+                      <option value="1">Action</option>
+                      <option value="2">Adventure</option>
+                      <option value="3">Arcade</option>
+                      <option value="4">Sport</option>
+                      <option value="5">Strategy</option>
+                      <option value="6">Simulation</option>
+                      <option value="7">Rythm</option>
 
                       </select>
                   </div>
@@ -343,7 +344,7 @@
 
 <div class="posts">
     <%-- Verificar si hay publicaciones --%>
-    <% if (request.getAttribute("publicaciones") != null||request.getAttribute("search") != null) { %>
+    <% if (request.getAttribute("publicaciones") != null||request.getAttribute("search") != null||request.getAttribute("BusquedaAvanzada") != null) { %>
     
        <%  
         List<Publicacion> publicaciones;
@@ -352,12 +353,15 @@
                     <h4>Resultados de la búsqueda: "<%out.print(request.getAttribute("searchword"));%>"</h4>
                     <%
                     publicaciones = (List<Publicacion>)request.getAttribute("search");
-                } else {
+                } else if(request.getAttribute("BusquedaAvanzada") != null){
                 %>
+                <h4>Resultados de la Busqueda Avanzada</h4>
                 <%
-
-                    publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
-                }%>
+publicaciones = (List<Publicacion>)request.getAttribute("BusquedaAvanzada");
+                    
+                }else {
+publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
+}%>
 
         <!-- Iterar sobre la lista de publicaciones -->
         <% for (Publicacion post : publicaciones) { %>
@@ -418,6 +422,10 @@
                     if(request.getAttribute("search") != null) {
                         search = true;
                     }
+                    boolean asearch = false;
+                    if(request.getAttribute("BusquedaAvanzada") != null) {
+                        asearch = true;
+                    }
                     int num_paginas = (int)request.getAttribute("num_paginas");
                     if(pag != 0){
                     %>
@@ -426,6 +434,10 @@
                             <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag-1);%>">
                             <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
                             <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                            <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
                             <button class="page-image" style="background: none; border: none; width: 2.5rem; height: 2.5rem" type="submit" href="#" aria-label="Previous" style="--bs-pagination-border-radius:50%;">
                                 <a class="bi bi-caret-left-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
                             </button>
@@ -441,6 +453,10 @@
                                 <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
                                 <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
                                 <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                                <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
                                 <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                                 <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
                                 </button>
@@ -454,6 +470,10 @@
                                 <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
                                 <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
                                 <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                                <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
                                 <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                                 <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
                                 </button>
@@ -469,6 +489,10 @@
                             <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag+1);%>">
                             <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
                             <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                            <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
                             <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
                               <a class="bi bi-caret-right-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
                             </button>
