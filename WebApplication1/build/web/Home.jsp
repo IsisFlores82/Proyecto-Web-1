@@ -32,6 +32,7 @@
 
 <body >
 <input type="hidden" id="UPId" name="UPId" value="">
+<input type="hidden" id="IDS" name="IDS" value="<%= usuario.getIdUsuario() %>">
   <!----- TOP BAR ------>
   <nav class="header">
 

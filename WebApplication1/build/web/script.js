@@ -128,10 +128,10 @@ function toUserProfile(){
     var userId = document.getElementById("UPId").value;
     console.log("ID de usuario de la publicación:"+ userId);
     // Construir la URL del servlet con el parámetro UPId
-    var currentUserId = '<%= session.getAttribute("userId") %>';
+    var currentUserId = document.getElementById("IDS").value;
     console.log("ID de usuario session:"+ currentUserId);
     // Verificar si el usuario actual y el usuario del perfil tienen la misma ID
-    if (userId === currentUserId.toString()) {
+    if (parseInt(userId) === parseInt(currentUserId)) {
         // Redirigir al servlet ProfileServlet
         window.location.href = 'ProfileServlet';
     } else {
