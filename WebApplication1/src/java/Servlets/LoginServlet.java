@@ -54,6 +54,7 @@ DAOUsuario daousu=new DAOUsuario();
                 session.setAttribute("urlImagenPerfil", urlImagenPerfil);
                 session.setAttribute("urlImagenPortada", urlImagenPortada);
                 session.setAttribute("Usuario", usu);
+                session.setAttribute("userId", usu.getIdUsuario());
                 request.setAttribute("error",0);
                 System.out.println("Si existo");
                 response.sendRedirect("LoadPublicacionesServlet");

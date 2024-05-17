@@ -113,5 +113,33 @@ function validacionBusqueda(){
     return true; // Allow form submission
 }
 
- 
+ function obtenerDatosUsuario(idPublicacion) {
+    // Obtener el valor oculto de la publicación utilizando su ID
+    var userId = document.getElementById("EuserId_" + idPublicacion).value;
+    document.getElementById("UPId").value = userId;
+    // Aquí puedes hacer lo que necesites con el ID de usuario obtenido
+    console.log("ID de usuario de la publicación:"+ userId);
+    console.log("Ola el perfil de este tilin sin cebolla por favor");
+    console.log("la id en el hidden es esta btw: "+document.getElementById("UPId").value);
+    toUserProfile();
+}
+
+function toUserProfile(){
+    var userId = document.getElementById("UPId").value;
+    console.log("ID de usuario de la publicación:"+ userId);
+    // Construir la URL del servlet con el parámetro UPId
+    var currentUserId = '<%= session.getAttribute("userId") %>';
+    console.log("ID de usuario session:"+ currentUserId);
+    // Verificar si el usuario actual y el usuario del perfil tienen la misma ID
+    if (userId === currentUserId.toString()) {
+        // Redirigir al servlet ProfileServlet
+        window.location.href = 'ProfileServlet';
+    } else {
+        // Construir la URL del servlet UserProfileServlet con el parámetro UPId
+        var url = 'UserProfileServlet?UPId=' + userId;
+        // Redirigir al servlet UserProfileServlet
+        window.location.href = url;
+    }
+}
+
   

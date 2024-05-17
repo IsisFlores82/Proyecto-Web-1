@@ -31,7 +31,7 @@
 
 
 <body >
-
+<input type="hidden" id="UPId" name="UPId" value="">
   <!----- TOP BAR ------>
   <nav class="header">
 
@@ -369,7 +369,7 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
             <div class="post">
                 <!-- Encabezado de la publicación -->
                 <div class="head">
-                    <div class="user">
+                    <div class="user" onclick="obtenerDatosUsuario(<%= post.getIdPublicacion() %>)">
                         <!-- Aquí podrías mostrar la imagen de perfil del usuario -->
                         <!-- Si tienes la imagen de perfil de la publicación, puedes usar publicacion.getImagenPerfil() -->
                         <img src="<%= post.getNImg_Perfil() %>" alt="" class="profile-photo">
@@ -379,6 +379,9 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
                             <!-- Si tienes la categoría de la publicación, puedes mostrarla aquí -->
                             <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i> <%= post.getCategoria() %>  </h4>
                         </div>
+                        <form id="formDatosUserPub_<%= post.getIdPublicacion() %>" >
+                            <input type="hidden" id="EuserId_<%= post.getIdPublicacion() %>" name="EuserId" value="<%out.println(post.getIdUsuario());%>">
+                        </form>  
                     </div>
                 </div>
 
