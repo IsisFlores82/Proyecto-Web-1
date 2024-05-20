@@ -20,6 +20,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   
+  
 </head>
 
 
@@ -41,63 +42,67 @@
   
         <br>
 
+        
         <div class="namee">
+            
           <div class="input-container">
             <input type="text" id="idname" class="input-name" name="name" required>
-            <label class="placeholder" for="name" > name </label>
+            <label class="placeholder" for="idname" id="labelName"> Name </label>
           </div>
   
           <div class="input-container">
             <input type="text" id="idpname" class="input-name" name="pname" required>
-            <label class="placeholder" for="pname" > paternal surname </label>
+            <label class="placeholder" for="idpname" id="labelPat"> Paternal surname </label>
           </div>
             
            <div class="input-container">
             <input type="text" id="idmname" class="input-name" name="mname" required>
-            <label class="placeholder" for="mname" > maternal surname </label>
+            <label class="placeholder" for="idmname" id="labelMat"> Maternal surname </label>
           </div>
         </div>
         
         <div class="input-container">
           <input type="text" id="idusername" class="input" name="username" required>
-          <label class="placeholder" for="username" > username </label>
+          <label class="placeholder" for="idusername" id="labelUser"> Username </label>
         </div>
   
   
         <div class="input-container">
           <input type="email" id="idemail" class="input" name="email" required>
-          <label class="placeholder" for="email" > email </label>
+          <label class="placeholder" for="idemail" id="labelEmail" > Email </label>
         </div>
   
         <div class="input-container">
-          <input type="text" id="idpass" class="input" name="pass" required>
-          <label class="placeholder" for="pass"> password </label>
+          <input type="password" id="idpass" class="input" name="pass" required>
+          <label id="labPass" class="placeholder" for="idpass" > Password </label>
         </div>
 
         <div class="input-container">
-          <input type="text" id="idcpass" class="input" name="cpass" required>
-          <label class="placeholder" for="cpass"> confirm password </label>
+          <input type="password" id="idcpass" class="input" name="cpass" required>
+          <label id="labelPassAgain" class="placeholder" for="idcpass" > Repeat password </label>
         </div>
         
         
 
-        <div class="namee">
+        <div class="namee extras">
           
   
           <div class="input-container">
              <input type="date" class="input-name" id="idfechaNacimiento" name="fechaNacimiento" required>
           </div>
-
-          <div class="input-container label-photo">
-            <label for="idphoto-file">Select Photo</label>
-            <input type="file" id="idphoto-file" name="photo-file" class="input-name" accept="image/*" required>
-            </div>
+          <div class="input-container label-photo ">
+                
+                 <label for="PortinputImage" class="icons-stile">
+                            <p class="text-muted">Imagen Perfil <i class="uil uil-image"> </i></p>
+                            
+                        </label>
+                 <input type="file" name="nPortinputImage" id="PortinputImage" style="display: none;">
+                 <img id="imagePreviewPort" src="#" alt="Vista previa de la imagen" class="img-thumbnail" style="display: none; max-width: 100px;">
+          
             
-            <div class="input-container">
-                <img src="" id="imgPerfil" class="img-thumbnail">
-            </div> 
-
-  
+          </div> 
+                
+          
         </div>
 
        
@@ -131,13 +136,7 @@
       this.value = ''; // Limpiar el valor del campo de fecha
     }
   });
-  document.getElementById('idphoto-file').addEventListener('change', function(){
-      var archivos = $("#idphoto-file")[0].files;
-      const primerArchivo = archivos[0];
-      let url= URL.createObjectURL(primerArchivo);
-      const img=document.getElementById('imgPerfil');
-      img.src=url;
-  });
+
   document.getElementById('formCreateUser').addEventListener('submit', function(event) {
     var name = document.getElementById('idname').value;
     var paternalSurname = document.getElementById('idpname').value;
@@ -196,6 +195,114 @@
   var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(value);
   }
+ 
+    
+    //imagen preview
+    
+function mostrarVistaPreviaImagenPort(input) {
+  var imgPreview = document.getElementById('imagePreviewPort');
+  
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      imgPreview.src = e.target.result;
+      console.log("Valor de imgPreview.src:", imgPreview.src);
+      imgPreview.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]); // Lee el archivo como una URL de datos
+  } else {
+    imgPreview.style.display = 'none';
+  }
+}
+
+// Evento para detectar cambios en el campo de carga de archivos
+document.getElementById('PortinputImage').addEventListener('change', function() {
+  mostrarVistaPreviaImagenPort(this);
+});
+
+//checa que haya datos en el los imputs para no mover el placeholder
+$(document).ready(function() {
+  $('#idname').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelName').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelName').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+  $('#idpname').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelPat').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelPat').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+   $('#idmname').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelMat').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelMat').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+  $('#idusername').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelUser').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelUser').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+  $('#idemail').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelEmail').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelEmail').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+   $('#idpass').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labPass').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labPass').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+  
+  $('#idcpass').on('change', function() {
+   var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelPassAgain').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelPassAgain').removeClass('placeholder-end').addClass('placeholder');
+        }
+  });
+      
+});
+
 </script>
 </body>
 

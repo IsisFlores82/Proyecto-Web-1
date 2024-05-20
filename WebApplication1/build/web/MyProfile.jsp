@@ -16,10 +16,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile</title>
-       <!--Bootstrap-->
+       <!--Bootstra--> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+     -->   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="MyProfile.css">
   
@@ -29,6 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">  
 
      <script src="script.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   </head>
 
@@ -63,19 +64,18 @@
         </form>
     </div>
 
-    <div class="container">
-      <a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)">
-<img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-<%
-    } else {
-%>toProfile(false)">
-<img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
-<%
-    }
-%>
-        
+    <div class="container" id="side-photo">
+      <a  href="#perfil" onclick="<%
+        if(usuario != null) {
+        %>toProfile(true)">
+        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo photo-nav">
+        <%
+            } else {
+        %>toProfile(false)">
+        <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+        <%
+            }
+        %>        
       </a>
       
     </div>
@@ -97,45 +97,6 @@
           </span>
         </a>
           
-  <a href="">
-          <li class="dropdown__list a-sidebar-dd">            
-           
-              <a href="#" class="dropdown__link aa-sidebar ">
-                <span class="dropdown__span dropdown__icon text"> <i class="uil uil-bars"></i> 
-                  Categorias
-                  <i class="uil uil-angle-down dropdown__arrow"></i>
-                </span>
-                                
-                <input type="checkbox" class="dropdown__check">
-            </a>
-            
-    <div class="dropdown__content">
-                <ul class="dropdown__sub ">
-                    <li class="dropdown__li">                        
-                        <a href="#" class="dropdown__anchor">  <i class="uil uil-shield text"></i> Action</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-compass text"></i> Adventure</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-map-pin-alt text"></i> Arcade</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-basketball text"></i> Sport</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-puzzle-piece text"></i> Stretegy</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-trees text"></i> Simulation</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-music text"></i> Rythm</a>
-                    </li>                   
-
-                </ul>
-            </div>
-          </li>
 
        <a href="#perfil" onclick="<%
     if(usuario != null) {
@@ -334,7 +295,7 @@
         <!--- MODAL EDIT INFO USER --->
         <div id="modal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" id="cl-Data">&times;</span>
         <h3>Edit Profile</h3>
         <br>
         <form id="Edit-Info" action="ProfileServlet" method="post" enctype="multipart/form-data">
@@ -359,37 +320,32 @@
                     <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
                 </div>
                 <div class="profile-model user-name">
-                <p class="text-muted">@<%= usuario.getUsername() %></p>
+                    <h3> <b>   @<%= usuario.getUsername() %> </b> </h3>
             </div>
+           
             </div>
-            
-            <div class="editable-data-container">
+             <br>
+            <div class="category-edit-user">                
                 <div class="data-left">
                     <div class="innput">
                         <input type="text" id="name" name="name" class="input-post text" placeholder="Name" maxlength="30">
                     </div>
                     <div class="innput">
                         <input type="text" id="occupation" name="occupation" class="input-post text" placeholder="Ocupation" maxlength="30">
-                    </div>               
+                    </div>   
+                    <div class="innput">
+                        <input type="date" id="birthdate" name="birthdate" class="input-post text">
+                    </div>             
                 </div>
                 <div class="data-right">
                     <div class="innput">
                         <input type="text" id="plastname" name="plastname" class="input-post text" placeholder="Paternal Surname " maxlength="30">
                     </div>
                     <div class="innput">
-                        <input type="text" id="mlastname" name="mlastname" class="input-post text" placeholder="Maternal Surname" maxlength="30">
+                         <input type="text" id="location" name="location" class="input-post text" placeholder="Localition" maxlength="30">
+                         
                     </div>
-                    <div class="innput">
-                        <input type="text" id="location" name="location" class="input-post text" placeholder="Localition" maxlength="30">
-                    </div>                  
-                </div>
-                <div class="data-left">
-                    <div class="innput">
-                        <input type="date" id="birthdate" name="birthdate" class="input-post text">
-                    </div>
-                    <div class="innput">
-                        <input type="text" id="description" name="description" class="input-post text" placeholder="Description" maxlength="30">
-                    </div>
+                    
                     <div class="innput">
                         <label for="ProfileinputImage" class="icons-stile">
                             <p class="text-muted">Imagen Perfil</p>
@@ -397,7 +353,19 @@
                         </label>
                         <input type="file" name="nProfileinputImage" id="ProfileinputImage" style="display: none;">
                         <img id="imagePreviewProfile" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
+                    </div>              
+                    
+                                     
+                </div>
+                <div class="data-left">
+                    <div class="innput">
+                        <input type="text" id="mlastname" name="mlastname" class="input-post text" placeholder="Maternal Surname" maxlength="30">
+                       
                     </div>
+                    <div class="innput">
+                        <input type="text" id="description" name="description" class="input-post text" placeholder="Description" maxlength="30">
+                    </div>
+                    
                     <div class="innput">
                         <label for="PortinputImage" class="icons-stile">
                             <p class="text-muted">Imagen Portada</p>
@@ -440,30 +408,35 @@
     // Check if the urlImagenPortada is null or empty and use the default image if it is
     String portadaImageUrl = (usuario.getNImg_Portada() != null && !usuario.getNImg_Portada().isEmpty()) ? usuario.getNImgP() : defaultImageUrl;
 %>
-                <div>
+                <div >
                     <img src="<%= portadaImageUrl %>" alt="" class="cover-photo">
                 </div>   
             
-              <div class="photo-container">
+            <div class="photo-container">
                 <div class="profile-img-container">
-                <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="big-profile-photo">
+                    <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="big-profile-photo">
                 </div>
-              <div class="profile">
-                <div class="user-name">
+                
+            </div>
+                
+         
+          </div>   
+
+            
+          <div class="editable-data-container">   
+               <div class="user-name">
                   <h2><%= usuario.getNombre() %></h2>
                   <p class="text-muted">@<%= usuario.getUsername() %></p>
-                </div>
-
+               </div>
+               
                 <div class="btn-edit-user" id="open-edit">
-                    <button class="btn-mutted text-muted" onclick="editarPerfil()"> <i class="uil uil-pen"></i> Edit  <br> profile</button>
-                </div>
-        
-              </div>
-            </div>
-          </div>   
-            <br>
-          <div class="editable-data-container ">
-            <p class="description"><%= usuario.getDescripcion() %></p>
+                  <button class="btn-mutted text-muted" onclick="editarPerfil()"> <i class="uil uil-pen"></i> Edit  <br> profile</button>
+               </div>
+            
+          </div>
+          <br>
+          <div class="editable-data-container">   
+              <p class="description"><%= usuario.getDescripcion() %></p>
           </div>
           <br>
           
@@ -533,7 +506,7 @@
                             <input type="hidden" id="Eimg_<%= post.getIdPublicacion() %>" name="Eimg" value="<%out.println(post.getImg());%>">
                             <input type="hidden" id="EcatId_<%= post.getIdPublicacion() %>" name="EcatId" value="<%out.println(post.getIdCategoria());%>">
                          </form>
-                          <button onclick="editarPublicacion(<%= post.getIdPublicacion() %>)" class="text-muted" id="botonEditar">
+                          <button onclick="editarPublicacion(<%= post.getIdPublicacion() %>)" class="text-muted btn-mutted-publicaciones" id="botonEditar">
                             <i class="uil uil-edit"></i>
                             </button>
                             
@@ -566,7 +539,7 @@
                 <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
                 <div class="actiones">
                     <div class="interaction-bnts">
-                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                        <span class="icons-stile"><i class="bi bi-heart transicion"></i></span>
                     </div>
                     <div class="save">
                         <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -597,7 +570,7 @@
             </div>
             <div class="actiones">
                 <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+                    <span class="icons-stile"><i class="class="bi bi-heart transicion"></i> 108</span>
                 </div>
                 <div class="save">
                     <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -625,7 +598,7 @@
             </div>
             <div class="actiones">
                 <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
+                    <span class="icons-stile"><i class="bi bi-heart transicion"></i> 2.7k</span>
                 </div>
                 <div class="save">
                     <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -644,78 +617,76 @@
       
       
       <!------ RIGHT POST ------>
-      <div class="right">
-      
-        <div class="recommended-games">   
+        <div class="right">
           
-          <a href="#item1" id="game1">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Crypt of the Necrodancer</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
-              </div>
-            </div>            
-          </a>
-          
-          <a href="#item2" id="game2">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Yu gi oh!</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
-              </div>
-            </div>
-          </a>
-          
-          <a href="#item3" id="game3">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Overcooked 2</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
-              </div>
-            </div> 
+            <div class="gaaames">
+                <div class="recommended-games">   
 
-          </a>
-                 
+                    <a href="#item1" id="game1">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
+                        </div>
 
-        </div>
+                        <div class="game-info">
+                          <h3>Crypt of the Necrodancer</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
+                        </div>
+                      </div>            
+                    </a>
 
-        <!-- COVER PHOTOS -->
-        <div class="big-photo-game">
+                    <a href="#item2" id="game2">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
+                        </div>
 
-          <div class="conteCarrusel">
+                        <div class="game-info">
+                          <h3>Yu gi oh!</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
+                        </div>
+                      </div>
+                    </a>
 
-            <div class="game-carrusel" id="item1">
-              <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
-              <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                    <a href="#item3" id="game3">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
+                        </div>
+
+                        <div class="game-info">
+                          <h3>Overcooked 2</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
+                        </div>
+                      </div> 
+
+                    </a>
+                </div>
+
+              <!-- COVER PHOTOS -->
+                <div class="big-photo-game">
+
+                    <div class="conteCarrusel">
+
+                      <div class="game-carrusel" id="item1">
+                        <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
+                        <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                      </div>
+
+                      <div class="game-carrusel" id="item2">
+                        <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">New Decks</p>        
+                      </div>
+
+                      <div class="game-carrusel" id="item3">
+                        <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">Play with friends</p>        
+                      </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="game-carrusel" id="item2">
-              <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">New Decks</p>        
-            </div>
-            
-            <div class="game-carrusel" id="item3">
-              <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">Play with friends</p>        
-            </div>
-          </div>
-          
-          
-        </div>
-
-      </div>   
+        </div>   
 
       <!------ MODAL CONFIG ------>
       <div id="modalConfig" class="modal">
@@ -727,7 +698,7 @@
     <div>
         <% if (usuario != null) { %>
             <form action="SignOutServlet" method="post">
-                <button type="submit" class="text lil-popUp" style="text-decoration: underline;background-color: #202124;">
+                <button type="submit" class="text lil-popUp" >
                     Sign Out
                 </button>
             </form>
@@ -762,7 +733,7 @@
     <div class="footer">
       <p class="text-footer">All rights reserved <i class="uil uil-copyright"></i>
        <br>
-       Terms of use | Privacy Policy
+       Isis Esmeralda Flores Montes | Carlos Daniel Pinkus Martinez
       </p>
       
       <br>
@@ -775,8 +746,12 @@
   
 
 <script>
+    
+
+    
+/* ------ MODAL WINDOW FOR EDIT A POST ----- */    
 const modal = document.getElementById("modal");
-const closeModalBtn = document.getElementsByClassName("close")[1];
+const closeModalBtn = document.getElementsByClassName("close")[3];
 const cerrarmodal = document.getElementById("cl");
 const modalEdit = document.getElementById("modalEditarPost");
 
@@ -804,7 +779,7 @@ window.onclick = function(event) {
 
 const openModalBtnSearch = document.getElementById("openModalSearch");
 const modalSearch = document.getElementById("modalSearch");
-const closeModalBtnSearch = document.getElementsByClassName("close")[0];
+const closeModalBtnSearch = document.getElementsByClassName("close")[1];
 
 openModalBtnSearch.onclick = function(event) {
   event.preventDefault();
@@ -847,6 +822,7 @@ document.getElementById('game3').addEventListener('click', function(event) {
   elemento3.style.display = 'block';
 });
 
+    
 
 /* ------ MODAL WINDOW FOR SIGN OUT ----- */
 
@@ -869,6 +845,28 @@ window.onclick = function(event) {
     modalConfig.style.display = "none";
   }
 }
+
+/* ------ MODAL WINDOW FOR EDIT DATA ----- */    
+const modalData = document.getElementById("modal");
+const cerrarmodalData = document.getElementById("cl-Data");
+const modalEditData = document.getElementById("modal");
+
+cerrarmodalData.onclick = function(event) {
+  event.preventDefault();
+  modalData.style.display = "none";
+}
+
+
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modalData.style.display = "none";
+  }
+  if (event.target == modalEdit) {
+    modalEditData.style.display = "none";
+  }
+}
+
 // Función para mostrar la vista previa de la imagen seleccionada
 function mostrarVistaPreviaImagen(input) {
   var imgPreview = document.getElementById('imagePreview');
@@ -892,10 +890,12 @@ function mostrarVistaPreviaImagen(input) {
 document.getElementById('PostinputImage').addEventListener('change', function() {
   mostrarVistaPreviaImagen(this);
 });
+
+
 // Función para mostrar la vista previa de la imagen seleccionada
 function mostrarVistaPreviaImagenProfile(input) {
   var imgPreview = document.getElementById('imagePreviewProfile');
-  
+  console.log(imgPreview);
   if (input.files && input.files[0]) {
     var reader = new FileReader();
 
@@ -913,7 +913,8 @@ function mostrarVistaPreviaImagenProfile(input) {
 
 // Evento para detectar cambios en el campo de carga de archivos
 document.getElementById('ProfileinputImage').addEventListener('change', function() {
-  mostrarVistaPreviaImagenProfile(this);
+  console.log("cambio imagen");
+        mostrarVistaPreviaImagenProfile(this);
 });
 
 function mostrarVistaPreviaImagenPort(input) {
@@ -1014,6 +1015,15 @@ function validateEmail(value){
     var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(value);
 }
+
+$(document).ready(function() {
+      $('i.bi-heart').on('click', function() {
+        $(this).toggleClass('bi-heart bi-heart-fill');
+        $(this).toggleClass('transicion transparent');
+      });
+});
+      
+      
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   

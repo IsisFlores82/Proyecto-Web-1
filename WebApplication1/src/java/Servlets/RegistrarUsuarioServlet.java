@@ -53,7 +53,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         }
          System.out.println("si pedi la fecha wey");
         // Obtener la parte del archivo (imagen)
-        Part filePart = request.getPart("photo-file");
+        Part filePart = request.getPart("nPortinputImage");
         
         // Obtener el InputStream de la imagen
         InputStream imagen = filePart.getInputStream();

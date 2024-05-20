@@ -55,19 +55,18 @@
         </form>
     </div>
 
-    <div class="container">
-     <a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)">
-<img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-<%
-    } else {
-%>toProfile(false)">
-<img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
-<%
-    }
-%>
-        
+    <div class="container" id="side-photo">
+      <a  href="#perfil" onclick="<%
+        if(usuario != null) {
+        %>toProfile(true)">
+        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo photo-nav">
+        <%
+            } else {
+        %>toProfile(false)">
+        <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+        <%
+            }
+        %>        
       </a>
       
     </div>
@@ -89,53 +88,15 @@
           </span>
         </a>
           
-  <a href="">
-          <li class="dropdown__list a-sidebar-dd">            
-           
-              <a href="#" class="dropdown__link aa-sidebar ">
-                <span class="dropdown__span dropdown__icon text"> <i class="uil uil-bars"></i> 
-                  Categorias
-                  <i class="uil uil-angle-down dropdown__arrow"></i>
-                </span>
-                                
-                <input type="checkbox" class="dropdown__check">
-            </a>
-            
-    <div class="dropdown__content">
-                <ul class="dropdown__sub ">
-                    <li class="dropdown__li">                        
-                        <a href="#" class="dropdown__anchor">  <i class="uil uil-shield text"></i> Action</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-compass text"></i> Adventure</a>
-                    </li>
-                    <li class="dropdown__li">
-                        <a href="#" class="dropdown__anchor"> <i class="uil uil-map-pin-alt text"></i> Arcade</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-basketball text"></i> Sport</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-puzzle-piece text"></i> Stretegy</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-trees text"></i> Simulation</a>
-                    </li>
-                    <li class="dropdown__li">
-                      <a href="#" class="dropdown__anchor"> <i class="uil uil-music text"></i> Rythm</a>
-                    </li>                   
 
-                </ul>
-            </div>
-          </li>
 
        <a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)<%
-    } else {
-%>toProfile(false)<%
-    }
-%>" class="a-sidebar active">
+        if(usuario != null) {
+            %>toProfile(true)<%
+        } else {
+            %>toProfile(false)<%
+            }
+        %>" class="a-sidebar active">
         <span>
           <i class="uil uil-user text"></i>
           <h3 class="text">Profile</h3>
@@ -166,7 +127,7 @@
 <%
     } else {
 %>
-        Usuario Invitado
+        <h4> Guest User</h4>
 <%
     }
 %>
@@ -261,35 +222,47 @@
           </div>
         </div>
 
+        
+        
+        
         <div class="MyProfile">
           
           <div class="photoos">
-       <%
+       
+            <%
     // Define the URL of the default image
     String defaultImageUrl = "/WebApplication1/Imageees/tulips.jpg";
     // Check if the urlImagenPortada is null or empty and use the default image if it is
-    String portadaImageUrl = (usuarioProfile.getNImg_Portada() != null && !usuarioProfile.getNImg_Portada().isEmpty()) ? usuarioProfile.getNImgP() : defaultImageUrl;
+   String portadaImageUrl = (usuarioProfile.getNImg_Portada() != null && !usuarioProfile.getNImg_Portada().isEmpty()) ? usuarioProfile.getNImgP() : defaultImageUrl;
 %>
-                <div>
+                <div >
                     <img src="<%= portadaImageUrl %>" alt="" class="cover-photo">
                 </div>   
-
-              <div class="photo-container">
+            
+            <div class="photo-container">
                 <div class="profile-img-container">
-                <img src="<%= usuarioProfile.getNImgPro() %>" alt="Imagen de perfil" class="big-profile-photo">
+                    <img src="<%= usuarioProfile.getNImgPro() %>" alt="Imagen de perfil" class="big-profile-photo">
                 </div>
-              <div class="profile">
-                <div class="user-name">
+                
+            </div>
+                
+         
+          </div>   
+
+            
+          <div class="editable-data-container">   
+               <div class="user-name">
                   <h2><%= usuarioProfile.getNombre() %></h2>
                   <p class="text-muted">@<%= usuarioProfile.getUsername() %></p>
-                </div>
-
-              </div>
-            </div>
-          </div>   
-<br>
-          <div class="editable-data-container ">
-            <p class="description"><%= usuarioProfile.getDescripcion() %></p>
+                  
+               </div>
+               
+               
+            
+          </div>
+          <br>
+          <div class="editable-data-container">   
+              <p class="description"><%= usuarioProfile.getDescripcion() %></p>
           </div>
           <br>
           
@@ -314,7 +287,7 @@
               </div>
   
               <div class="age">
-                <span class="some-info"> <i class="uil uil-map-marker"></i> <%= usuarioProfile.getLocalizacion() %> </span>
+                <span class="some-info"> <i class="uil uil-map-marker"></i><%= usuarioProfile.getLocalizacion() %> </span>
               </div>
             </div>
             
@@ -322,6 +295,16 @@
           </div>
 
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
 
          <!------ PERSONAL POST ------>
 
@@ -446,77 +429,75 @@
       
       <!------ RIGHT POST ------>
       <div class="right">
-      
-        <div class="recommended-games">   
           
-          <a href="#item1" id="game1">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Crypt of the Necrodancer</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
-              </div>
-            </div>            
-          </a>
-          
-          <a href="#item2" id="game2">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Yu gi oh!</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
-              </div>
-            </div>
-          </a>
-          
-          <a href="#item3" id="game3">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Overcooked 2</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
-              </div>
-            </div> 
+            <div class="gaaames">
+                <div class="recommended-games">   
 
-          </a>
-                 
+                    <a href="#item1" id="game1">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
+                        </div>
 
-        </div>
+                        <div class="game-info">
+                          <h3>Crypt of the Necrodancer</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
+                        </div>
+                      </div>            
+                    </a>
 
-        <!-- COVER PHOTOS -->
-        <div class="big-photo-game">
+                    <a href="#item2" id="game2">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
+                        </div>
 
-          <div class="conteCarrusel">
+                        <div class="game-info">
+                          <h3>Yu gi oh!</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
+                        </div>
+                      </div>
+                    </a>
 
-            <div class="game-carrusel" id="item1">
-              <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
-              <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                    <a href="#item3" id="game3">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
+                        </div>
+
+                        <div class="game-info">
+                          <h3>Overcooked 2</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
+                        </div>
+                      </div> 
+
+                    </a>
+                </div>
+
+              <!-- COVER PHOTOS -->
+                <div class="big-photo-game">
+
+                    <div class="conteCarrusel">
+
+                      <div class="game-carrusel" id="item1">
+                        <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
+                        <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                      </div>
+
+                      <div class="game-carrusel" id="item2">
+                        <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">New Decks</p>        
+                      </div>
+
+                      <div class="game-carrusel" id="item3">
+                        <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">Play with friends</p>        
+                      </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="game-carrusel" id="item2">
-              <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">New Decks</p>        
-            </div>
-            
-            <div class="game-carrusel" id="item3">
-              <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">Play with friends</p>        
-            </div>
-          </div>
-          
-          
-        </div>
-
-      </div>   
+        </div>    
 
       <!------ MODAL CONFIG ------>
       <div id="modalConfig" class="modal">
@@ -564,7 +545,7 @@
     <div class="footer">
       <p class="text-footer">All rights reserved <i class="uil uil-copyright"></i>
        <br>
-       Terms of use | Privacy Policy
+      Isis Esmeralda Flores Montes | Carlos Daniel Pinkus Martinez
       </p>
       
       <br>

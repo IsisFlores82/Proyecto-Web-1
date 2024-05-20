@@ -17,7 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+  </script><script src="script.js"></script>
+    
+  
 </head>
 
 
@@ -47,24 +51,18 @@
         
         <div class="input-container">
           <input type="email" id="email" class="input" name="fusuario" required>
-          <label class="placeholder" for="email" > Email </label>
+          <label class="placeholder" for="email" id="labelEmail" > Email </label>
         </div>
   
         <div class="input-container">
-          <input type="text" id="pass" class="input"  name="fcontra"required>
-          <label class="placeholder" for="pass"> Password </label>
+          <input type="password" id="pass" class="input"  name="fcontra" required>
+          <label class="placeholder" for="pass" id="labelPass"> Password </label>
         </div>
         
         
         <div class="signin-extras">
-  
           <div class="container">
-            <input type="checkbox" class="cheeck">
-            <p class="remember-me">Remember me</p>
-          </div>
-  
-          <div class="container">
-            <a class="forget-pass " href="">Forget me password</a>
+            
           </div>
                   
         </div>
@@ -79,6 +77,8 @@
         
         <a href="CreateAcount.jsp" class="create">Create Acount</a>
         
+        <a href="#home" onclick="toHome()" class="create">Enter as Guest</a>
+        
   
       </div>
 
@@ -88,6 +88,34 @@
     
 
   </section>
+        
+        
+         <script>
+    $(document).ready(function(){
+      $('#email').on('change', function() {
+        var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelEmail').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelEmail').removeClass('placeholder-end').addClass('placeholder');
+        }
+      });
+
+      
+      $('#pass').on('change', function() {
+        var inputValue = $(this).val();
+        console.log('Valor del input:', inputValue);
+        
+        if(inputValue) {
+          $('#labelPass').removeClass('placeholder').addClass('placeholder-end');
+        } else {
+          $('#labelPass').removeClass('placeholder-end').addClass('placeholder');
+        }
+      });
+    });
+  </script>
 
 
 </body>

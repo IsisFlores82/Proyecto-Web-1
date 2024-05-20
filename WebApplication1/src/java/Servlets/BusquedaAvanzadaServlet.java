@@ -38,25 +38,32 @@ public class BusquedaAvanzadaServlet extends HttpServlet {
             throws ServletException, IOException {
         String f_inicio_string = request.getParameter("datePickerInicio");
         String f_fin_string = request.getParameter("datePickerFin");
-        
+        System.out.println("esta es mi f_inicio recibida en servlet BA: "+f_inicio_string);
+                System.out.println("esta es mi f_inicio recibida en servlet BA: "+f_fin_string);
+
         java.util.Date utilDate;
         Date f_inicio = null;
         if (!"".equals(f_inicio_string)){
             try {
                 utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_inicio_string);
+                System.out.println("entre en el try inicio");
+
             } catch (ParseException ex) {
                 return;
             }
             f_inicio = new java.sql.Date(utilDate.getTime());
+            System.out.println("fecha fin servlet BA en el if: "+f_inicio);
         }
         Date f_fin = null;
         if (!"".equals(f_fin_string)){
             try {
                 utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_fin_string);
+                System.out.println("entre en el try fin");
             } catch (ParseException ex) {
                 return;
             }
             f_fin = new java.sql.Date(utilDate.getTime());
+            System.out.println("fecha fin servlet BA en el if: "+f_fin);
         }
         
         int offset = 0;
@@ -68,11 +75,11 @@ int idCategoria = Integer.parseInt(request.getParameter("clasification"));
         DAOPublicacion daopost = new DAOPublicacion();
         
         publicaciones = daopost.getAdvancedSearchPosts(f_inicio, f_fin, offset, idCategoria,texto);
-        
+        int numpag=daopost.getnAdvancedSearchPosts(f_inicio, f_fin, idCategoria,texto)/10+1;
         request.setAttribute("BusquedaAvanzada", publicaciones);
         System.out.println("esto tiene BusquedaAvanzada"+publicaciones);
-        request.setAttribute("num_paginas",daopost.getnAdvancedSearchPosts(f_inicio, f_fin, idCategoria,texto)/10+1);
-        System.out.println("mis num_paginas de avanced son:"+daopost.getnAdvancedSearchPosts(f_inicio, f_fin, idCategoria,texto)/10+1);
+        request.setAttribute("num_paginas",numpag);
+        System.out.println("mis num_paginas de avanced son:"+numpag);
         request.setAttribute("searchword", texto);
         System.out.println("mis palabras de avanced son:"+texto);
         request.setAttribute("idCategoria", idCategoria);

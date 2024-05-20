@@ -39,9 +39,10 @@ body{
   font-size: 20px;
   color: var(--primary-color);
   font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
 }
 .text-muted{
-  color: gray;
+  color: gray !important; 
   font-size: 20px;
   
 }
@@ -88,6 +89,15 @@ body{
   font-weight: bold;
 }
 
+.btn-mutted-publicaciones{
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: var(--background-color);
+  font-weight: bold;
+}
+
 
 nav{
   width: 100%;
@@ -105,8 +115,6 @@ nav{
   flex-shrink: 0;
   max-width: 600px;
   align-items: center;
-  position: absolute;
-  left: 39.5%;
 }
 
 .search-bar{
@@ -130,22 +138,28 @@ nav{
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: top;
+  margin-left: 0px;
   justify-content: center;
-  margin-left: -20%;
+  padding: 0px;
 }
 
 
 .container{
-  padding-left: 10px;
+  
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
   align-items: center;
-
+  margin-right: 0px;
   display: flex;
+
   align-items: center;
+}
+
+#side-photo{   
+  display: flex;
+  justify-content: flex-end;
 }
 
 /*  ----- SIDE BAR -------    */
@@ -181,6 +195,7 @@ nav{
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
+  text-decoration: none;
 
   transition: background-color .15s;
 }
@@ -190,6 +205,7 @@ nav{
   padding-left: 15px;
   transition: color .15s;
   overflow: hidden;
+  
 }
 
 
@@ -216,13 +232,17 @@ nav{
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+ 
 
   bottom: 0px;
   position: absolute;
   width: 100%;
   height: 70px;
   
+}
+
+.left .profile{
+    line-height: .3;
 }
 
 .user-data{
@@ -234,6 +254,7 @@ nav{
   flex-direction: column;
   margin: 0px 15px;
   align-items: flex-start;
+  line-height: .3;
 }
 
 
@@ -259,6 +280,8 @@ nav{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  
+  width: 100%;
 }
 
 
@@ -269,10 +292,13 @@ main{
 }
 
 main .container{
-  margin-left: 250px;
+  margin-left: 200px;
   display: grid;
-  grid-template-columns: auto 20vw;
+  grid-template-columns: 65vw 18vw;
   position: relative;
+  gap:0px;
+  min-height: 950px;
+  align-items: start;
 }
 
 
@@ -281,6 +307,16 @@ main .container{
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+}
+
+
+.user-name-navbar{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 15px;
+  align-items: flex-start;
+  max-width: 193px;
+  overflow-x: auto;
 }
 
 main .create-post{
@@ -392,6 +428,14 @@ main .btn-create{
   font-size: 25px;
 }
 
+.transicion{ 
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+ .transparent {
+    opacity: 1;
+    transition: opacity 0.15s ease; /* Transición de opacidad */
+}
 
 .interaction-bnts{
   display: flex;
@@ -553,18 +597,11 @@ option {
 .cover-photo{
   border-radius: 15px;
   width: 70%;
-
-  transition: all 0.15s;
+  max-width: 700px;
+  max-height: 300px
 }
 
-.modal-content .cover-photo:hover{
-  opacity: 0.7;
-}
 
-.modal-content .profile-photo:hover{
-  background-color: black;
-  opacity: 0.7; 
-}
 
 .photoos{
   position: relative;
@@ -596,10 +633,10 @@ option {
   display: block; /* Prevents any extra space below the image */
 }
 
-.center .profile{
-  position: absolute;
-  top: 45%;
-  left: 30%;
+.photoos .profile{ 
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
 
 .MyProfile{
@@ -620,25 +657,26 @@ option {
   text-align: left;
 }
 
-.photo-container .profile{
+.photoos .profile{ 
   justify-content: space-between;
   display: flex;
   flex-direction: row;
 }
 
 .btn-edit-user{
-  margin-top: 3%;
-  margin-right: 25%;
+   margin-top: 5px;
+   left: 0px;
 }
 
 .modal .user-name{
-  
+  line-height: 2.5;
 }
 
 .modal .profile-photo{
-  width:25%;
-  height: 25%;
+  width:80%;
+  height: 80%;
   border-radius: 50%;
+  max-height: 230px;
 }
 
 .modal .user-data{  
@@ -651,8 +689,8 @@ option {
 
 .modal-content .profile-model{
   position: absolute;
-  top: 54%;
-  left: 35%;
+  top: 100%;
+  left: 40%;
 }
 
 .modal-content .profile-model .text-muted{
@@ -674,26 +712,27 @@ option {
 .editable-data-container{
   display: flex;
   flex-direction: row;
-  margin-top: 5%;  
-  margin-left: 15%;
-  margin-right: 10%;
+
   justify-content: space-between;
+ 
 }
 
 .MyProfile .editable-data-container{
   justify-content: space-between;
-  margin-left: 20%;
-  margin-right: 22%;
+  margin-left:15%;
+  margin-right: 15%;
   text-align: left;
   margin-top: 0;
 }
 
+.editable-data-container .user-name {
+  margin-left:35%;
+}
 
 input[type="date"] {
   font-size: 18px;
   color: var(--primary-color);
   font-weight: bold;
-
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -701,11 +740,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  background-color: var(--primary-color);
  border-radius: 5px;
 }
-
-.description{
-  margin-top: 20%;
-}
-
 .some-info{
   text-align: left;
 }
@@ -877,8 +911,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: absolute;
-  top: 0px;
+ 
   width: 90%;
   margin-top: -10px;
 }
@@ -886,12 +919,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .games-cards{
   background-color: var(--background-color);
   display:flex;
-  align-items: center;
   justify-content: left;
   padding: 10px 15px;
   border-radius: 15px;
   margin: 10px 20px;
-  width: 90%;
+  width: 100%;
   position: relative;
   transition: all 0.15s;
 }
@@ -921,13 +953,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 15px;
   width: 120%;
   margin-left: -10%;
-  margin-top: 15%;
+  margin-top: 10px;
   padding-top: 20px;
   padding-bottom: 10px;
-  position: absolute;
-  top: 30%;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
 
 .game-carrusel{
@@ -965,6 +995,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: var(--primary-color);
 }
 
+.gaaames{
+  position: absolute;
+  top: 0;
+}
+
 /*------ MODAL SIGN OUT -------*/
 
 
@@ -973,7 +1008,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   position: absolute;
   width: 10%;
-  left: 7%;
+  left: 8.5%;
   bottom: -2%;
   justify-content: center;
 }
@@ -983,7 +1018,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   width: 5px;
   height: 5px;
-  left: 12%;
+  left: 12.5%;
   bottom: -3%;
   transform: rotate(45deg);
 }
@@ -1002,6 +1037,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: var(--background-color-graay-muted);
 }
 
+button[type="submit"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: none;
+            border: none;
+            font: inherit;
+            color: inherit;
+            cursor: pointer;
+        }
 
 
 
@@ -1021,7 +1066,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .footer{
   width: 100%;
-  position: absolute;
+  position: sticky;
   background-color: var(--background-color-graay-muted);
   bottom: 0px;
   left: 0px;
@@ -1032,8 +1077,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .text-footer{
   position: absolute;
-  left: 39.5%;
-  background-color: var(--background-color-graay-muted);
+  left: 29.8%;
   
 }
 
@@ -1047,4 +1091,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 50px;
   aspect-ratio: 1/1;
   overflow: hidden;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
 }

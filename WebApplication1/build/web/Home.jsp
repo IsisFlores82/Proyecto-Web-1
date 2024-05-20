@@ -57,19 +57,18 @@
         </form>
     </div>
 
-    <div class="container">
-      
+    <div class="container" id="side-photo">      
       <a href="#perfil" onclick="<%
-    if(usuario != null) {
-%>toProfile(true)">
-<img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-<%
-    } else {
-%>toProfile(false)">
-<img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
-<%
-    }
-%>
+            if(usuario != null) {
+        %>toProfile(true)">
+        <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+        <%
+            } else {
+        %>toProfile(false)">
+        <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+        <%
+            }
+        %>
         
       </a>
     </div>
@@ -91,55 +90,7 @@
           </span>
         </a>
 
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-shield text"></i>
-            <h3 class="text">Action</h3>
-          </span>
-        </a>
-  
-  
-        <a href="Home.jsp" class="a-sidebar">
-            <span>
-              <i class="uil uil-compass text"></i>
-              <h3 class="text">Adventure</h3>
-            </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-map-pin-alt text"></i>
-            <h3 class="text">Arcade</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-basketball text"></i>
-            <h3 class="text">Sport</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-puzzle-piece text"></i>
-            <h3 class="text">Stretegy</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-trees text"></i>
-            <h3 class="text">Simulation</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-music text"></i>
-            <h3 class="text">Rythm</h3>
-          </span>
-        </a>
+       
 
 
        <a href="#perfil" onclick="<%
@@ -170,18 +121,19 @@
 %>
   
           <div class="user-name-navbar">
-              <%
-    if(usuario != null) {
-%>
-        <h3><%= usuario.getNombre() %></h3>
-        <p class="text-muted">@<%= usuario.getUsername() %></p>
-<%
-    } else {
-%>
-        Usuario Invitado
-<%
-    }
-%>
+             
+                        <%
+              if(usuario != null) {
+                %>
+                        <h3><%= usuario.getNombre() %></h3>
+                        <p class="text-muted">@<%= usuario.getUsername() %></p>
+                <%
+                    } else {
+                %>
+                       <h4> Guest User</h4>
+                <%
+                    }
+                %>
           </div>
   
           <div class="config" id="openModalConfig">
@@ -315,10 +267,11 @@
                     <label for="PostinputImage" class="icons-stile">
                         <i class="uil uil-image"></i>
                     </label>
+                      
                     <input type="file" name="nPostinputImage" id="PostinputImage" style="display: none;">
                     <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
                     
-                    <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
+                    <label for="clasification" class="icons-stile"><i class="uil uil-pricetag-alt" ></i></label>
                     <select id="clasification" name="categoria" class="interaction-bnts text-DP">
                         <option value="1">Action</option>
                         <option value="2">Adventure</option>
@@ -438,7 +391,7 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
         <!-- Mostrar un mensaje si no hay publicaciones -->
     <h2>Sin Publicaciones</h2>
     <% } %>
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center ">
                 <%
                     int pag = 0;
                     if(request.getAttribute("Pagina") != null){
@@ -534,78 +487,75 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
     
       <!------ RIGHT PART ------>
       <div class="right">
-        
-        <div class="recommended-games">   
           
-          <a href="#item1" id="game1">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Crypt of the Necrodancer</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
-              </div>
-            </div>            
-          </a>
-          
-          <a href="#item2" id="game2">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Yu gi oh!</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
-              </div>
-            </div>
-          </a>
-          
-          <a href="#item3" id="game3">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Overcooked 2</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
-              </div>
-            </div> 
+            <div class="gaaames">
+                <div class="recommended-games">   
 
-          </a>
-                 
+                    <a href="#item1" id="game1">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
+                        </div>
 
-        </div>
+                        <div class="game-info">
+                          <h3>Crypt of the Necrodancer</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
+                        </div>
+                      </div>            
+                    </a>
 
-        <!-- COVER PHOTOS -->
-        <div class="big-photo-game">
+                    <a href="#item2" id="game2">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
+                        </div>
 
-          <div class="conteCarrusel">
+                        <div class="game-info">
+                          <h3>Yu gi oh!</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
+                        </div>
+                      </div>
+                    </a>
 
-            <div class="game-carrusel" id="item1">
-              <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
-              <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                    <a href="#item3" id="game3">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
+                        </div>
+
+                        <div class="game-info">
+                          <h3>Overcooked 2</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
+                        </div>
+                      </div> 
+
+                    </a>
+                </div>
+
+              <!-- COVER PHOTOS -->
+                <div class="big-photo-game">
+
+                    <div class="conteCarrusel">
+
+                      <div class="game-carrusel" id="item1">
+                        <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
+                        <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                      </div>
+
+                      <div class="game-carrusel" id="item2">
+                        <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">New Decks</p>        
+                      </div>
+
+                      <div class="game-carrusel" id="item3">
+                        <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">Play with friends</p>        
+                      </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="game-carrusel" id="item2">
-              <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">New Decks</p>        
-            </div>
-            
-            <div class="game-carrusel" id="item3">
-              <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">Play with friends</p>        
-            </div>
-          </div>
-          
-          
-        </div>
-
-
-      </div>
+        </div>  
 
       <!------ MODAL CONFIG ------>
       <div id="modalConfig" class="modal">
@@ -617,7 +567,7 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
     <div>
         <% if (usuario != null) { %>
             <form action="SignOutServlet" method="post">
-                <button type="submit" class="text lil-popUp" style="text-decoration: underline;background-color: #202124;">
+                <button type="submit" class="text lil-popUp">
                     Sign Out
                 </button>
             </form>
@@ -654,9 +604,9 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
     <!------ FOOTER ------>
     <br>
     <div class="footer">
-      <p class="text-footer">All rights reserved <i class="uil uil-copyright"></i>
+      <p class="text-footer"> All rights reserved <i class="uil uil-copyright"></i>
        <br>
-       Terms of use | Privacy Policy
+       Isis Esmerada Flores Montes  |     Carlos Daniel Pinkus Martinez
       </p>
       
       <br>
@@ -672,7 +622,7 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
   
 
       <script>
-      const openModalBtn = document.getElementById("openModal");
+const openModalBtn = document.getElementById("openModal");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
 const userlog=document.getElementById("IDS").value;

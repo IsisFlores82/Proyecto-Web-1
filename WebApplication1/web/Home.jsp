@@ -3,26 +3,42 @@
     Created on : 17 abr 2024, 21:07:46
     Author     : cdpin
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="entidades.Publicacion" %>
+<%@page import="entidades.Usuarios" %>
+<%Usuarios usuario = (Usuarios)session.getAttribute("Usuario");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+     <!--Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="HomeStyles.css">
-  
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="script.js"></script>
+
 </head>
 
 
 <body >
-
+<input type="hidden" id="UPId" name="UPId" value="">
+<%
+    if(usuario != null) {
+%><input type="hidden" id="IDS" name="IDS" value="<%= usuario.getIdUsuario() %>"><%
+    } else {
+%><input type="hidden" id="IDS" name="IDS" value="0"><%
+    }
+%>
   <!----- TOP BAR ------>
   <nav class="header">
 
@@ -32,15 +48,28 @@
     </div>
 
     <div class="search-bar-container" >
-      <i class="uil uil-search"></i>
-      <input type="text" placeholder="Search something" class="search-bar">
-      <i class="uil uil-filter text" id="openModalSearch"></i>
+        <form id="searchForm" action="LoadPublicacionesServlet" method="post" onsubmit="return validacionBusqueda()">
+          <button type="submit" class="search-button">
+          <i class="uil uil-search"></i>
+          </button>
+         <input name="busqueda" id="busqueda" type="text" placeholder="Search something" class="search-bar">
+         <i class="uil uil-filter text" id="openModalSearch"></i>
+        </form>
     </div>
 
-    <div class="container">
-      
-      <a href="MyProfile.jsp">
+    <div class="container" id="side-photo">      
+      <a href="#perfil" onclick="<%
+            if(usuario != null) {
+        %>toProfile(true)">
         <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
+        <%
+            } else {
+        %>toProfile(false)">
+        <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+        <%
+            }
+        %>
+        
       </a>
     </div>
 
@@ -54,65 +83,23 @@
       <!----- SIDE BAR ------->
       <div class="left">
        
-        <a href="Home.jsp" class="a-sidebar active">
+        <a href="#home" onclick="toHome()" class="a-sidebar active">
           <span>
             <i class="uil uil-home text"></i>
             <h3 class="text">Home</h3>
           </span>
         </a>
 
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-shield text"></i>
-            <h3 class="text">Action</h3>
-          </span>
-        </a>
-  
-  
-        <a href="Home.jsp" class="a-sidebar">
-            <span>
-              <i class="uil uil-compass text"></i>
-              <h3 class="text">Adventure</h3>
-            </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-map-pin-alt text"></i>
-            <h3 class="text">Arcade</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-basketball text"></i>
-            <h3 class="text">Sport</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-puzzle-piece text"></i>
-            <h3 class="text">Stretegy</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-trees text"></i>
-            <h3 class="text">Simulation</h3>
-          </span>
-        </a>
-
-        <a href="Home.jsp" class="a-sidebar">
-          <span>
-            <i class="uil uil-music text"></i>
-            <h3 class="text">Rythm</h3>
-          </span>
-        </a>
+       
 
 
-        <a href="MyProfile.jsp" class="a-sidebar">
+       <a href="#perfil" onclick="<%
+    if(usuario != null) {
+%>toProfile(true)<%
+    } else {
+%>toProfile(false)<%
+    }
+%>" class="a-sidebar">
          <span>
            <i class="uil uil-user text"></i>
            <h3 class="text">Profile</h3>
@@ -120,14 +107,33 @@
         </a>
   
         <div class="profile">
-         
-          <div class="user-data">
+            <%
+         if(usuario != null) {
+%><div class="user-data">
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-          </div>
+          </div>   
+<%
+    } else {
+%><div class="user-data">
+            <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+          </div><%
+    }
+%>
   
           <div class="user-name-navbar">
-            <h2>${sessionScope.nombre}</h2>
-            <p class="text-muted">@${sessionScope.nombreUsuario}</p>
+             
+                        <%
+              if(usuario != null) {
+                %>
+                        <h3><%= usuario.getNombre() %></h3>
+                        <p class="text-muted">@<%= usuario.getUsername() %></p>
+                <%
+                    } else {
+                %>
+                       <h4> Guest User</h4>
+                <%
+                    }
+                %>
           </div>
   
           <div class="config" id="openModalConfig">
@@ -151,11 +157,10 @@
             <span class="close">&times;</span>
             <h3>Advanced Search</h3>
             
-            <form class="">            
-
+            <form id="formBusquedaAvanzada" action="BusquedaAvanzadaServlet" method="post">    
               <div>
                 <div class="innput">
-                  <input type="text"  class="text advanced-search-bar" placeholder="What are u looking for?">
+                    <input type="text" name="BAText" id="BAText" class="text advanced-search-bar" placeholder="What are u looking for?" required="">
                 </div>
 
                 <br>
@@ -164,7 +169,7 @@
                   <div class="data-left">
                     <p class="text-muted">Before date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerFin" id="datePickerFin" type="date" class="input-post text-DP">
                       
                     </div>
                   </div>
@@ -172,7 +177,7 @@
                   <div class="data-right">
                     <p class="text-muted">After date:</p>
                     <div class="innput">
-                      <input type="date" class="input-post text-DP">
+                      <input name="datePickerInicio" id="datePickerInicio" type="date" class="input-post text-DP">
                     </div>
                   </div>
 
@@ -186,13 +191,14 @@
                     
                     <label for="clasification"><i class="uil uil-pricetag-alt"></i></label>
                       <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                      <option value="Action">Action</option>
-                      <option value="Adventure">Adventure</option>
-                      <option value="Arcade">Arcade</option>
-                      <option value="Sport">Sport</option>
-                      <option value="Strategy">Strategy</option>
-                      <option value="Simulation">Simulation</option>
-                      <option value="Rythm">Rythm</option>
+                      <option value="0">No Category</option>
+                      <option value="1">Action</option>
+                      <option value="2">Adventure</option>
+                      <option value="3">Arcade</option>
+                      <option value="4">Sport</option>
+                      <option value="5">Strategy</option>
+                      <option value="6">Simulation</option>
+                      <option value="7">Rythm</option>
 
                       </select>
                   </div>
@@ -226,7 +232,7 @@
             <span class="close">&times;</span>
             <h3>Create a post</h3>
             
-            <form class="">
+            <form id="formCreatePost" action="PostPublicacionServlet" method="post" enctype="multipart/form-data">
 
               <div>
                 <div class="profile-model">         
@@ -235,40 +241,45 @@
                   </div>
           
                   <div class="user-name">
-                    <h3>${sessionScope.nombre}</h3>
-                    <p class="text-muted">@${sessionScope.nombreUsuario}</p>
-                  </div>
+            <% if(usuario != null) { %>
+              <h3><%= usuario.getNombre() %></h3>
+              <p class="text-muted">@<%= usuario.getUsername() %></p>
+            <% } else { %>
+              Sin Usuario
+            <% } %>
+          </div>
           
                 </div>
               </div>
 
               <div>
                 <div class="innput">
-                  <input type="text" id="postTitle" class="input-post text" placeholder="Title">
+                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required>
                 </div>
 
                 <div>
                   <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" 
-                  placeholder="What´s on ur mind?" ></textarea>
+                  placeholder="What´s on ur mind?" required></textarea>
                 </div>
                 
                 <div class="actiones">
                   <div class=" interaction-bnts select-category">
-                    <label for="inputImage" class="icons-stile">
+                    <label for="PostinputImage" class="icons-stile">
                         <i class="uil uil-image"></i>
                     </label>
-                    <input type="file" id="inputImage" style="display: none;">
+                      
+                    <input type="file" name="nPostinputImage" id="PostinputImage" style="display: none;">
                     <img id="imagePreview" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 100px;">
                     
-                    <label for="clasification"><i class="uil uil-pricetag-alt" ></i></label>
-                    <select id="clasification" name="clasification" class="interaction-bnts text-DP">
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Arcade">Arcade</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Strategy">Strategy</option>
-                    <option value="Simulation">Simulation</option>
-                    <option value="Rythm">Rythm</option>
+                    <label for="clasification" class="icons-stile"><i class="uil uil-pricetag-alt" ></i></label>
+                    <select id="clasification" name="categoria" class="interaction-bnts text-DP">
+                        <option value="1">Action</option>
+                        <option value="2">Adventure</option>
+                        <option value="3">Arcade</option>
+                        <option value="4">Sport</option>
+                        <option value="5">Strategy</option>
+                        <option value="6">Simulation</option>
+                        <option value="7">Rythm</option>
                     </select>
 
                   </div>
@@ -289,179 +300,262 @@
 
         
         <form class="create-post">
-          <div class="photo-container">
+            <%
+         if(usuario != null) {
+%><div class="photo-container">
             <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-          </div>
+          </div> 
+<%
+    } else {
+%><div class="photo-container">
+            <img src="Imageees/Steam_icon_logo.svg.png" alt="Imagen de perfil" class="profile-photo">
+          </div><%
+    }
+%>
           <div class="post-body">
             <button id="openModal" class="btnLabel text">What´s on ur mind?</button>
-            <div>
-              <input type="text"  class="input-post text" placeholder="">
-            </div>
-            
-            
           </div>
                    
         </form>
 
-        <div class="posts">
-          <div class="post">
+<div class="posts">
+    <%-- Verificar si hay publicaciones --%>
+    <% if (request.getAttribute("publicaciones") != null||request.getAttribute("search") != null||request.getAttribute("BusquedaAvanzada") != null) { %>
+    
+       <%  
+        List<Publicacion> publicaciones;
+        if(request.getAttribute("search") != null) {
+                    %>
+                    <h4>Resultados de la búsqueda: "<%out.print(request.getAttribute("searchword"));%>"</h4>
+                    <%
+                    publicaciones = (List<Publicacion>)request.getAttribute("search");
+                } else if(request.getAttribute("BusquedaAvanzada") != null){
+                %>
+                <h4>Resultados de la Busqueda Avanzada</h4>
+                <%
+publicaciones = (List<Publicacion>)request.getAttribute("BusquedaAvanzada");
+                    
+                }else {
+publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
+}%>
 
-            <div class="head">
-              <div class="user">
-                <img src="${urlImagenPerfil}" alt="Imagen de perfil" class="profile-photo">
-                <div class="info">
-                  <h3>${sessionScope.nombre} <span class="text-muted">@${sessionScope.nombreUsuario} &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Adventure  </h4>
+        <!-- Iterar sobre la lista de publicaciones -->
+        <% for (Publicacion post : publicaciones) { %>
+            <!-- Mostrar los detalles de la publicación -->
+            <div class="post">
+                <!-- Encabezado de la publicación -->
+                <div class="head">
+                    <div class="user" onclick="obtenerDatosUsuario(<%= post.getIdPublicacion() %>)">
+                        <!-- Aquí podrías mostrar la imagen de perfil del usuario -->
+                        <!-- Si tienes la imagen de perfil de la publicación, puedes usar publicacion.getImagenPerfil() -->
+                        <img src="<%= post.getNImg_Perfil() %>" alt="" class="profile-photo">
+                        <div class="info">
+                            <!-- Aquí muestras el nombre de usuario y el tiempo transcurrido desde la publicación -->
+                            <h3><%= post.getNombreUsuario() %> <span class="text-muted">@<%= post.getUsername() %> &#x2022 <small><%= post.getFormattedDate() %></small></span></h3>
+                            <!-- Si tienes la categoría de la publicación, puedes mostrarla aquí -->
+                            <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i> <%= post.getCategoria() %>  </h4>
+                        </div>
+                        <form id="formDatosUserPub_<%= post.getIdPublicacion() %>" >
+                            <input type="hidden" id="EuserId_<%= post.getIdPublicacion() %>" name="EuserId" value="<%out.println(post.getIdUsuario());%>">
+                        </form>  
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="title">
-              <p>Happy </p>
-            </div>
-
-            <div class="caption">
-              <p>I went out with my human, was fun </p>
-            </div>
-
-            <div>
-              <img src="Imageees/post.jpg" alt="" class= "photo">
-            </div>
-
-            <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="post">
-
-            <div class="head">
-              <div class="user">
-                <img src="Imageees/Mikuu.jpg" alt="" class="profile-photo">
-                <div class="info">
-                  <h3>Little Miku <span class="text-muted">@HatsuneMiku &#x2022 <small>15 min ago</small></span>  </h3>
-                  <h4 class="text-muted">  <i class="uil uil-pricetag-alt"></i>  Rythm  </h4>
+                <!-- Título de la publicación -->
+                <div class="title">
+                    <p><%= post.getTitulo() %></p>
                 </div>
-              </div>
+
+                <!-- Contenido de la publicación -->
+                <div class="caption">
+                    <p><%= post.getContenido() %></p>
+                </div>
+
+                <!-- Imagen de la publicación -->
+                <div>
+                    <img src="<%= post.getNImg() %>" alt="" class="photo">
+                </div>
+
+                <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
+                <div class="actiones">
+                    <div class="interaction-bnts">
+                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                    </div>
+                    <div class="save">
+                        <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
+                    </div>
+                </div>
             </div>
+        <% } %>
+    <% } else { %>
+        <!-- Mostrar un mensaje si no hay publicaciones -->
+    <h2>Sin Publicaciones</h2>
+    <% } %>
+    <ul class="pagination justify-content-center ">
+                <%
+                    int pag = 0;
+                    if(request.getAttribute("Pagina") != null){
+                    pag = (int)request.getAttribute("Pagina");
+                    }
+                    boolean search = false;
+                    if(request.getAttribute("search") != null) {
+                        search = true;
+                    }
+                    boolean asearch = false;
+                    if(request.getAttribute("BusquedaAvanzada") != null) {
+                        asearch = true;
+                    }
+                    int num_paginas = (int)request.getAttribute("num_paginas");
+                    if(pag != 0){
+                    %>
+                    <li class="page-item">
+                        <form action="PaginacionServlet" method="post">
+                            <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag-1);%>">
+                            <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                            <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                            <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
+                            <button class="page-image" style="background: none; border: none; width: 2.5rem; height: 2.5rem" type="submit" href="#" aria-label="Previous" style="--bs-pagination-border-radius:50%;">
+                                <a class="bi bi-caret-left-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
+                            </button>
+                        </form>
+                    </li>
+                    <%
+                    }
+                    for(int i = 1; i < num_paginas+1; i++){
+                    if(i == pag+1){
+                        %>
+                        <li class="page-item" style="background: rgba(55, 50, 70, 1); border-radius: 100%">
+                            <form action="PaginacionServlet" method="post">
+                                <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                                <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                                <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
+                                <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                                <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
+                                </button>
+                            </form>
+                        </li>
+                        <%
+                    }else{
+                        %>
+                        <li class="page-item">
+                            <form action="PaginacionServlet" method="post">
+                                <input type="hidden" id="Pag" name="Pag" value="<%out.println(i-1);%>">
+                                <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                                <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                                <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
+                                <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                                <a class="page-link" style="--bs-pagination-border-radius:50%;"><%out.print(i);%></a>
+                                </button>
+                            </form>
+                        </li>
+                        <%
+                    }
+                    }
+                    if(pag+1 != num_paginas){
+                    %>
+                    <li class="page-item">
+                        <form action="PaginacionServlet" method="post">
+                            <input type="hidden" id="Pag" name="Pag" value="<%out.println(pag+1);%>">
+                            <input type="hidden" id="Search" name="Search" value="<%out.println(search);%>">
+                            <input type="hidden" id="Searchword" name="Searchword" value="<%out.println(request.getAttribute("searchword"));%>">
+                            <input type="hidden" id="ASearch" name="ASearch" value="<%out.println(asearch);%>">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria" value="<%out.println(request.getAttribute("idCategoria"));%>">
+                            <input type="hidden" id="F_inicio" name="F_inicio" value="<%out.println(request.getAttribute("f_inicio"));%>">
+                            <input type="hidden" id="F_fin" name="F_fin" value="<%out.println(request.getAttribute("f_fin"));%>">
+                            <button style="background: none; border: none; width: 2.5rem; height: 2.5rem" class="page-image" type="submit" href="#" aria-label="Next" style="--bs-pagination-border-radius:50%">
+                              <a class="bi bi-caret-right-fill page-link" style="--bs-pagination-border-radius:50%;"></a>
+                            </button>
+                        </form>
+                    </li>
+                    <%
+                    }
+                %>
 
-            <div class="title">
-              <p>An amazing Concert </p>
-            </div>
-
-            <div class="caption">
-              <p>It was an incredible concert, thank u so much! </p>
-            </div>
-
-            <div>
-              <img src="Imageees/mikuConcert.jpg" alt="" class= "photo">
-
-            </div>
-
-            <div class="actiones">
-              <div class="interaction-bnts">
-                <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
-              </div>
-              <div class="save">
-                <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
-              </div>
-            </div>
-
-          </div>
-
-
-          
-        </div>
-
-        <div class="pagee">
-          <i class="bi bi-caret-left-fill"></i>
-          <p>1</p>
-          <i class="bi bi-caret-right-fill"></i>
-        </div>
-
-
+          </ul>
+</div>
       </div>
     
       <!------ RIGHT PART ------>
       <div class="right">
-        
-        <div class="recommended-games">   
           
-          <a href="#item1" id="game1">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Crypt of the Necrodancer</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
-              </div>
-            </div>            
-          </a>
-          
-          <a href="#item2" id="game2">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Yu gi oh!</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
-              </div>
-            </div>
-          </a>
-          
-          <a href="#item3" id="game3">
-            <div class="games-cards">
-              <div class="img-game-cards">
-                <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
-              </div>
-    
-              <div class="game-info">
-                <h2>Overcooked 2</h2>
-                <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
-              </div>
-            </div> 
+            <div class="gaaames">
+                <div class="recommended-games">   
 
-          </a>
-                 
+                    <a href="#item1" id="game1">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game1.PNG" alt="" class="img-game-cards">
+                        </div>
 
-        </div>
+                        <div class="game-info">
+                          <h3>Crypt of the Necrodancer</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Rythm</span>
+                        </div>
+                      </div>            
+                    </a>
 
-        <!-- COVER PHOTOS -->
-        <div class="big-photo-game">
+                    <a href="#item2" id="game2">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game2.PNG" alt="" class="img-game-cards">
+                        </div>
 
-          <div class="conteCarrusel">
+                        <div class="game-info">
+                          <h3>Yu gi oh!</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Strategy</span>
+                        </div>
+                      </div>
+                    </a>
 
-            <div class="game-carrusel" id="item1">
-              <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
-              <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                    <a href="#item3" id="game3">
+                      <div class="games-cards">
+                        <div class="img-game-cards">
+                          <img src="Imageees/Game4.PNG" alt="" class="img-game-cards">
+                        </div>
+
+                        <div class="game-info">
+                          <h3>Overcooked 2</h3>
+                          <span class="text-muted"><i class="uil uil-pricetag-alt"></i> Simulation</span>
+                        </div>
+                      </div> 
+
+                    </a>
+                </div>
+
+              <!-- COVER PHOTOS -->
+                <div class="big-photo-game">
+
+                    <div class="conteCarrusel">
+
+                      <div class="game-carrusel" id="item1">
+                        <img src="Imageees/coverphoto1.PNG" alt="" class="cover-photo-game" id="item1">
+                        <p class="text-muted" id="item1">Overwhelmingly Positive reviews</p>
+                      </div>
+
+                      <div class="game-carrusel" id="item2">
+                        <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">New Decks</p>        
+                      </div>
+
+                      <div class="game-carrusel" id="item3">
+                        <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
+                        <p class="text-muted">Play with friends</p>        
+                      </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="game-carrusel" id="item2">
-              <img src="Imageees/coverphoto2.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">New Decks</p>        
-            </div>
-            
-            <div class="game-carrusel" id="item3">
-              <img src="Imageees/coverphoto4.PNG" alt="" class="cover-photo-game">
-              <p class="text-muted">Play with friends</p>        
-            </div>
-          </div>
-          
-          
-        </div>
-
-
-      </div>
+        </div>  
 
       <!------ MODAL CONFIG ------>
       <div id="modalConfig" class="modal">
@@ -469,21 +563,30 @@
         <div class="modal-content configg" id="popup-config">
           <span class="close" id="close-signOut">&times;</span>
           
-          <form class="">            
+          
+    <div>
+        <% if (usuario != null) { %>
+            <form action="SignOutServlet" method="post">
+                <button type="submit" class="text lil-popUp">
+                    Sign Out
+                </button>
+            </form>
+        <% } else { %>
+            <a href="SignIn.jsp" class="text lil-popUp">
+                Sign In
+            </a>
+        <% } %>
+        <a href="#perfil" onclick="<%
+            if (usuario != null) {
+        %>toProfile(true)<%
+            } else {
+        %>toProfile(false)<%
+            }
+        %>" class="text lil-popUp">
+            Profile
+        </a>
+    </div>
 
-            <div>
-             <a href="SignIn.jsp" class="text lil-popUp">
-              Sign Out
-             </a>
-             
-             <a href="MyProfile.jsp" class="text lil-popUp">
-              Profile
-             </a>
-              
-            </div>
-
-                     
-          </form>
 
         </div>
 
@@ -501,9 +604,9 @@
     <!------ FOOTER ------>
     <br>
     <div class="footer">
-      <p class="text-footer">All rights reserved <i class="uil uil-copyright"></i>
+      <p class="text-footer"> All rights reserved <i class="uil uil-copyright"></i>
        <br>
-       Terms of use | Privacy Policy
+       Isis Esmerada Flores Montes  |     Carlos Daniel Pinkus Martinez
       </p>
       
       <br>
@@ -518,16 +621,22 @@
 
   
 
-  <script>
-      const openModalBtn = document.getElementById("openModal");
+      <script>
+const openModalBtn = document.getElementById("openModal");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementsByClassName("close")[1];
-
+const userlog=document.getElementById("IDS").value;
 
 
 openModalBtn.onclick = function(event) {
   event.preventDefault();
-  modal.style.display = "block";
+  if(parseInt(userlog)!=0){
+      console.log("hola el user log vale: "+userlog)
+   modal.style.display = "block";
+  }else{
+      alert('Inicie sesion para crear publicaciones');
+  }
+ 
 }
 
 closeModalBtn.onclick = function(event) {
@@ -612,7 +721,7 @@ window.onclick = function(event) {
   }
 }
 /* ------ Post Img Preview ----- */
-document.getElementById('inputImage').addEventListener('change', function(event) {
+document.getElementById('PostinputImage').addEventListener('change', function(event) {
   var input = event.target;
   var reader = new FileReader();
   

@@ -58,31 +58,40 @@ public class PaginacionServlet extends HttpServlet {
         String idcategoria = request.getParameter("IdCategoria");
         int idCategoria = Integer.parseInt(idcategoria.trim());
         String f_inicio_string = request.getParameter("F_inicio");
+        System.out.println("esta es mi f_inicio recibida en servlet pag: "+f_inicio_string);
         String f_fin_string = request.getParameter("F_fin");
-        
+            System.out.println("esta es mi f_fin recibida en servlet pag: "+f_fin_string); 
         java.util.Date utilDate;
         Date f_inicio = null;
         if (!"".equals(f_inicio_string)){
             try {
                 utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_inicio_string);
+                f_inicio = new java.sql.Date(utilDate.getTime());
             } catch (ParseException ex) {
-                return;
+                System.out.println("me fui de fecha inicio");
             }
-            f_inicio = new java.sql.Date(utilDate.getTime());
+            System.out.println("fecha inicio servlet en el if: "+f_inicio);
         }
+        System.out.println("fecha inicio servlet en el if: "+f_inicio);
         Date f_fin = null;
+        System.out.println("fecha fin servlet"+f_fin_string);
         if (!"".equals(f_fin_string)){
             try {
                 utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(f_fin_string);
+                f_fin = new java.sql.Date(utilDate.getTime());
             } catch (ParseException ex) {
-                return;
+                System.out.println("me fui de fecha fin");
             }
-            f_fin = new java.sql.Date(utilDate.getTime());
+            System.out.println("fecha fin servlet en el if: "+f_fin);
         }
+        System.out.println("fecha fin servlet en el if: "+f_fin);
         publicaciones = daopost.getAdvancedSearchPosts(f_inicio, f_fin, pag, idCategoria,texto);
-        
+        int numpag=daopost.getnAdvancedSearchPosts(f_inicio, f_fin, idCategoria,texto)/10+1;
         request.setAttribute("searchword", texto);
+        request.setAttribute("num_paginas",numpag);
+         System.out.println("mis num_paginas de avanced en paginacion son:"+numpag);
             request.setAttribute("Pagina", pag);
+            System.out.println("mis Pagina de avanced en paginacion son:"+pag);
             request.setAttribute("BusquedaAvanzada", publicaciones);
             request.setAttribute("idCategoria", idCategoria);
             request.setAttribute("f_inicio", f_inicio);

@@ -449,7 +449,7 @@ public class DAOPublicacion {
             cs = (CallableStatement) con.prepareCall(sql);
             cs.setDate(1, f_inicio);
             cs.setDate(2, f_fin);
-            cs.setInt(3, offset);
+            cs.setInt(3, offset*10);
             if(id_cat == 0){
                 cs.setString(4,null);
             } else {

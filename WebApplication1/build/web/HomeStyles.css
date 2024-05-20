@@ -39,6 +39,7 @@ body{
   font-size: 20px;
   color: var(--primary-color);
   font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
 }
 
 .text-DP{
@@ -47,6 +48,8 @@ body{
   color: var(--primary-color);
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
+  min-width: 150px;
+  
 }
 
 .text-muted{
@@ -124,15 +127,20 @@ nav{
 
 
 .container{
-  padding-left: 10px;
-  padding-right: 25px;
-  padding-top: 1px;
+  
+  padding-right:10px;
+  padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
   align-items: center;
-
+  margin-right: 0px;
   display: flex;
   align-items: center;
+}
+
+#side-photo{   
+  display: flex;
+  justify-content: flex-end;
 }
 
 /*  ----- SIDE BAR -------    */
@@ -166,7 +174,7 @@ nav{
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
-
+  text-decoration: none;
   transition: background-color .15s;
 }
 
@@ -267,6 +275,10 @@ nav{
   
 }
 
+.left .profile{
+    line-height: .3;
+}
+
 .user-data{
   padding-left: 15px;
 }
@@ -276,6 +288,7 @@ nav{
   flex-direction: column;
   margin: 0px 15px;
   align-items: flex-start;
+  line-height: .3;
 }
 
 .user-name-navbar{
@@ -285,6 +298,7 @@ nav{
   align-items: flex-start;
   max-width: 193px;
   overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .config{
@@ -317,11 +331,15 @@ main{
 }
 
 main .container{
-  margin-left: 250px;
+  margin-left: 200px;
   display: grid;
-  grid-template-columns: auto 20vw;
+  grid-template-columns: 65vw 18vw;
   position: relative;
+  gap:0px;
+  min-height: 950px;  
+  align-items: start;
 }
+
 
 .photo-container{
   display: flex;
@@ -457,6 +475,8 @@ main .btn-create{
 .icons-stile{
   margin: 1px 15px;
 }
+
+
 
 .save{
   margin: 1px 1px;
@@ -664,12 +684,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: absolute;
-  top: 0px;
+ 
   width: 90%;
   margin-top: -10px;
 }
-
 .games-cards{
   background-color: var(--background-color);
   display:flex;
@@ -678,7 +696,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 10px 15px;
   border-radius: 15px;
   margin: 10px 20px;
-  width: 90%;
+  width: 100%;
   position: relative;
   transition: all 0.15s;
 }
@@ -686,6 +704,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .games-cards:hover{
   opacity: 0.7;
 }
+
 
 
 
@@ -709,14 +728,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 15px;
   width: 120%;
   margin-left: -10%;
+  margin-top: 10px;
   padding-top: 20px;
   padding-bottom: 10px;
-  position: absolute;
-  top: 30%;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
-
 .game-carrusel{
   width: 100%;
   height: 98%;
@@ -750,6 +767,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: var(--primary-color);
 }
 
+.gaaames{
+  position: absolute;
+  top: 0;
+}
+
 /*------ MODAL SIGN OUT -------*/
 
 #modalConfig{
@@ -760,7 +782,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   position: absolute;
   width: 10%;
-  left: 7%;
+  left: 8.5%;
   bottom: -22%;
   justify-content: center;
 }
@@ -770,7 +792,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   width: 5px;
   height: 5px;
-  left: 12%;
+  left: 12.5%;
   bottom: -23%;
   transform: rotate(45deg);
 }
@@ -784,16 +806,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 5px 5px;
   padding: 5px 20px;
   border-radius: 15px;
+  text-decoration: none;
 }
 .lil-popUp:hover{
   background-color: var(--background-color-graay-muted);
 }
 
+button[type="submit"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: none;
+            border: none;
+            font: inherit;
+            color: inherit;
+            cursor: pointer;
+        }
+
 /* -------- FOOTER ---------- */
 
 .footer{
   width: 100%;
-  position: absolute;
+  position: sticky;
   background-color: var(--background-color-graay-muted);
   bottom: 0px;
   left: 0px;
@@ -804,7 +838,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .text-footer{
   position: absolute;
-  left: 39.5%;
+left: 29.8%;
   background-color: var(--background-color-graay-muted);
   
 }
