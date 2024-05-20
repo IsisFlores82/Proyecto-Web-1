@@ -1016,3 +1016,12 @@ left: 29.8%;
     color: var(--primary-color);
     cursor: pointer;
 }
+
+.transicion{ 
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+ .transparent {
+    opacity: 1;
+    transition: opacity 0.15s ease; /* Transición de opacidad */
+}

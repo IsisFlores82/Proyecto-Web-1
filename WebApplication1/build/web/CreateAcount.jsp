@@ -46,39 +46,39 @@
         <div class="namee">
             
           <div class="input-container">
-            <input type="text" id="idname" class="input-name" name="name" required>
+            <input type="text" id="idname" class="input-name" name="name" required maxlength="60">
             <label class="placeholder" for="idname" id="labelName"> Name </label>
           </div>
   
           <div class="input-container">
-            <input type="text" id="idpname" class="input-name" name="pname" required>
+            <input type="text" id="idpname" class="input-name" name="pname" required maxlength="30">
             <label class="placeholder" for="idpname" id="labelPat"> Paternal surname </label>
           </div>
             
            <div class="input-container">
-            <input type="text" id="idmname" class="input-name" name="mname" required>
+            <input type="text" id="idmname" class="input-name" name="mname" required maxlength="30">
             <label class="placeholder" for="idmname" id="labelMat"> Maternal surname </label>
           </div>
         </div>
         
         <div class="input-container">
-          <input type="text" id="idusername" class="input" name="username" required>
+          <input type="text" id="idusername" class="input" name="username" required maxlength="30">
           <label class="placeholder" for="idusername" id="labelUser"> Username </label>
         </div>
   
   
         <div class="input-container">
-          <input type="email" id="idemail" class="input" name="email" required>
+          <input type="email" id="idemail" class="input" name="email" required maxlength="40">
           <label class="placeholder" for="idemail" id="labelEmail" > Email </label>
         </div>
   
         <div class="input-container">
-          <input type="password" id="idpass" class="input" name="pass" required>
+          <input type="password" id="idpass" class="input" name="pass" required maxlength="20">
           <label id="labPass" class="placeholder" for="idpass" > Password </label>
         </div>
 
         <div class="input-container">
-          <input type="password" id="idcpass" class="input" name="cpass" required>
+          <input type="password" id="idcpass" class="input" name="cpass" required maxlength="20">
           <label id="labelPassAgain" class="placeholder" for="idcpass" > Repeat password </label>
         </div>
         

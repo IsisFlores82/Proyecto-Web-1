@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -254,12 +255,12 @@
 
               <div>
                 <div class="innput">
-                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required>
+                  <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required maxlength="50">
                 </div>
 
                 <div>
                   <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" 
-                  placeholder="What´s on ur mind?" required></textarea>
+                  placeholder="What´s on ur mind?" required maxlength="500"></textarea>
                 </div>
                 
                 <div class="actiones">
@@ -379,7 +380,7 @@ publicaciones = (List<Publicacion>)request.getAttribute("publicaciones");
                 <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
                 <div class="actiones">
                     <div class="interaction-bnts">
-                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                        <span class="icons-stile"><i class="bi bi-heart transicion"></i></span>
                     </div>
                     <div class="save">
                         <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -732,6 +733,13 @@ document.getElementById('PostinputImage').addEventListener('change', function(ev
   }
   
   reader.readAsDataURL(input.files[0]);
+});
+
+$(document).ready(function() {
+      $('i.bi-heart').on('click', function() {
+        $(this).toggleClass('bi-heart bi-heart-fill');
+        $(this).toggleClass('transicion transparent');
+      });
 });
   </script>
  

@@ -50,12 +50,12 @@
         <% } %>
         
         <div class="input-container">
-          <input type="email" id="email" class="input" name="fusuario" required>
+          <input type="email" id="email" class="input" name="fusuario" required maxlength="40">
           <label class="placeholder" for="email" id="labelEmail" > Email </label>
         </div>
   
         <div class="input-container">
-          <input type="password" id="pass" class="input"  name="fcontra" required>
+          <input type="password" id="pass" class="input"  name="fcontra" required maxlength="20">
           <label class="placeholder" for="pass" id="labelPass"> Password </label>
         </div>
         

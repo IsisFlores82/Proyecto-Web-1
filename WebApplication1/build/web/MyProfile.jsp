@@ -179,11 +179,11 @@
 
       <div>
         <div class="innput">
-          <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required>
+          <input type="text" id="idpostTitle" name="postTitle" class="input-post text" placeholder="Title" required maxlength="50">
         </div>
 
         <div>
-          <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" placeholder="What´s on ur mind?" required></textarea>
+          <textarea name="bodypost" id="postContent" cols="8" rows="5" class="texarea-post text" placeholder="What´s on ur mind?" required maxlength="500"></textarea>
         </div>
 
         <div class="actiones">
@@ -328,7 +328,7 @@
             <div class="category-edit-user">                
                 <div class="data-left">
                     <div class="innput">
-                        <input type="text" id="name" name="name" class="input-post text" placeholder="Name" maxlength="30">
+                        <input type="text" id="name" name="name" class="input-post text" placeholder="Name" maxlength="60">
                     </div>
                     <div class="innput">
                         <input type="text" id="occupation" name="occupation" class="input-post text" placeholder="Ocupation" maxlength="30">
@@ -363,7 +363,7 @@
                        
                     </div>
                     <div class="innput">
-                        <input type="text" id="description" name="description" class="input-post text" placeholder="Description" maxlength="30">
+                        <input type="text" id="description" name="description" class="input-post text" placeholder="Description" maxlength="100">
                     </div>
                     
                     <div class="innput">
@@ -382,13 +382,13 @@
             </div>
             <div class="email-pass">                
                 <div class="innput data-left">
-                    <input type="text" id="email" name="email" class="input-post text" placeholder="Email" maxlength="80">
+                    <input type="text" id="email" name="email" class="input-post text" placeholder="Email" maxlength="40">
                 </div>
                 <div class="innput data-right">
-                    <input type="text" id="password" name="password" class="input-post text" placeholder="Password" maxlength="80">
+                    <input type="text" id="password" name="password" class="input-post text" placeholder="Password" maxlength="20">
                 </div>
                 <div class="innput data-right">
-                    <input type="text" id="confirmPassword" name="confirmPassword" class="input-post text" placeholder=" Confirm Password" maxlength="80">
+                    <input type="text" id="confirmPassword" name="confirmPassword" class="input-post text" placeholder=" Confirm Password" maxlength="20">
                 </div>
             </div>
             <div class="btn-save">
@@ -1021,8 +1021,7 @@ $(document).ready(function() {
         $(this).toggleClass('bi-heart bi-heart-fill');
         $(this).toggleClass('transicion transparent');
       });
-});
-      
+});      
       
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

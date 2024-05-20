@@ -31,7 +31,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">  
 
      <script src="script.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
 
@@ -350,7 +350,7 @@
                 <!-- Acciones de la publicación (por ejemplo, botón de "Me gusta" y "Guardar") -->
                 <div class="actiones">
                     <div class="interaction-bnts">
-                        <span class="icons-stile"><i class="uil uil-heart"></i></span>
+                        <span class="icons-stile"><i class="bi bi-heart transicion"></i></span>
                     </div>
                     <div class="save">
                         <span class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -381,7 +381,7 @@
             </div>
             <div class="actiones">
                 <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 108</span>
+                    <span class="icons-stile"><i class="bi bi-heart transicion"></i> 108</span>
                 </div>
                 <div class="save">
                     <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -409,7 +409,7 @@
             </div>
             <div class="actiones">
                 <div class="interaction-bnts">
-                    <span class="icons-stile"><i class="uil uil-heart"></i> 2.7k</span>
+                    <span class="icons-stile"><i class="bi bi-heart transicion"></i> 2.7k</span>
                 </div>
                 <div class="save">
                     <span  class="icons-stile"> <i class="uil uil-bookmark"></i></span>
@@ -617,10 +617,7 @@ openModalBtnConfig.onclick = function(event) {
   modalConfig.style.display = "block";
 }
 
-closeModalBtnConfig.onclick = function(event) {
-  event.preventDefault();
-  modalConfig.style.display = "none";
-}
+
 
 window.onclick = function(event) {
   if (event.target == modalConfig) {
@@ -628,7 +625,12 @@ window.onclick = function(event) {
   }
 }
 
-
+$(document).ready(function() {
+      $('i.bi-heart').on('click', function() {
+        $(this).toggleClass('bi-heart bi-heart-fill');
+        $(this).toggleClass('transicion transparent');
+      });
+});
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   
